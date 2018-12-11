@@ -57,3 +57,102 @@
     color: #00a9f6;
 }
 .link{display: none;}
+
+.min_carousel {
+    list-style: none;
+    float: left;
+    width: 15%;
+    height: 50%;
+    margin: 0px 0.83%;
+}
+.min_carousel img{
+    margin-top: calc(50% - 68px);
+    width: 136px;
+    height: 60px;
+}
+.about_us{
+    width: 100%;
+    height: 100%;
+}
+.about_us ul{
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+.about_us ul li{
+    width: 80px;
+    height: 80px;
+    float: left;
+    list-style: none;
+    border-radius: 50%;
+    border: 1px #61656e solid;
+    line-height: 80px;
+    text-align: center;
+    margin: 0px calc(calc(100% - 320px)/8);
+}
+.about_us ul li a{
+    text-decoration: none;
+}
+
+#floot{
+    width: 100%;
+    height: 350px;
+    margin-top: 30px;
+}
+#floot .gd_info{
+    width: 100%;
+    height: 280px;
+    background: #565c66;
+}
+.gd_info .gzh_code{
+    width: 40%;
+    margin-left: 10%;
+    height: 100%;
+    float: left;
+    color: white;
+    text-align: center;
+}
+.gd_info .gzh_code img{
+    padding-top: 50px;
+}
+.gd_info .company_info{
+    width: 40%;
+    height: 100%;
+    float: left;
+    text-align: left;
+}
+.company_info .info_h{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    color: white;
+}
+.company_info .info_line {
+    width: 100px;
+    height: 1px;
+    background: white;
+}
+.company_info .info_li ul{
+    margin-left: 0px;
+    padding-left: 0px;
+    width: 100%;
+    height: calc(100% - 51px);
+    list-style: none;
+    color: white;
+}
+.company_info .info_li ul li {
+    height: 35px;
+    line-height: 35px;
+}
+#floot .gd_copyright{
+    width: 100%;
+    height: 70px;
+    background: #29333c;
+    font-size: 14px;
+    color: white;
+    line-height: 70px;
+    text-align: center;
+}
