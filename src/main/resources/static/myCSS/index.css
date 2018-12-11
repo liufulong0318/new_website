@@ -156,3 +156,36 @@
     line-height: 70px;
     text-align: center;
 }
+.content {
+    width: 80%;
+    margin: 30px 0px 30px 10%;
+}
+.myProduct {
+    width: 25%;
+    margin: 30px 0px;
+    float: left;
+}
+.list-group{
+   width: 100%;
+   margin-bottom: 0px;
+}
+.list-group-item:last-child{
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.list-group-item.active:first-child{
+    padding-left: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.list-group-item-heading{
+    padding-left: 20px;
+}
+.myProductContent{
+    width: 70%;
+    margin: 0px 0px 0px 5%;
+    float: left;
+}
+.panel-title{
+    text-align: center;
+}
