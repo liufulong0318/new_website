@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
     @Autowired
     UserService userService;
-    @RequestMapping("home")
-    public String home(Model model){
-        userService.getUser();
-        model.addAttribute("name","liufulong");
-        return "home";
-    }
+//    @RequestMapping("home")
+//    public String home(Model model){
+//        userService.getUser();
+//        model.addAttribute("name","liufulong");
+//        return "home";
+//    }
     @RequestMapping("product")
     public String product(Model model){
         userService.getUser();
@@ -426,5 +426,9 @@ public class UserController {
     @RequestMapping("purchase")
     public String purchase(Model model){
         return "purchase";
+    }
+    @RequestMapping("download")
+    public String download(Model model){
+        return "download";
     }
 }

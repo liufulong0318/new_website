@@ -261,3 +261,33 @@
 .product_btn ul li button{
     margin-top: 38px;
 }
+
+.downloadContent{
+    width: 80%;
+    margin: 30px 0px 0px 10%;
+}
+
+.downloadContent .badge{
+    background-color: white;
+    font-size: 16px;
+}
+.downloadContent .badge a{
+    text-decoration: none;
+    cursor: pointer;
+}
+#myModalLabel {
+    text-align: center;
+}
+.modal-dialog {
+    margin-top: 200px;
+}
+.modal-body input{
+    display: inline;
+    width: 40%;
+}
+#myModal .form-group{
+    margin: 0px 0px 15px 10%;
+}
+#myModal .form-group label{
+    min-width: 100px;
+}

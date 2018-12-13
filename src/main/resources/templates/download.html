@@ -13,17 +13,14 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>解决方案</title>
+    <title>资料下载</title>
     <link th:href="@{../bootstrap/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{../bootstrap/css/bootstrap-theme.css}" rel="stylesheet">
     <link th:href="@{../myCSS/index.css}" rel="stylesheet">
 </head>
 <body id="body">
 <div th:include="head"></div>
-<div style="width: 100%;">
-    <img src="../images/jiejue.jpg" style="width: 100%;">
-</div>
-<div th:replace="mySolutionContent"></div>
+<div th:replace="downloadContent"></div>
 <div th:replace="floot"></div>
 <script th:src="@{../jquery/jquery-3.3.1.min.js}" type="text/javascript"></script>
 <script th:src="@{../bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
