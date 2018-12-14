@@ -29,10 +29,11 @@
             <span>400-628-5226</span>&nbsp;&nbsp;
             <span>400-628-5226</span>
             <ul class="nav navbar-nav navbar-right">
-                <li data-toggle="modal" data-target="#myModal" onclick="register()"><a href="javascript:void(0)" ><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+                <li data-toggle="modal" data-target="#myModal" onclick="generatingVerificationCode()"><a href="javascript:void(0)" ><span class="glyphicon glyphicon-user"></span> 注册</a></li>
                 <li><a href="javascript:void(0)"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
             </ul>
         </div>
+        <!--<input style="display: none;" id="token" th:value="${token}" >-->
     </div>
 </nav>
 <!-- 模态框（Modal） -->
@@ -48,14 +49,14 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <form class="cmxform" id="signupForm" method="post" action="/register">
+                <form class="cmxform" id="signupForm" >
                     <div class="form-group">
                          <label for="username">用户名</label>
                           <input id="username" name="username" class="form-control" type="text" placeholder="数字、字母组合(长度6~30)" minlength="6" maxlength="30" required>
                     </div>
                     <div class="form-group">
                          <label for="password">密码</label>
-                         <input id="password" name="password" class="form-control" type="password" placeholder="8位数字" maxlength="8" minlength="8" required>
+                         <input id="password" name="password" class="form-control" type="password" placeholder="数字、字母组合(长度8)" maxlength="8" minlength="8" required>
                     </div>
                     <div class="form-group">
                          <label for="confirm_password">验证密码</label>
@@ -64,40 +65,46 @@
                     <div class="form-group">
                         <label for="verificationCode">验证码</label>
                         <input type="text" class="form-control" placeholder="请输入验证码(区分大小写)" id="verificationCode" maxlength="4" minlength="4" required >
-                        <img src="" id="generatingCode">
-                        <a onclick="register()">看不清楚</a>
                     </div>
-                    <input style="display: none;" id="url" name="url">
-                    <input class="submit" type="submit" value="Submit" style="display: none;">
+                    <div class="form-group" >
+                        <img src="" id="generatingCode" onclick="generatingVerificationCode()" style="margin-left: 100px; border: 1px solid;width: 20%;">
+                        <a onclick="generatingVerificationCode()" style="cursor: pointer;text-decoration: none;">看不清楚</a>
+                    </div>
                 </form>
-                <!--<form class="form-inline" role="form" id="registerInfo" method="post" action="/register">-->
-                    <!--<div class="form-group">-->
-                        <!--<label >用户名</label>-->
-                        <!--<input type="text" class="form-control" placeholder="数字、字母组合(长度6~30)" minlength="6" maxlength="30" id="username" required>-->
-                    <!--</div>-->
-                    <!--<div class="form-group">-->
-                        <!--<label >密码</label>-->
-                        <!--<input type="password" class="form-control" placeholder="8位数字" maxlength="8" minlength="8" id="password"  required>-->
-                    <!--</div>-->
-                    <!--<div class="form-group">-->
-                        <!--<label >确认密码</label>-->
-                        <!--<input type="password" class="form-control" placeholder="请再次输入密码" maxlength="8" minlength="8" id="confirm_password" equalTo="#password" required>-->
-                    <!--</div>-->
-                    <!--<div class="form-group">-->
-                        <!--<label >验证码</label>-->
-                        <!--<input type="text" class="form-control" placeholder="请输入验证码(区分大小写)" id="verificationCode" maxlength="4" minlength="4" required>-->
-                        <!--<img src="" id="generatingCode">-->
-                        <!--<a onclick="register()">看不清楚</a>-->
-                    <!--</div>-->
-                    <!--<input class="submit" type="submit" value="Submit" style="display: none;">-->
-                <!--</form>-->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    关闭
+                </button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="submit">
+                    提交
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<input type="button" style="display: none;" data-toggle="modal" data-target="#myModal_MSG" id="ok_btn">
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal_MSG" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel_MSG">
+                    提示
+                </h4>
+            </div>
+            <div class="modal-body">
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    关闭
                 </button>
-                <button type="button" class="btn btn-primary" id="submit">
-                    提交
+                <button type="button" class="btn btn-primary" id="OK">
+                    确定
                 </button>
             </div>
         </div><!-- /.modal-content -->

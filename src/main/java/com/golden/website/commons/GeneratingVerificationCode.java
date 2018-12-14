@@ -1,5 +1,6 @@
 package com.golden.website.commons;
 
+import redis.clients.jedis.Jedis;
 import sun.misc.BASE64Encoder;
 
 import javax.imageio.ImageIO;
@@ -27,8 +28,11 @@ public class GeneratingVerificationCode {
             sb.append(codeSequence[random.nextInt(62)]);
         }
         String content = sb.toString();
+        Jedis jedis = new Jedis("127.0.0.1");
+        jedis.set(content,content.hashCode()+"");
+        jedis.expire(content,120);
         File file = new File("D://timg.jpg");
-        Font font = new Font("Serif", Font.BOLD, 10);
+        Font font = new Font("Serif", Font.BOLD, 16);
 
         BufferedImage bufferedImage = new BufferedImage(
                 width,
