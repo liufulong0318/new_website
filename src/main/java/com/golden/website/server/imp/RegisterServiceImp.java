@@ -1,16 +1,27 @@
 package com.golden.website.server.imp;
 
 import com.golden.website.commons.ResultInfo;
+import com.golden.website.dao.WebsitePwdMapper;
+import com.golden.website.dao.WebsiteUserMapper;
+import com.golden.website.dataobject.WebsitePwd;
+import com.golden.website.dataobject.WebsiteUser;
 import com.golden.website.server.RegisterService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
 public class RegisterServiceImp implements RegisterService{
+    @Autowired
+    WebsiteUserMapper websiteUserMapper;
+    @Autowired
+    WebsitePwdMapper websitePwdMapper;
     @Override
     public String register(HttpServletRequest request) {
         ResultInfo resultInfo = new ResultInfo();
@@ -20,7 +31,7 @@ public class RegisterServiceImp implements RegisterService{
         //对用户名进行验证
         if(loginUserName.length() < 6){
             resultInfo.setCode("0");
-            resultInfo.setMsg("注册失败，用户名长度不能低于8位");
+            resultInfo.setMsg("注册失败，用户名长度不能低于6位");
             return resultInfo.toString();
         }else if(loginUserName.length() > 30){
             resultInfo.setCode("0");
@@ -64,10 +75,31 @@ public class RegisterServiceImp implements RegisterService{
             }
         }else{
             resultInfo.setCode("0");
-            resultInfo.setMsg("注册失败，验证码错误");
+            resultInfo.setMsg("注册失败，验证码失效");
             return resultInfo.toString();
         }
-        System.out.println("loginUserName: "+loginUserName+", password: "+password+", code: "+code);
+        WebsiteUser websiteUser =  new WebsiteUser();
+        String id =  UUID.randomUUID().toString();
+        websiteUser.setId(id);
+        websiteUser.setLoginusername(loginUserName);
+        websiteUser.setRegistertime(new Date());
+        websiteUser.setState("0");
+        websiteUser.setErrorcount(0);
+        int saveUserInfo = websiteUserMapper.insert(websiteUser);
+        if(saveUserInfo < 1){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("注册失败，系统内部错误，请稍后重试");
+            return resultInfo.toString();
+        }
+        WebsitePwd websitePwd = new WebsitePwd();
+        websitePwd.setId(id);
+        websitePwd.setPassword(password);
+        int savePwdInfo = websitePwdMapper.insert(websitePwd);
+        if(savePwdInfo < 1){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("注册失败，系统内部错误，请稍后重试");
+            return resultInfo.toString();
+        }
         return resultInfo.toString();
     }
 }

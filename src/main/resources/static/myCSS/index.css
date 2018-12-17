@@ -291,3 +291,23 @@
 #myModal .form-group label{
     min-width: 100px;
 }
+
+.menu{
+    width: 250px;
+    height: calc(100% - 54px);
+    float: left;
+    padding: 5px;
+}
+.menu a{
+    text-decoration: none;
+}
+.manageContent{
+    width: calc(100% - 260px);
+    height: calc(100% - 64px);
+    margin: 5px 5px 5px 250px;
+}
+.manageContent iframe{
+    width: 100%;
+    height: 100%;
+    border: 0px;
+}

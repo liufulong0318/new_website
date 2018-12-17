@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理平台</title>
+    <link th:href="@{../bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{../bootstrap/css/bootstrap-theme.css}" rel="stylesheet">
+    <link th:href="@{../myCSS/index.css}" rel="stylesheet">
+</head>
+<body id="body">
+<div th:include="head"></div>
+<div th:include="manageContent" class="menu"></div>
+<div class="manageContent">
+    <iframe src="/manageContent_Right"></iframe>
+</div>
+<script th:src="@{../jquery/jquery-3.3.1.min.js}" type="text/javascript"></script>
+<script th:src="@{../bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
+<script type="text/javascript">
+    var screenHeight = document.documentElement.clientHeight;
+    var screenWidth = document.documentElement.clientWidth;
+    var body = document.getElementById('body');
+    body.style.width = screenWidth + "px";
+    body.style.height = screenHeight + "px";
+</script>
+<script th:src="@{../myJS/manage.js}" type="text/javascript"></script>
+</body>
+</html>
