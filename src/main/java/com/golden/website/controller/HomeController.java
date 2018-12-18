@@ -3,7 +3,6 @@ package com.golden.website.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import java.util.UUID;
 
 @Controller
@@ -19,4 +18,9 @@ public class HomeController {
         model.addAttribute("token", UUID.randomUUID());
         return "home";
     }
+    @RequestMapping("manage")
+    public String manage(Model model){
+        return "manage";
+    }
+
 }
