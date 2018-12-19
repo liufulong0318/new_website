@@ -1,6 +1,8 @@
 package com.golden.website.controller;
 
 import com.golden.website.dao.WebsiteLunbotuMapper;
+import com.golden.website.dataobject.WebsiteLunbotu;
+import com.golden.website.server.ManageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,51 +19,13 @@ import java.util.Map;
 @Controller
 @RequestMapping("/")
 public class manageRouterController {
+
     @Autowired
-    WebsiteLunbotuMapper websiteLunbotuMapper;
+    ManageService manageService;
+
     @RequestMapping("/lunbotu")
-    public String manageContent_Right(Model model){
-        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-
-        Map<String, Object> m = new HashMap<String, Object>();
-        m.put("id", "1");
-        m.put("name", "name1");
-        m.put("url", "/ssss");
-        m.put("link", "sssss");
-        m.put("order", "0");
-        list.add(m);
-
-        m = new HashMap<String, Object>();
-        m.put("id", "2");
-        m.put("name", "name1");
-        m.put("url", "/ssss");
-        m.put("link", "sssss");
-        m.put("order", "1");
-        list.add(m);
-
-        m = new HashMap<String, Object>();
-        m.put("id", "3");
-        m.put("name", "name1");
-        m.put("url", "/ssss");
-        m.put("link", "sssss");
-        m.put("order", "2");
-        list.add(m);
-
-        m = new HashMap<String, Object>();
-        m.put("id", "4");
-        m.put("name", "name1");
-        m.put("url", "/ssss");
-        m.put("link", "sssss");
-        m.put("order", "3");
-        list.add(m);
-
-        m = new HashMap<String, Object>();
-        m.put("id", "5");
-        m.put("name", "name1");
-        m.put("url", "/ssss");
-        m.put("link", "sssss");
-        m.put("order", "4");
-        list.add(m);
+    public String getAllLunbotu(Model model){
+        List<WebsiteLunbotu> list =  manageService.getAllOrderASC();
         model.addAttribute("list",list);
         return "home/lunbotu";
     }

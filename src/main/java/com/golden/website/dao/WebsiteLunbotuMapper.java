@@ -1,8 +1,10 @@
 package com.golden.website.dao;
 
 import com.golden.website.dataobject.WebsiteLunbotu;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 @Mapper
@@ -13,6 +15,7 @@ public interface WebsiteLunbotuMapper {
      *
      * @mbg.generated
      */
+    @Delete("delete from website_lunbotu where id =#{id}")
     int deleteByPrimaryKey(String id);
 
     /**
@@ -21,7 +24,7 @@ public interface WebsiteLunbotuMapper {
      *
      * @mbg.generated
      */
-    @Insert("insert into website_lunbotu (id,name,url,link,order,createtime) values (#{id},#{name},#{url},#{link},#{order},${createtime})")
+    @Insert("insert into website_lunbotu (id,name,url,link,`order`,createtime) values (#{id},#{name},#{url},#{link},#{order},#{createtime})")
     int insert(WebsiteLunbotu record);
 
     /**
@@ -30,6 +33,7 @@ public interface WebsiteLunbotuMapper {
      *
      * @mbg.generated
      */
+    @Select("select * from website_lunbotu where id = #{id}")
     WebsiteLunbotu selectByPrimaryKey(String id);
 
     /**
@@ -38,6 +42,7 @@ public interface WebsiteLunbotuMapper {
      *
      * @mbg.generated
      */
+    @Select("select * from website_lunbotu order by `order` asc")
     List<WebsiteLunbotu> selectAll();
 
     /**

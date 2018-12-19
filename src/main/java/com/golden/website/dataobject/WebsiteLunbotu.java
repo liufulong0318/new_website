@@ -219,17 +219,14 @@ public class WebsiteLunbotu implements Serializable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", url=").append(url);
-        sb.append(", link=").append(link);
-        sb.append(", order=").append(order);
-        sb.append(", createtime=").append(createtime);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
+        sb.append(" {");
+        sb.append("\"id\":\"").append(id);
+        sb.append("\", \"name\":\"").append(name);
+        sb.append("\", \"url\":\"").append(url);
+        sb.append("\", \"link\":\"").append(link);
+        sb.append("\", \"order\":\"").append(order);
+        sb.append("\", \"createtime\":\"").append(createtime);
+        sb.append("\"}");
         return sb.toString();
     }
 }

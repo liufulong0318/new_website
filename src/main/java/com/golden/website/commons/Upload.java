@@ -14,6 +14,7 @@ public class Upload {
     public static String upload(HttpServletRequest request) throws IOException {
         MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
         MultipartFile multipartFile = req.getFile("imgFile");
+
         byte[] bs = multipartFile.getBytes();
         String filePath = System.getProperty("user.dir");
         String filename=null;
@@ -27,7 +28,8 @@ public class Upload {
                 }
                 // 将字符串转换成二进制，用于显示图片
                 // 将上面生成的图片格式字符串 imgStr，还原成图片显示
-                String type = ".jpg";
+                String src_filename = multipartFile.getOriginalFilename();
+                String type = src_filename.substring(src_filename.lastIndexOf("."),src_filename.length());
                 String uuid = UUID.randomUUID().toString();
                 filename = uuid + type;
                 InputStream in = new ByteArrayInputStream(bs);
