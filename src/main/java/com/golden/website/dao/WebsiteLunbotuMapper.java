@@ -1,10 +1,7 @@
 package com.golden.website.dao;
 
 import com.golden.website.dataobject.WebsiteLunbotu;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 @Mapper
@@ -51,5 +48,9 @@ public interface WebsiteLunbotuMapper {
      *
      * @mbg.generated
      */
+    @Update("update website_lunbotu set name = #{name}, url = #{url},link = #{link},`order` = #{order},createtime = #{createtime} where id = #{id}")
     int updateByPrimaryKey(WebsiteLunbotu record);
+
+    @Update("update website_lunbotu set name = #{name}, link = #{link},`order` = #{order},createtime = #{createtime} where id = #{id}")
+    int updateByPrimaryKeyNotUrl(WebsiteLunbotu record);
 }

@@ -7,6 +7,8 @@ import com.golden.website.dataobject.WebsiteLunbotu;
 import com.golden.website.server.ManageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -104,5 +106,76 @@ public class ManageServiceImp implements ManageService{
     public String getLunbotuById(HttpServletRequest request) {
         WebsiteLunbotu websiteLunbotu = websiteLunbotuMapper.selectByPrimaryKey(request.getParameter("id"));
         return websiteLunbotu.toString();
+    }
+
+    @Override
+    public String editLunbotu(HttpServletRequest request) {
+            ResultInfo resultInfo =  new ResultInfo();
+            String name = request.getParameter("name").trim();
+            //对名称
+            if(name.length() <= 0){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("修改失败，名称长度不能为空");
+                return resultInfo.toString();
+            }else if(name.length() > 30){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("修改失败，名称长度不能大于30位");
+                return resultInfo.toString();
+            }else if(name.length() >= 0 && name.length() <= 30){
+                String pattern = "^^(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+                Pattern r = Pattern.compile(pattern);
+                Matcher m = r.matcher(name);
+                if(!m.matches()){
+                    resultInfo.setCode("0");
+                    resultInfo.setMsg("修改失败，名称含有非法字符");
+                    return resultInfo.toString();
+                }
+            }
+            String link = request.getParameter("link");
+            if(link != null){
+                String pattern = "^((http|https)://)?([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?$";
+                Pattern r = Pattern.compile(pattern);
+                Matcher m = r.matcher(link);
+                if(!m.matches()){
+                    resultInfo.setCode("0");
+                    resultInfo.setMsg("修改失败，链接不合法");
+                    return resultInfo.toString();
+                }
+            }
+            String order = request.getParameter("order");
+            MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
+            MultipartFile multipartFile = req.getFile("imgFile");
+
+            String url = null;
+            if(multipartFile != null){
+                try {
+                    url = Upload.upload(request);
+                } catch (IOException e) {
+                    System.out.println("未修改图片");
+                }
+            }
+            WebsiteLunbotu websiteLunbotu = new WebsiteLunbotu();
+            websiteLunbotu.setId(request.getParameter("id"));
+            websiteLunbotu.setName(name);
+            websiteLunbotu.setLink(link);
+            websiteLunbotu.setUrl(url);
+            websiteLunbotu.setOrder(Integer.parseInt(order));
+            websiteLunbotu.setCreatetime(new Date());
+            Integer count = 0;
+            if(url != null){
+                count = websiteLunbotuMapper.updateByPrimaryKey(websiteLunbotu);
+            }else{
+                count = websiteLunbotuMapper.updateByPrimaryKeyNotUrl(websiteLunbotu);
+            }
+
+            if(count > 0){
+                resultInfo.setCode("1");
+                resultInfo.setMsg("修改轮播图信息成功");
+            }else{
+                resultInfo.setCode("0");
+                resultInfo.setMsg("修改轮播图信息失败，请稍后重试");
+                resultInfo.toString();
+            }
+        return resultInfo.toString();
     }
 }

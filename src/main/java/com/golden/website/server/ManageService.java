@@ -12,4 +12,5 @@ public interface ManageService {
     List<WebsiteLunbotu> getAllOrderASC();
     String deleteLunbotuById(HttpServletRequest request);
     String getLunbotuById(HttpServletRequest request);
+    String editLunbotu(HttpServletRequest request);
 }

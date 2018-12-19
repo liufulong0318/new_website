@@ -39,13 +39,7 @@ $(document).ready(function(){
             }
         });
     })
-    // $('#myModal_del').on('hide.bs.modal', function () {
-    //     window.location.reload();
-    // });
-    // $('.btn-primary').on('show.bs.popover', function () {
-    //     // 执行一些动作...
-    //     $('.btn-primary').popover('toggle');
-    // })
+
 //删除
     $(".delete").on('click',function () {
         var td = $(this).parent().parent().children();
@@ -66,11 +60,11 @@ $(document).ready(function(){
         obj.id = id;
         $.post("/getLunbotuById",obj,function(data,status){
             var obj2 = JSON.parse(data);
+            $("#edit_id").val(obj2.id);
             $("#edit_name").val(obj2.name);
             $("#edit_link").val(obj2.link);
             $("#edit_order").val(obj2.order);
-            // $("#myModal_tips .modal-body").html(obj2.msg);
-            // $("#tips").click();
+
         });
     })
     $('.delete').popover(
@@ -81,6 +75,30 @@ $(document).ready(function(){
             content:"确定要删除该信息?"//这里可以直接写字符串，也可以 是一个函数，该函数返回一个字符串；
         }
     );
+
+    //修改提交
+    $("#editLunbotu").on('click',function () {
+        var formdata = new FormData();
+        formdata.append("id",$("#edit_id").val());
+        formdata.append("name",$("#edit_name").val());
+        formdata.append("link",$("#edit_link").val())
+        formdata.append("order",$("#edit_order").val())
+        var image = document.getElementById("edit_inputfile");
+        formdata.append("imgFile",image.files[0]);
+        $.ajax({
+            url: "editLunbotu",
+            type: "POST",
+            data: formdata,
+            processData: false,
+            contentType : false,
+            success :function (data) {
+                var obj2 = JSON.parse(data);
+                $('#myModal_edit').modal("hide");
+                $("#myModal_tips .modal-body").html(obj2.msg);
+                $("#tips").click();
+            }
+        });
+    })
 
     $("#addLunbotuForm").validate();
 })

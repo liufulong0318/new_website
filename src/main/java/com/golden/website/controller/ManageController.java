@@ -28,4 +28,8 @@ public class ManageController {
         return manageService.getLunbotuById(request);
     }
 
+    @RequestMapping("/editLunbotu")
+    public String editLunbotu(HttpServletRequest request){
+        return manageService.editLunbotu(request);
+    }
 }

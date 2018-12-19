@@ -52,6 +52,7 @@ public class Upload {
         } else {
 
         }
-        return filePath+"/"+filename;
+        /*return filePath+"/"+filename;*/
+        return "/upload/"+filename;
     }
 }

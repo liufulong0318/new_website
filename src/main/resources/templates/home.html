@@ -24,6 +24,8 @@
     var body=document.getElementById('body');
     body.style.width=screenWidth+"px";
     body.style.height=screenHeight+"px";
+    $("#myCarousel .carousel-indicators").children(":first").attr("class","active");
+    $("#myCarousel .carousel-inner").children(":first").attr("class","item active");
 </script>
 <script th:src="@{../myJS/index.js}" type="text/javascript"></script>
 </body>
