@@ -234,6 +234,7 @@ $(document).ready(function(){
             $("#edit_title").val(obj2.title);
             $("#edit_hrefUrl").val(obj2.hrefurl);
             $("#edit_content").val(obj2.content);
+            $("#edit_order").val(obj2.order);
         });
     })
     $('.deleteHomeProduct').popover(

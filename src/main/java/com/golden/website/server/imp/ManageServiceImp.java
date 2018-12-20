@@ -460,13 +460,21 @@ public class ManageServiceImp implements ManageService{
             }
         }
         String content = request.getParameter("content");
-        if(content != null){
-            String pattern = "^(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+        if(content.length() <15){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，文本简介至少15个文字");
+            return resultInfo.toString();
+        }else if(content.length() > 4096){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，文本简介超过4096个文字");
+            return resultInfo.toString();
+        }else if(content != null){
+            String pattern = "^^[|\\uff0c|\\u3001|\\u3002|\\uff08|\\uff09|\\u201c|\\u201d|\\s|a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(content);
             if(!m.matches()){
                 resultInfo.setCode("0");
-                resultInfo.setMsg("添加失败，文本简介含有非法字符");
+                resultInfo.setMsg("修改失败，文本简介含有非法字符");
                 return resultInfo.toString();
             }
         }

@@ -26,7 +26,7 @@
         <td th:text="${m.id}" style="display: none;"></td>
         <td th:text="${m.title}"></td>
         <td th:text="${m.imgurl}"></td>
-        <td th:text="${m.content}"></td>
+        <td th:text="${m.content.substring(0,15)}+......"></td>
         <td th:text="${m.hrefurl}"></td>
         <td th:text="${m.order}"></td>
         <td>
