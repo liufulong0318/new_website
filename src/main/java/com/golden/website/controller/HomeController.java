@@ -1,5 +1,6 @@
 package com.golden.website.controller;
 
+import com.golden.website.dataobject.WebsiteDowhat;
 import com.golden.website.dataobject.WebsiteLunbotu;
 import com.golden.website.server.ManageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,10 @@ public class HomeController {
     ManageService manageService;
     @RequestMapping("home")
     public String home(Model model){
-        List<WebsiteLunbotu> list =  manageService.getAllOrderASC();
+        List<WebsiteLunbotu> list = manageService.getAllOrderASC();
+        List<WebsiteDowhat> listDowhat = manageService.getAllOrderASC_Dowhat();
         model.addAttribute("lunbotu",list);
+        model.addAttribute("dowhat",listDowhat);
         return "home";
     }
     @RequestMapping("")

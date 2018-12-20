@@ -2,7 +2,9 @@ package com.golden.website.server.imp;
 
 import com.golden.website.commons.ResultInfo;
 import com.golden.website.commons.Upload;
+import com.golden.website.dao.WebsiteDowhatMapper;
 import com.golden.website.dao.WebsiteLunbotuMapper;
+import com.golden.website.dataobject.WebsiteDowhat;
 import com.golden.website.dataobject.WebsiteLunbotu;
 import com.golden.website.server.ManageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class ManageServiceImp implements ManageService{
 
     @Autowired
     WebsiteLunbotuMapper websiteLunbotuMapper;
+    @Autowired
+    WebsiteDowhatMapper websiteDowhatMapper;
+    //-----------START--------------轮播图的增加、删除、修改、查询------------------
     @Override
     public String addLunbotu(HttpServletRequest request) {
         ResultInfo resultInfo =  new ResultInfo();
@@ -78,7 +83,6 @@ public class ManageServiceImp implements ManageService{
         }else{
             resultInfo.setCode("0");
             resultInfo.setMsg("添加轮播图信息失败，请稍后重试");
-            resultInfo.toString();
         }
         return resultInfo.toString();
     }
@@ -176,6 +180,158 @@ public class ManageServiceImp implements ManageService{
                 resultInfo.setMsg("修改轮播图信息失败，请稍后重试");
                 resultInfo.toString();
             }
+        return resultInfo.toString();
+    }
+    //-----------END--------------轮播图的增加、删除、修改、查询------------------
+    @Override
+    public String addDowhat(HttpServletRequest request) {
+        ResultInfo resultInfo =  new ResultInfo();
+        String title = request.getParameter("title").trim();
+        //对名称
+        if(title.length() <= 0){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加失败，标题长度不能为空");
+            return resultInfo.toString();
+        }else if(title.length() > 6){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加失败，标题长度不能大于6位");
+            return resultInfo.toString();
+        }else if(title.length() >= 0 && title.length() <= 6){
+            String pattern = "^^(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(title);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("添加失败，标题含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String hrefUrl = request.getParameter("hrefUrl");
+        if(hrefUrl != null){
+            String pattern = "^(/)?+(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(hrefUrl);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("添加失败，链接不合法");
+                return resultInfo.toString();
+            }
+        }
+        String order = request.getParameter("order");
+        String url = null;
+        try {
+            url = Upload.upload(request);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        WebsiteDowhat websiteDowhat = new WebsiteDowhat();
+        websiteDowhat.setId(UUID.randomUUID().toString());
+        websiteDowhat.setIconUrl(url);
+        websiteDowhat.setTitle(title);
+        websiteDowhat.setHrefUrl(hrefUrl);
+        websiteDowhat.setOrder(Integer.parseInt(order));
+        websiteDowhat.setCreatetime(new Date());
+        Integer count = websiteDowhatMapper.insert(websiteDowhat);
+        if(count > 0){
+            resultInfo.setCode("1");
+            resultInfo.setMsg("添加信息成功");
+        }else{
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加信息失败，请稍后重试");
+        }
+        return resultInfo.toString();
+    }
+
+    @Override
+    public List<WebsiteDowhat> getAllOrderASC_Dowhat() {
+        return websiteDowhatMapper.selectAll();
+    }
+
+    @Override
+    public String deleteDowhatById(HttpServletRequest request) {
+         int num = websiteDowhatMapper.deleteByPrimaryKey(request.getParameter("id"));
+        ResultInfo resultInfo =  new ResultInfo();
+        if(num >= 1 ){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("删除信息成功");
+        }else{
+            resultInfo.setCode("1");
+            resultInfo.setMsg("删除信息失败");
+        }
+        return resultInfo.toString();
+    }
+
+    @Override
+    public String getDowhatById(HttpServletRequest request) {
+        return websiteDowhatMapper.selectByPrimaryKey(request.getParameter("id")).toString();
+    }
+
+    @Override
+    public String editDowhat(HttpServletRequest request) {
+        ResultInfo resultInfo =  new ResultInfo();
+        String title = request.getParameter("title").trim();
+        //对名称
+        if(title.length() <= 0){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，标题长度不能为空");
+            return resultInfo.toString();
+        }else if(title.length() > 6){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，标题长度不能大于6位");
+            return resultInfo.toString();
+        }else if(title.length() >= 0 && title.length() <= 30){
+            String pattern = "^^(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(title);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("修改失败，标题含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String hrefUrl = request.getParameter("hrefUrl");
+        if(hrefUrl != null){
+            String pattern = "^(/)?+(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(hrefUrl);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("修改失败，链接不合法");
+                return resultInfo.toString();
+            }
+        }
+        String order = request.getParameter("order");
+        MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
+        MultipartFile multipartFile = req.getFile("imgFile");
+
+        String url = null;
+        if(multipartFile != null){
+            try {
+                url = Upload.upload(request);
+            } catch (IOException e) {
+                System.out.println("未修改图片");
+            }
+        }
+        WebsiteDowhat websiteDowhat = new WebsiteDowhat();
+        websiteDowhat.setId(request.getParameter("id"));
+        websiteDowhat.setIconUrl(url);
+        websiteDowhat.setTitle(title);
+        websiteDowhat.setHrefUrl(hrefUrl);
+        websiteDowhat.setOrder(Integer.parseInt(order));
+        websiteDowhat.setCreatetime(new Date());
+        Integer count = 0;
+        if(url != null){
+            count = websiteDowhatMapper.updateByPrimaryKey(websiteDowhat);
+        }else{
+            count = websiteDowhatMapper.updateByPrimaryKeyNotUrl(websiteDowhat);
+        }
+        if(count > 0){
+            resultInfo.setCode("1");
+            resultInfo.setMsg("修改信息成功");
+        }else{
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改信息失败，请稍后重试");
+        }
         return resultInfo.toString();
     }
 }

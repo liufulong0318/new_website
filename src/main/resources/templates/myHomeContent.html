@@ -11,25 +11,11 @@
     </div>
     <div style="clear: both;"></div>
 </div>
-<div class="panel panel-default" style="border: none; font-size: 22px;text-align: center;">
-    <div class="panel-body" style="float: left; width: 25%;height: 400px;border: 1px solid #05abff;">
-        <div style="text-align:center;"><img src="http://www.golden-data.com.cn/front/images/index_do1.png" style="padding-top: 30px;"/></div>
+<div class="panel panel-default" style="border: none; font-size: 22px;text-align: center;" id="dowhat">
+    <div class="panel-body" style="float: left; width: 25%;height: 400px;border: 1px solid #05abff;" th:each="dowhat : ${dowhat}">
+        <div style="text-align:center;"><a th:href="${dowhat.hrefUrl}"><img th:src="${dowhat.iconUrl}" style="padding-top: 30px;"/></a></div>
         <div style="margin-top: 30px;">
-            <span>通用组态</span><br>
-            <span>......</span>
-        </div>
-    </div>
-    <div class="panel-body" style="float: left; width: 25%;height: 400px;margin: 0px 12.5% 0px 12.5%;border: 1px solid #05abff;">
-        <div style="text-align:center;"><img src="http://www.golden-data.com.cn/front/images/index_do2.png" style="padding-top: 30px;"/></div>
-        <div style="margin-top: 30px;">
-            <span>实时数据库</span><br>
-            <span>......</span>
-        </div>
-    </div>
-    <div class="panel-body" style="float: right; width: 25%;height: 400px;border: 1px solid #05abff;">
-        <div style="text-align:center;"><img src="http://www.golden-data.com.cn/front/images/index_do3.png" style="padding-top: 30px;"/></div>
-        <div style="margin-top: 30px;">
-            <span>工业可视化</span><br>
+            <span th:text="${dowhat.title}"></span><br>
             <span>......</span>
         </div>
     </div>

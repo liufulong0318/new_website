@@ -37,7 +37,25 @@
 .myCarousel_home {
     height: calc(100% - 54px);
 }
-
+#dowhat .panel-body:nth-child(1){
+    float: left;
+    width: 25%;
+    height: 400px;
+    border: 1px solid #05abff;
+}
+#dowhat .panel-body:nth-child(2){
+    float: left;
+    width: 25%;
+    height: 400px;
+    margin: 0px 12.5% 0px 12.5%;
+    border: 1px solid #05abff;
+}
+#dowhat .panel-body:nth-child(3){
+    float: right;
+    width: 25%;
+    height: 400px;
+    border: 1px solid #05abff;
+}
 .whatDoWeDo {
     width: 80%;
     margin-left: 10%;
