@@ -48,6 +48,23 @@ public class ManageController {
         return manageService.editDowhat(request);
     }
     //-------------END--------------"我们是做什么的"的增加、删除、修改、查询--------------------------
-
+//------------START--------------"我们的产品"的增加、删除、修改、查询--------------------------
+    @RequestMapping("/addHomeProduct")
+    public String addHomeProduct(HttpServletRequest request){
+        return manageService.addHomeProduct(request);
+    }
+    @RequestMapping("/deleteHomeProductById")
+    public String deleteHomeProductById(HttpServletRequest request){
+        return manageService.deleteHomeProductById(request);
+    }
+    @RequestMapping("/getHomeProductById")
+    public String getHomeProductById(HttpServletRequest request){
+        return manageService.getHomeProductById(request);
+    }
+    @RequestMapping("/editHomeProduct")
+    public String editHomeProduct(HttpServletRequest request){
+        return manageService.editHomeProduct(request);
+    }
+    //-------------END--------------"我们的产品"的增加、删除、修改、查询--------------------------
 
 }

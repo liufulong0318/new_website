@@ -1,7 +1,7 @@
 package com.golden.website.controller;
 
-import com.golden.website.dao.WebsiteDowhatMapper;
 import com.golden.website.dataobject.WebsiteDowhat;
+import com.golden.website.dataobject.WebsiteHomeproduct;
 import com.golden.website.dataobject.WebsiteLunbotu;
 import com.golden.website.server.ManageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +37,13 @@ public class manageRouterController {
         model.addAttribute("list",list);
         return "home/dowhat";
     }
-
     //----------END--------我们是做什么的---------------------------
+    //----------START--------我们的产品---------------------------
+    @RequestMapping("/homeProduct")
+    public String homeProduct(Model model){
+        List<WebsiteHomeproduct> list =  manageService.getAllOrderASC_HomeProduct();
+        model.addAttribute("list",list);
+        return "home/homeProduct";
+    }
+    //----------END--------我们的产品---------------------------
 }
