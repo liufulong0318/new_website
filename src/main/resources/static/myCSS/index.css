@@ -329,3 +329,15 @@
     height: 100%;
     border: 0px;
 }
+#homeIndustryCase li:nth-child(1){width: 32%;height: 65%;list-style-type: none;float: left;position: absolute;}
+#homeIndustryCase li:nth-child(2){width: 15%;height: 30%;list-style-type: none;float: left;margin: 0px 0px 0px 2%;position: absolute;left: 32%;}
+#homeIndustryCase li:nth-child(3){ width: 15%;height: 30%;list-style-type: none;float: left;margin: 0px 0px 0px 2%;position: absolute;left: 49%;}
+#homeIndustryCase li:nth-child(4){width: 15%;height: 30%;list-style-type: none;float: left;margin: 0px 0px 0px 2%;position: absolute;left: 66%;}
+#homeIndustryCase li:nth-child(5){width: 15%;height: 30%;list-style-type: none;float: left;margin: 0px 0px 0px 2%;position: absolute;left: 83%;}
+#homeIndustryCase li:nth-child(6){width: 15%;height: 30%;list-style-type: none;float: left;margin: 0px 0px 0px 2%;position: absolute;left: 32%;top:35%;}
+#homeIndustryCase li:nth-child(7){width: 15%;height: 30%;list-style-type: none;float: left;margin: 0px 0px 0px 2%;position: absolute;left: 49%;top:35%;}
+#homeIndustryCase li:nth-child(8){width: 15%;height: 30%;list-style-type: none;float: left;margin: 2% 0px 0px 0px;position: absolute;top:65%;}
+#homeIndustryCase li:nth-child(9){width: 15%;height: 30%;list-style-type: none;float: left;margin: 2% 0px 0px 2%;position: absolute;left: 15%;top:65%;}
+#homeIndustryCase li:nth-child(10){width: 15%;height: 30%;list-style-type: none;float: left;margin: 2% 0px 0px 2%;position: absolute;left: 32%;top:65%;}
+#homeIndustryCase li:nth-child(11){width: 15%;height: 30%;list-style-type: none;float: left;margin: 2% 0px 0px 2%;position: absolute;left: 49%;top:65%;}
+#homeIndustryCase li:nth-child(12){width: 32%;height: 65%;list-style-type: none;float: left;margin: 0px 0px 0px 2%;position: absolute;left: 66%;top:35%;}

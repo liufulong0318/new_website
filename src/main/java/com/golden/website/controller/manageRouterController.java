@@ -2,6 +2,7 @@ package com.golden.website.controller;
 
 import com.golden.website.dataobject.WebsiteDowhat;
 import com.golden.website.dataobject.WebsiteHomeproduct;
+import com.golden.website.dataobject.WebsiteIndustrycase;
 import com.golden.website.dataobject.WebsiteLunbotu;
 import com.golden.website.server.ManageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,4 +47,12 @@ public class manageRouterController {
         return "home/homeProduct";
     }
     //----------END--------我们的产品---------------------------
+    //----------START--------行业案例---------------------------
+    @RequestMapping("/industryCase")
+    public String industryCase(Model model){
+        List<WebsiteIndustrycase> list =  manageService.getAllOrderASC_IndustryCase();
+        model.addAttribute("list",list);
+        return "home/industryCase";
+    }
+    //----------END--------行业案例---------------------------
 }

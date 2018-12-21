@@ -28,7 +28,7 @@ $(document).ready(function(){
     });
 });
 function hoverDiy(className) {
-    $("."+className).next("div").show();
+    $("."+className).next("a").children("div").show();
 }
 function generatingVerificationCode() {
     $.get("/GeneratingVerificationCode",function(data,status){

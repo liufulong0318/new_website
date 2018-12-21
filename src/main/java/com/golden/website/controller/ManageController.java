@@ -48,7 +48,7 @@ public class ManageController {
         return manageService.editDowhat(request);
     }
     //-------------END--------------"我们是做什么的"的增加、删除、修改、查询--------------------------
-//------------START--------------"我们的产品"的增加、删除、修改、查询--------------------------
+    //------------START--------------"我们的产品"的增加、删除、修改、查询--------------------------
     @RequestMapping("/addHomeProduct")
     public String addHomeProduct(HttpServletRequest request){
         return manageService.addHomeProduct(request);
@@ -66,5 +66,22 @@ public class ManageController {
         return manageService.editHomeProduct(request);
     }
     //-------------END--------------"我们的产品"的增加、删除、修改、查询--------------------------
-
+    //------------START--------------"行业案例"的增加、删除、修改、查询--------------------------
+    @RequestMapping("/addIndustryCase")
+    public String addIndustryCase(HttpServletRequest request){
+        return manageService.addIndustryCase(request);
+    }
+    @RequestMapping("/deleteIndustryCaseById")
+    public String deleteIndustryCaseById(HttpServletRequest request){
+        return manageService.deleteIndustryCaseById(request);
+    }
+    @RequestMapping("/getIndustryCaseById")
+    public String getIndustryCaseById(HttpServletRequest request){
+        return manageService.getIndustryCaseById(request);
+    }
+    @RequestMapping("/editIndustryCase")
+    public String editIndustryCase(HttpServletRequest request){
+        return manageService.editIndustryCase(request);
+    }
+    //-------------END--------------"行业案例"的增加、删除、修改、查询--------------------------
 }

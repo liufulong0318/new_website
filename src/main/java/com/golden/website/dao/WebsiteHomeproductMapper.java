@@ -56,4 +56,9 @@ public interface WebsiteHomeproductMapper {
 
     @Update("update website_homeproduct set title = #{title},hrefurl = #{hrefurl},content = #{content},`order`=#{order} where id= #{id}")
     int updateByPrimaryKeyNotUrl(WebsiteHomeproduct record);
+    @Select("select * from website_homeproduct order by `order` asc limit 0,1")
+    WebsiteHomeproduct getHomeProductTop_1();
+
+    @Select("select * from website_homeproduct order by `order` asc limit 1,1")
+    WebsiteHomeproduct getHomeProductTop_2();
 }

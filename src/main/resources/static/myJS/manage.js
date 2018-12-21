@@ -20,6 +20,9 @@ $(document).ready(function(){
         $("#myModal_addHomeProduct input").val("");
         $("#myModal_addHomeProduct textarea").val("");
     });
+    $('#myModal_addIndustryCase').on('hide.bs.modal', function () {
+        $("#myModal_addIndustryCase input").val("");
+    });
     $('#myModal_tips').on('hide.bs.modal', function () {
         window.location.reload();
     });
@@ -269,7 +272,87 @@ $(document).ready(function(){
             }
         });
     })
-    //-------------------------我们的产品使用的函数----------------START---------------------
-
+    //-------------------------我们的产品使用的函数----------------END---------------------
+    //-------------------------行业案例使用的函数----------------START---------------------
+//添加
+    $("#addIndustryCase").on('click',function () {
+        var formdata = new FormData();
+        formdata.append("title",$("#title").val());
+        formdata.append("hrefurl",$("#hrefUrl").val());
+        formdata.append("order",$("#order").val())
+        var image = document.getElementById("inputfile");
+        formdata.append("imgFile",image.files[0]);
+        $.ajax({
+            url: "addIndustryCase",
+            type: "POST",
+            data: formdata,
+            processData: false,
+            contentType : false,
+            success :function (data) {
+                var obj2 = JSON.parse(data);
+                $('#myModal_addIndustryCase').modal("hide");
+                $("#myModal_tips .modal-body").html(obj2.msg);
+                $("#tips").click();
+            }
+        });
+    })
+    //删除
+    $(".deleteIndustryCase").on('click',function () {
+        var td = $(this).parent().parent().children();
+        var id = td[0].innerHTML;
+        var obj = new Object();
+        obj.id = id;
+        $.post("/deleteIndustryCaseById",obj,function(data,status){
+            var obj2 = JSON.parse(data);
+            $("#myModal_tips .modal-body").html(obj2.msg);
+            $("#tips").click();
+        });
+    })
+    //修改
+    $(".editIndustryCase").on('click',function () {
+        var td = $(this).parent().parent().children();
+        var id = td[0].innerHTML;
+        var obj = new Object();
+        obj.id = id;
+        $.post("/getIndustryCaseById",obj,function(data,status){
+            var obj2 = JSON.parse(data);
+            $("#edit_id").val(obj2.id);
+            $("#edit_title").val(obj2.title);
+            $("#edit_hrefUrl").val(obj2.hrefurl);
+            $("#edit_order").val(obj2.order);
+        });
+    })
+    $('.deleteIndustryCase').popover(
+        {
+            trigger:'hover', //触发方式
+            title:"提示",//设置 弹出框 的标题
+            html: true, // 为true的话，data-content里就能放html代码了
+            content:"确定要删除该信息?"//这里可以直接写字符串，也可以 是一个函数，该函数返回一个字符串；
+        }
+    );
+    //修改提交
+    $("#editIndustryCase").on('click',function () {
+        var formdata = new FormData();
+        formdata.append("id",$("#edit_id").val());
+        formdata.append("title",$("#edit_title").val());
+        formdata.append("hrefUrl",$("#edit_hrefUrl").val());
+        formdata.append("order",$("#edit_order").val());
+        var image = document.getElementById("edit_inputfile");
+        formdata.append("imgFile",image.files[0]);
+        $.ajax({
+            url: "editIndustryCase",
+            type: "POST",
+            data: formdata,
+            processData: false,
+            contentType : false,
+            success :function (data) {
+                var obj2 = JSON.parse(data);
+                $('#myModal_editIndustryCase').modal("hide");
+                $("#myModal_tips .modal-body").html(obj2.msg);
+                $("#tips").click();
+            }
+        });
+    })
+    //-------------------------行业案例使用的函数----------------END---------------------
     $("#addLunbotuForm").validate();
 })

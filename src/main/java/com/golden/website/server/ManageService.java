@@ -4,6 +4,7 @@ package com.golden.website.server;
 
 import com.golden.website.dataobject.WebsiteDowhat;
 import com.golden.website.dataobject.WebsiteHomeproduct;
+import com.golden.website.dataobject.WebsiteIndustrycase;
 import com.golden.website.dataobject.WebsiteLunbotu;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,5 +31,16 @@ public interface ManageService {
     String deleteHomeProductById(HttpServletRequest request);
     String getHomeProductById(HttpServletRequest request);
     String editHomeProduct(HttpServletRequest request);
+    WebsiteHomeproduct getHomeProductTop_1();
+    WebsiteHomeproduct getHomeProductTop_2();
     //-------------END--------------我们的产品增加、删除、修改、查询接口--------------------------
+    //------------START--------------行业案例增加、删除、修改、查询接口--------------------------
+    String addIndustryCase(HttpServletRequest request);
+    List<WebsiteIndustrycase> getAllOrderASC_IndustryCase();
+    String deleteIndustryCaseById(HttpServletRequest request);
+    String getIndustryCaseById(HttpServletRequest request);
+    String editIndustryCase(HttpServletRequest request);
+
+    //-------------END--------------行业案例增加、删除、修改、查询接口--------------------------
+
 }
