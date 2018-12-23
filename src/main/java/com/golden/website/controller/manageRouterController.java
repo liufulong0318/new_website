@@ -55,4 +55,13 @@ public class manageRouterController {
         return "home/industryCase";
     }
     //----------END--------行业案例---------------------------
+
+    //----------START--------合作用户---------------------------
+    @RequestMapping("/cooperativeUser")
+    public String cooperativeUser(Model model){
+//        List<WebsiteIndustrycase> list =  manageService.getAllOrderASC_CooperativeUser();
+//        model.addAttribute("list",list);
+        return "home/cooperativeUser";
+    }
+    //----------END--------行业案例---------------------------
 }
