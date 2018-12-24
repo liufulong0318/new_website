@@ -70,4 +70,12 @@ public class manageRouterController {
         return "home/aboutUS";
     }
     //----------END--------关于我们---------------------------
+    //----------START--------庚顿信息模块管理---------------------------
+    @RequestMapping("/goldenInfo")
+    public String goldenInfo(Model model){
+        List<WebsiteGolden> list =  manageService.getAllOrderByModuleASC();
+        model.addAttribute("list",list);
+        return "home/goldenInfo";
+    }
+    //----------END--------庚顿信息模块管理---------------------------
 }

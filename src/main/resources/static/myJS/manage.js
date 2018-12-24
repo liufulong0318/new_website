@@ -530,5 +530,86 @@ $(document).ready(function(){
         });
     })
     //-------------------------关于我们使用的函数----------------END---------------------
+
+    //-------------------------庚顿信息使用的函数----------------START---------------------
+//添加
+    $("#addGoldenInfo").on('click',function () {
+        var formdata = new FormData();
+        formdata.append("title",$("#title").val());
+        var content = filterXSS(editor.txt.html())  // 此处进行 xss 攻击过滤
+        formdata.append("content",content);
+        formdata.append("module",$("#module").val());
+        $.ajax({
+            url: "addGoldenInfo",
+            type: "POST",
+            data: formdata,
+            processData: false,
+            contentType : false,
+            success :function (data) {
+                var obj2 = JSON.parse(data);
+                $('#myModal_addGoldenInfo').modal("hide");
+                $("#myModal_tips .modal-body").html(obj2.msg);
+                $("#tips").click();
+            }
+        });
+    })
+    //删除
+    $(".deleteGoldenInfo").on('click',function () {
+        var td = $(this).parent().parent().children();
+        var id = td[0].innerHTML;
+        var obj = new Object();
+        obj.id = id;
+        $.post("/deleteGoldenInfoById",obj,function(data,status){
+            var obj2 = JSON.parse(data);
+            $("#myModal_tips .modal-body").html(obj2.msg);
+            $("#tips").click();
+        });
+    })
+    //修改
+    $(".editGoldenInfo").on('click',function () {
+        var td = $(this).parent().parent().children();
+        var id = td[0].innerHTML;
+        var obj = new Object();
+        obj.id = id;
+        $.post("/getGoldenInfoById",obj,function(data,status){
+            var obj2 = JSON.parse(data);
+            $("#edit_id").val(obj2.id);
+            $("#edit_title").val(obj2.title);
+            editor_edit.txt.html(obj2.content);
+
+            $("#edit_module").val(obj2.module);
+        });
+    })
+    $('.deleteGoldenInfo').popover(
+        {
+            trigger:'hover', //触发方式
+            title:"提示",//设置 弹出框 的标题
+            html: true, // 为true的话，data-content里就能放html代码了
+            content:"确定要删除该信息?"//这里可以直接写字符串，也可以 是一个函数，该函数返回一个字符串；
+        }
+    );
+    //修改提交
+    $("#editGoldenInfo").on('click',function () {
+        var formdata = new FormData();
+        formdata.append("id",$("#edit_id").val());
+        formdata.append("title",$("#edit_title").val());
+        var content = filterXSS(editor_edit.txt.html());  // 此处进行 xss 攻击过滤
+        formdata.append("module",$("#edit_module").val());
+        $.ajax({
+            url: "editGoldenInfo",
+            type: "POST",
+            data: formdata,
+            processData: false,
+            contentType : false,
+            success :function (data) {
+                var obj2 = JSON.parse(data);
+                $('#myModal_editGoldenInfo').modal("hide");
+                $("#myModal_tips .modal-body").html(obj2.msg);
+                $("#tips").click();
+            }
+        });
+    })
+    //-------------------------庚顿信息使用的函数----------------END---------------------
+
     $("#addLunbotuForm").validate();
 })

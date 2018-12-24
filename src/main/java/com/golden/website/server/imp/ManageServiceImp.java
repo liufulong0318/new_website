@@ -33,6 +33,8 @@ public class ManageServiceImp implements ManageService{
     WebsiteCooperativeuserMapper websiteCooperativeuserMapper;
     @Autowired
     WebsiteAboutusMapper websiteAboutusMapper;
+    @Autowired
+    WebsiteGoldenMapper websiteGoldenMapper;
     //-----------START--------------轮播图的增加、删除、修改、查询------------------
     @Override
     public String addLunbotu(HttpServletRequest request) {
@@ -1113,5 +1115,158 @@ public class ManageServiceImp implements ManageService{
         }
         return resultInfo.toString();
     }
-    //-------------END--------------合作用户增加、删除、修改、查询接口实现--------------------------
+    //-------------END--------------关于我们增加、删除、修改、查询接口实现--------------------------
+
+    //------------START--------------庚顿信息模块管理增加、删除、修改、查询接口实现--------------------------
+    @Override
+    public String addGoldenInfo(HttpServletRequest request) {
+        ResultInfo resultInfo =  new ResultInfo();
+        String title = request.getParameter("title").trim();
+        //对名称
+        if(title.length() <= 0){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加失败，标题长度不能为空");
+            return resultInfo.toString();
+        }else if(title.length() > 60){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加失败，标题长度不能大于60位");
+            return resultInfo.toString();
+        }else if(title.length() >= 0 && title.length() <= 60){
+            String pattern = "^^(?!_)(?!.*?_$)[\\u3000|\\u0020|\\u00A0|a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(title);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("添加失败，标题含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String content = request.getParameter("content").trim();
+        //对名称
+        if(content.length() <= 0){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加失败，文本内容长度不能为空");
+            return resultInfo.toString();
+        }else if(title.length() > 8192){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加失败，文本内容长度不能大于8192位");
+            return resultInfo.toString();
+        }else if(title.length() >= 0 && title.length() <= 8192){
+            String pattern = "^^[|\\uff0c|\\u3001|\\u3002|\\uff08|\\uff09|\\u201c|\\u201d|\\s|\\u0026|\\u002e|a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(title);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("添加失败，文本内容含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String module = request.getParameter("module");
+        WebsiteGolden websiteGolden = new WebsiteGolden();
+        websiteGolden.setId(UUID.randomUUID().toString());
+        websiteGolden.setTitle(title);
+        websiteGolden.setContent(content.replaceAll("\"","&quot;"));
+        websiteGolden.setModule(Integer.parseInt(module));
+        websiteGolden.setCreatetime(new Date());
+        Integer count = websiteGoldenMapper.insert(websiteGolden);
+        if(count > 0){
+            resultInfo.setCode("1");
+            resultInfo.setMsg("添加信息成功");
+        }else{
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加信息失败，请稍后重试");
+        }
+        return resultInfo.toString();
+    }
+
+    @Override
+    public List<WebsiteGolden> getAllOrderByModuleASC() {
+        return websiteGoldenMapper.selectAll();
+    }
+
+    @Override
+    public WebsiteGolden getWebsiteGoldenByModule(HttpServletRequest request) {
+        return websiteGoldenMapper.selectByModule(request.getParameter("module"));
+    }
+
+    @Override
+    public String deleteGoldenInfoById(HttpServletRequest request) {
+        int num = websiteGoldenMapper.deleteByPrimaryKey(request.getParameter("id"));
+        ResultInfo resultInfo =  new ResultInfo();
+        if(num >= 1 ){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("删除信息成功");
+        }else{
+            resultInfo.setCode("1");
+            resultInfo.setMsg("删除信息失败");
+        }
+        return resultInfo.toString();
+    }
+
+    @Override
+    public String getGoldenInfoById(HttpServletRequest request) {
+        return websiteGoldenMapper.selectByPrimaryKey(request.getParameter("id")).toString();
+    }
+
+    @Override
+    public String editGoldenInfo(HttpServletRequest request) {
+        ResultInfo resultInfo =  new ResultInfo();
+        String title = request.getParameter("title").trim();
+        //对名称
+        if(title.length() <= 0){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，标题长度不能为空");
+            return resultInfo.toString();
+        }else if(title.length() > 60){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，标题长度不能大于60位");
+            return resultInfo.toString();
+        }else if(title.length() >= 0 && title.length() <= 60){
+            String pattern = "^^(?!_)(?!.*?_$)[\\u3000|\\u00A0|\\u0020|a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(title);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("修改失败，标题含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String content = request.getParameter("content").trim();
+        //对名称
+        if(content.length() <= 0){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，文本内容长度不能为空");
+            return resultInfo.toString();
+        }else if(title.length() > 8192){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，文本内容长度不能大于8192位");
+            return resultInfo.toString();
+        }else if(title.length() >= 0 && title.length() <= 8192){
+            String pattern = "^^[|\\uff0c|\\u3001|\\u3002|\\uff08|\\uff09|\\u201c|\\u201d|\\s|\\u0026|\\u002e|a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(title);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("修改失败，文本内容含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String module = request.getParameter("module");
+        WebsiteGolden websiteGolden = new WebsiteGolden();
+        websiteGolden.setId(request.getParameter("id"));
+        websiteGolden.setTitle(title);
+        websiteGolden.setContent(content.replaceAll("\"","&quot;"));
+        websiteGolden.setModule(Integer.parseInt(module));
+        websiteGolden.setCreatetime(new Date());
+        Integer count  = websiteGoldenMapper.updateByPrimaryKey(websiteGolden);
+        if(count > 0){
+            resultInfo.setCode("1");
+            resultInfo.setMsg("修改信息成功");
+        }else{
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改信息失败，请稍后重试");
+        }
+        return resultInfo.toString();
+    }
+    //-------------END--------------庚顿信息模块管理增加、删除、修改、查询接口实现--------------------------
 }

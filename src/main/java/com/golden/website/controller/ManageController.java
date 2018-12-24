@@ -122,4 +122,23 @@ public class ManageController {
         return manageService.editAboutUS(request);
     }
     //-------------END--------------"关于我们"的增加、删除、修改、查询--------------------------
+
+    //------------START--------------"庚顿信息模块管理"的增加、删除、修改、查询--------------------------
+    @RequestMapping("/addGoldenInfo")
+    public String addGoldenInfo(HttpServletRequest request){
+        return manageService.addGoldenInfo(request);
+    }
+    @RequestMapping("/deleteGoldenInfoById")
+    public String deleteGoldenInfoById(HttpServletRequest request){
+        return manageService.deleteGoldenInfoById(request);
+    }
+    @RequestMapping("/getGoldenInfoById")
+    public String getGoldenInfoById(HttpServletRequest request){
+        return manageService.getGoldenInfoById(request);
+    }
+    @RequestMapping("/editGoldenInfo")
+    public String editGoldenInfo(HttpServletRequest request){
+        return manageService.editGoldenInfo(request);
+    }
+    //-------------END--------------"庚顿信息模块管理"的增加、删除、修改、查询--------------------------
 }

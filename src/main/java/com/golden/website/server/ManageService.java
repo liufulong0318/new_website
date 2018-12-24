@@ -59,4 +59,14 @@ public interface ManageService {
     String getAboutUSById(HttpServletRequest request);
     String editAboutUS(HttpServletRequest request);
     //-------------END--------------关于我们增加、删除、修改、查询接口--------------------------
+
+
+    //------------START--------------庚顿信息模块管理增加、删除、修改、查询接口--------------------------
+    String addGoldenInfo(HttpServletRequest request);
+    List<WebsiteGolden> getAllOrderByModuleASC();
+    WebsiteGolden getWebsiteGoldenByModule(HttpServletRequest request);
+    String deleteGoldenInfoById(HttpServletRequest request);
+    String getGoldenInfoById(HttpServletRequest request);
+    String editGoldenInfo(HttpServletRequest request);
+    //-------------END--------------庚顿信息模块管理增加、删除、修改、查询接口--------------------------
 }
