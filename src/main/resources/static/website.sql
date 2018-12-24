@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : golden_oa
-Source Server Version : 50559
+Source Server         : springboot
+Source Server Version : 50717
 Source Host           : localhost:3306
 Source Database       : website
 
 Target Server Type    : MYSQL
-Target Server Version : 50559
+Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-12-24 18:41:30
+Date: 2018-12-25 00:30:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,7 @@ CREATE TABLE `website_aboutus` (
 -- ----------------------------
 -- Records of website_aboutus
 -- ----------------------------
-INSERT INTO `website_aboutus` VALUES ('b203e2fc-9853-42c2-92a8-72e5f3d5bc2a', '关于我们', '/upload/08c62bc5-3f1f-489d-9e9b-1a270b310b95.png', '<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>北京庚顿数据科技有限公司专业从事自主知识产权的&quot;实时数据库管理系统&quot;研发及产业化，作为一种基础软件，实时数据库管理系统在工业化和信息化融合过程中起着重要的支撑作用，是新一代信息技术产业中的关键。该领域关系国家安全、产业关联广泛，存在巨大的创新空间。</span></p><p>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>我们深知这项事业的艰巨性、复杂性和长期性。我们更清楚地认识到，没有基础软件的突破，我国就无法跻身世界信息技术产业强国之列。有鉴于此，我们立志“啃得了骨头、耐得住寂寞、顶得住诱惑”，决心长期专注实时数据库领域，打造优秀人才队伍、提升创新能力、突破核心技术、掌握自主知识产权、研发创新产品系列、形成高附加值的产业链条。&nbsp;&nbsp;<span><br></span></span></p><p>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>我们有一个梦想：让中国的实时数据库软件领先全球，让中国的基础软件领先全球!</span></p><p>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>我们坚信：就像中华民族的伟大复兴一定能实现一样，我们的梦想一定能实现!</span></p>', '/product', '/product', '/product', '/product', '1', '2018-12-24 18:29:26');
+INSERT INTO `website_aboutus` VALUES ('b203e2fc-9853-42c2-92a8-72e5f3d5bc2a', '关于我们', '/upload/08c62bc5-3f1f-489d-9e9b-1a270b310b95.png', '<h4><p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;北京庚顿数据科技有限公司专业从事自主知识产权的&quot;实时数据库管理系统&quot;研发及产业化，作为一种基础软件，实时数据库管理系统在工业化和信息化融合过程中起着重要的支撑作用，是新一代信息技术产业中的关键。该领域关系国家安全、产业关联广泛，存在巨大的创新空间。<br></span></p><p>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>我们深知这项事业的艰巨性、复杂性和长期性。我们更清楚地认识到，没有基础软件的突破，我国就无法跻身世界信息技术产业强国之列。有鉴于此，我们立志“啃得了骨头、耐得住寂寞、顶得住诱惑”，决心长期专注实时数据库领域，打造优秀人才队伍、提升创新能力、突破核心技术、掌握自主知识产权、研发创新产品系列、形成高附加值的产业链条。&nbsp;&nbsp;<span><br></span></span><p>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>我们有一个梦想：让中国的实时数据库软件领先全球，让中国的基础软件领先全球!<br></span></p></p><p></p><p>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们坚信：就像中华民族的伟大复兴一定能实现一样，我们的梦想一定能实现!</p></h4>', '/product', '/product', '/product', '/product', '1', '2018-12-24 22:27:29');
 
 -- ----------------------------
 -- Table structure for website_cooperativeuser
@@ -109,6 +109,24 @@ CREATE TABLE `website_dowhat` (
 INSERT INTO `website_dowhat` VALUES ('89df2270-9fc4-4d57-9408-81f6c2813385', '/upload/85fdc403-64d8-4d81-8bcb-1e0b393bca94.png', '工业可视化', '/product', '3', '2018-12-20 15:33:53');
 INSERT INTO `website_dowhat` VALUES ('9ed50e78-b170-4957-b35e-0a7682594ee7', '/upload/16b3560a-f0aa-4eb3-9677-a0fa71d5686b.png', '实时数据库', '/product', '2', '2018-12-20 15:34:07');
 INSERT INTO `website_dowhat` VALUES ('e9b7c8b9-738d-4291-83c6-b21f90fdee75', '/upload/4ad2575f-3db0-4c2c-a2e3-37cb0bc813dc.png', '通用组态', '/product', '1', '2018-12-20 11:27:20');
+
+-- ----------------------------
+-- Table structure for website_golden
+-- ----------------------------
+DROP TABLE IF EXISTS `website_golden`;
+CREATE TABLE `website_golden` (
+  `id` varchar(36) COLLATE utf8_bin NOT NULL,
+  `title` varchar(60) COLLATE utf8_bin NOT NULL,
+  `content` varchar(8192) COLLATE utf8_bin NOT NULL,
+  `module` int(2) NOT NULL COMMENT '1、成立宣言\r\n2、公司简介\r\n3、资质荣誉\r\n4、企业文化\r\n5、庚顿动态\r\n6、庚顿分享\r\n7、联系我们',
+  `createtime` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of website_golden
+-- ----------------------------
+INSERT INTO `website_golden` VALUES ('10178314-85d1-4cce-837b-53ed09c2b5ad', '企业文化', '<p>庚顿愿景：技术达到世界领先，产品超越国际一流，产业确立民族品牌。<br><p>庚顿使命：做中国的数据库，助力中华民族的伟大复兴。<br><p>庚顿理念：专注、创新、发展。<br><p>专注于数据处理领域，坚持持续创新，实现企业的可持续发展；<br><p>只有专注我们才有高效率，只有持续创新我们才能立而不倒、不战而胜。<br><p>庚顿原则：一个中心、四个坚持<br><p>以解决问题为中心，坚持艰苦奋斗，坚持持续创新，坚持利益分享，坚持培训队伍。<br><p>庚顿文化：坦诚、分享、坚持。&nbsp;&nbsp;</p></p></p></p></p></p></p></p>', '4', '2018-12-25 00:19:19');
 
 -- ----------------------------
 -- Table structure for website_homeproduct
