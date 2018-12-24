@@ -4,19 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <title>合作用户</title>
+    <link th:href="@{../bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{../bootstrap/css/bootstrap-theme.css}" rel="stylesheet">
+    <link th:href="@{../myCSS/manage.css}" rel="stylesheet">
 </head>
-<body>
-<div id="editor">
-    <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
-</div>
-
-<!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
-<script type="text/javascript" src="../wangEditor/wangEditor.min.js"></script>
-<script type="text/javascript">
-    var E = window.wangEditor
-    var editor = new E('#editor')
-    // 或者 var editor = new E( document.getElementById('editor') )
-    editor.create()
-</script>
+<body >
+<table class="table table-striped">
+    <caption><button data-toggle="modal" data-target="#myModal_addCooperativeUser" class="btn btn-primary">添加</button></caption>
+    <thead>
+    <tr>
+        <th>标题</th>
+        <th>图片地址</th>
+        <th>显示顺序</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="m : ${list}">
+        <td th:text="${m.id}" style="display: none;"></td>
+        <td th:text="${m.title}"></td>
+        <td th:text="${m.imgurl}"></td>
+        <td th:text="${m.order}"></td>
+        <td>
+            <button class="btn btn-primary editCooperativeUser" data-toggle="modal" data-target="#myModal_editCooperativeUser">修改</button>
+            <button class="btn btn-primary deleteCooperativeUser"  data-placement="auto" data-container="body" data-toggle="popover">删除</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div th:replace="home/addCooperativeUser"></div>
+<div th:replace="home/editCooperativeUser"></div>
+<div th:replace="home/msg"></div>
+<script th:src="@{../jquery/jquery-3.3.1.min.js}" type="text/javascript"></script>
+<script th:src="@{../bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
+<script th:src="@{../jquery/jquery.validate.min.js}" type="text/javascript"></script>
+<script th:src="@{../jquery/localization/messages_zh.js}" type="text/javascript"></script>
+<script th:src="@{../myJS/manage.js}" type="text/javascript"></script>
 </body>
 </html>

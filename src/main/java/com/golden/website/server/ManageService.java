@@ -2,10 +2,7 @@ package com.golden.website.server;
 
 
 
-import com.golden.website.dataobject.WebsiteDowhat;
-import com.golden.website.dataobject.WebsiteHomeproduct;
-import com.golden.website.dataobject.WebsiteIndustrycase;
-import com.golden.website.dataobject.WebsiteLunbotu;
+import com.golden.website.dataobject.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -34,13 +31,24 @@ public interface ManageService {
     WebsiteHomeproduct getHomeProductTop_1();
     WebsiteHomeproduct getHomeProductTop_2();
     //-------------END--------------我们的产品增加、删除、修改、查询接口--------------------------
-    //------------START--------------行业案例增加、删除、修改、查询接口--------------------------
-    String addIndustryCase(HttpServletRequest request);
-    List<WebsiteIndustrycase> getAllOrderASC_IndustryCase();
-    String deleteIndustryCaseById(HttpServletRequest request);
-    String getIndustryCaseById(HttpServletRequest request);
-    String editIndustryCase(HttpServletRequest request);
+   // ------------START--------------行业案例增加、删除、修改、查询接口--------------------------
+        String addIndustryCase(HttpServletRequest request);
+        List<WebsiteIndustrycase> getAllOrderASC_IndustryCase();
+        String deleteIndustryCaseById(HttpServletRequest request);
+        String getIndustryCaseById(HttpServletRequest request);
+        String editIndustryCase(HttpServletRequest request);
 
-    //-------------END--------------行业案例增加、删除、修改、查询接口--------------------------
+        //-------------END--------------行业案例增加、删除、修改、查询接口--------------------------
 
+    //------------START--------------合作用户增加、删除、修改、查询接口--------------------------
+    String addCooperativeUser(HttpServletRequest request);
+    List<WebsiteCooperativeuser> getAllOrderASC_CooperativeUser();
+    List<WebsiteCooperativeuser> getAllOrderASC_CooperativeUser_1_12();
+    List<WebsiteCooperativeuser> getAllOrderASC_CooperativeUser_13_24();
+    List<WebsiteCooperativeuser> getAllOrderASC_CooperativeUser_25_36();
+    String deleteCooperativeUserById(HttpServletRequest request);
+    String getCooperativeUserById(HttpServletRequest request);
+    String editCooperativeUser(HttpServletRequest request);
+
+    //-------------END--------------合作用户增加、删除、修改、查询接口--------------------------
 }

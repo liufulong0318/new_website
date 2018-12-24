@@ -84,4 +84,23 @@ public class ManageController {
         return manageService.editIndustryCase(request);
     }
     //-------------END--------------"行业案例"的增加、删除、修改、查询--------------------------
+
+    //------------START--------------"合作用户"的增加、删除、修改、查询--------------------------
+    @RequestMapping("/addCooperativeUser")
+    public String addCooperativeUser(HttpServletRequest request){
+        return manageService.addCooperativeUser(request);
+    }
+    @RequestMapping("/deleteCooperativeUserById")
+    public String deleteCooperativeUserById(HttpServletRequest request){
+        return manageService.deleteCooperativeUserById(request);
+    }
+    @RequestMapping("/getCooperativeUserById")
+    public String getCooperativeUserById(HttpServletRequest request){
+        return manageService.getCooperativeUserById(request);
+    }
+    @RequestMapping("/editCooperativeUser")
+    public String editCooperativeUser(HttpServletRequest request){
+        return manageService.editCooperativeUser(request);
+    }
+    //-------------END--------------"合作用户"的增加、删除、修改、查询--------------------------
 }

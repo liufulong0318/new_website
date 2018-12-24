@@ -354,5 +354,84 @@ $(document).ready(function(){
         });
     })
     //-------------------------行业案例使用的函数----------------END---------------------
+
+    //-------------------------行业案例使用的函数----------------START---------------------
+//添加
+    $("#addCooperativeUser").on('click',function () {
+        var formdata = new FormData();
+        formdata.append("title",$("#title").val());
+        formdata.append("order",$("#order").val())
+        var image = document.getElementById("inputfile");
+        formdata.append("imgFile",image.files[0]);
+        $.ajax({
+            url: "addCooperativeUser",
+            type: "POST",
+            data: formdata,
+            processData: false,
+            contentType : false,
+            success :function (data) {
+                var obj2 = JSON.parse(data);
+                $('#myModal_addCooperativeUser').modal("hide");
+                $("#myModal_tips .modal-body").html(obj2.msg);
+                $("#tips").click();
+            }
+        });
+    })
+    //删除
+    $(".deleteCooperativeUser").on('click',function () {
+        var td = $(this).parent().parent().children();
+        var id = td[0].innerHTML;
+        var obj = new Object();
+        obj.id = id;
+        $.post("/deleteCooperativeUserById",obj,function(data,status){
+            var obj2 = JSON.parse(data);
+            $("#myModal_tips .modal-body").html(obj2.msg);
+            $("#tips").click();
+        });
+    })
+    //修改
+    $(".editCooperativeUser").on('click',function () {
+        var td = $(this).parent().parent().children();
+        var id = td[0].innerHTML;
+        var obj = new Object();
+        obj.id = id;
+        $.post("/getCooperativeUserById",obj,function(data,status){
+            var obj2 = JSON.parse(data);
+            $("#edit_id").val(obj2.id);
+            $("#edit_title").val(obj2.title);
+            $("#edit_order").val(obj2.order);
+        });
+    })
+    $('.deleteCooperativeUser').popover(
+        {
+            trigger:'hover', //触发方式
+            title:"提示",//设置 弹出框 的标题
+            html: true, // 为true的话，data-content里就能放html代码了
+            content:"确定要删除该信息?"//这里可以直接写字符串，也可以 是一个函数，该函数返回一个字符串；
+        }
+    );
+    //修改提交
+    $("#editCooperativeUser").on('click',function () {
+        var formdata = new FormData();
+        formdata.append("id",$("#edit_id").val());
+        formdata.append("title",$("#edit_title").val());
+        formdata.append("order",$("#edit_order").val());
+        var image = document.getElementById("edit_inputfile");
+        formdata.append("imgFile",image.files[0]);
+        $.ajax({
+            url: "editCooperativeUser",
+            type: "POST",
+            data: formdata,
+            processData: false,
+            contentType : false,
+            success :function (data) {
+                var obj2 = JSON.parse(data);
+                $('#myModal_editCooperativeUser').modal("hide");
+                $("#myModal_tips .modal-body").html(obj2.msg);
+                $("#tips").click();
+            }
+        });
+    })
+    //-------------------------行业案例使用的函数----------------END---------------------
     $("#addLunbotuForm").validate();
 })
