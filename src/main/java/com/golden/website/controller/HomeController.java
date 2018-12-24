@@ -25,6 +25,7 @@ public class HomeController {
         List<WebsiteCooperativeuser> listCooperativeuser_1_12 =  manageService.getAllOrderASC_CooperativeUser_1_12();
         List<WebsiteCooperativeuser> listCooperativeuser_13_24 =  manageService.getAllOrderASC_CooperativeUser_13_24();
         List<WebsiteCooperativeuser> listCooperativeuser_25_36 =  manageService.getAllOrderASC_CooperativeUser_25_36();
+        WebsiteAboutus websiteAboutus =  manageService.getWebsiteAboutusTopOne();
         model.addAttribute("lunbotu",list);
         model.addAttribute("dowhat",listDowhat);
         model.addAttribute("top1",WebsiteHomeproduct_top1);
@@ -33,6 +34,7 @@ public class HomeController {
         model.addAttribute("listCU_1_12",listCooperativeuser_1_12);
         model.addAttribute("listCU_13_24",listCooperativeuser_13_24);
         model.addAttribute("listCU_25_36",listCooperativeuser_25_36);
+        model.addAttribute("websiteAboutus",websiteAboutus);
         return "home";
     }
     @RequestMapping("")

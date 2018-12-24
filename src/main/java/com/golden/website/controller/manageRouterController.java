@@ -61,4 +61,13 @@ public class manageRouterController {
         return "home/cooperativeUser";
     }
     //----------END--------行业案例---------------------------
+
+    //----------START--------关于我们---------------------------
+    @RequestMapping("/aboutUS")
+    public String aboutUS(Model model){
+        List<WebsiteAboutus> list =  manageService.getAllOrderASC_AboutUS();
+        model.addAttribute("list",list);
+        return "home/aboutUS";
+    }
+    //----------END--------关于我们---------------------------
 }

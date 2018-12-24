@@ -49,6 +49,14 @@ public interface ManageService {
     String deleteCooperativeUserById(HttpServletRequest request);
     String getCooperativeUserById(HttpServletRequest request);
     String editCooperativeUser(HttpServletRequest request);
-
     //-------------END--------------合作用户增加、删除、修改、查询接口--------------------------
+
+    //------------START--------------关于我们增加、删除、修改、查询接口--------------------------
+    String addAboutUS(HttpServletRequest request);
+    List<WebsiteAboutus> getAllOrderASC_AboutUS();
+    WebsiteAboutus getWebsiteAboutusTopOne();
+    String deleteAboutUSById(HttpServletRequest request);
+    String getAboutUSById(HttpServletRequest request);
+    String editAboutUS(HttpServletRequest request);
+    //-------------END--------------关于我们增加、删除、修改、查询接口--------------------------
 }

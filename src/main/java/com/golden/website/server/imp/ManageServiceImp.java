@@ -31,6 +31,8 @@ public class ManageServiceImp implements ManageService{
     WebsiteIndustrycaseMapper websiteIndustrycaseMapper;
     @Autowired
     WebsiteCooperativeuserMapper websiteCooperativeuserMapper;
+    @Autowired
+    WebsiteAboutusMapper websiteAboutusMapper;
     //-----------START--------------轮播图的增加、删除、修改、查询------------------
     @Override
     public String addLunbotu(HttpServletRequest request) {
@@ -826,6 +828,281 @@ public class ManageServiceImp implements ManageService{
             count = websiteCooperativeuserMapper.updateByPrimaryKey(websiteCooperativeuser);
         }else{
             count = websiteCooperativeuserMapper.updateByPrimaryKeyNotUrl(websiteCooperativeuser);
+        }
+        if(count > 0){
+            resultInfo.setCode("1");
+            resultInfo.setMsg("修改信息成功");
+        }else{
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改信息失败，请稍后重试");
+        }
+        return resultInfo.toString();
+    }
+    //-------------END--------------合作用户增加、删除、修改、查询接口实现--------------------------
+
+
+    //------------START--------------关于我们增加、删除、修改、查询接口实现--------------------------
+    @Override
+    public String addAboutUS(HttpServletRequest request) {
+        ResultInfo resultInfo =  new ResultInfo();
+        String title = request.getParameter("title").trim();
+        //对名称
+        if(title.length() <= 0){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加失败，标题长度不能为空");
+            return resultInfo.toString();
+        }else if(title.length() > 20){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加失败，标题长度不能大于20位");
+            return resultInfo.toString();
+        }else if(title.length() >= 0 && title.length() <= 20){
+            String pattern = "^^(?!_)(?!.*?_$)[\\u3000|\\u0020|\\u00A0|a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(title);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("添加失败，标题含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String content = request.getParameter("content").trim();
+        //对名称
+        if(content.length() <= 0){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加失败，文本内容长度不能为空");
+            return resultInfo.toString();
+        }else if(title.length() > 4096){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加失败，文本内容长度不能大于4096位");
+            return resultInfo.toString();
+        }else if(title.length() >= 0 && title.length() <= 4096){
+            String pattern = "^^[|\\uff0c|\\u3001|\\u3002|\\uff08|\\uff09|\\u201c|\\u201d|\\s|\\u0026|\\u002e|a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(title);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("添加失败，文本内容含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String introduction = request.getParameter("introduction");
+        if(introduction != null){
+            String pattern = "^(/)?+(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(introduction);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("添加失败，简介链接含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String honor = request.getParameter("honor");
+        if(honor != null){
+            String pattern = "^(/)?+(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(honor);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("添加失败，荣耀链接含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String culture = request.getParameter("culture");
+        if(honor != null){
+            String pattern = "^(/)?+(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(culture);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("添加失败，文化链接含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+
+        String course = request.getParameter("course");
+        if(honor != null){
+            String pattern = "^(/)?+(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(course);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("添加失败，历程链接含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String order = request.getParameter("order");
+        String url = null;
+        try {
+            url = Upload.upload(request);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        WebsiteAboutus websiteAboutus = new WebsiteAboutus();
+        websiteAboutus.setId(UUID.randomUUID().toString());
+        websiteAboutus.setImgurl(url);
+        websiteAboutus.setTitle(title);
+        websiteAboutus.setContent(content.replaceAll("\"","&quot;"));
+        websiteAboutus.setCourse(course);
+        websiteAboutus.setCulture(culture);
+        websiteAboutus.setHonor(honor);
+        websiteAboutus.setIntroduction(introduction);
+        websiteAboutus.setOrder(Integer.parseInt(order));
+        websiteAboutus.setCreatetime(new Date());
+        Integer count = websiteAboutusMapper.insert(websiteAboutus);
+        if(count > 0){
+            resultInfo.setCode("1");
+            resultInfo.setMsg("添加信息成功");
+        }else{
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加信息失败，请稍后重试");
+        }
+        return resultInfo.toString();
+    }
+
+    @Override
+    public List<WebsiteAboutus> getAllOrderASC_AboutUS() {
+        return websiteAboutusMapper.selectAll();
+    }
+
+    @Override
+    public WebsiteAboutus getWebsiteAboutusTopOne() {
+        return websiteAboutusMapper.selectTopOne();
+    }
+    @Override
+    public String deleteAboutUSById(HttpServletRequest request) {
+        int num = websiteAboutusMapper.deleteByPrimaryKey(request.getParameter("id"));
+        ResultInfo resultInfo =  new ResultInfo();
+        if(num >= 1 ){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("删除信息成功");
+        }else{
+            resultInfo.setCode("1");
+            resultInfo.setMsg("删除信息失败");
+        }
+        return resultInfo.toString();
+    }
+
+    @Override
+    public String getAboutUSById(HttpServletRequest request) {
+        return websiteAboutusMapper.selectByPrimaryKey(request.getParameter("id")).toString();
+    }
+
+    @Override
+    public String editAboutUS(HttpServletRequest request) {
+        ResultInfo resultInfo =  new ResultInfo();
+        String title = request.getParameter("title").trim();
+        //对名称
+        if(title.length() <= 0){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，标题长度不能为空");
+            return resultInfo.toString();
+        }else if(title.length() > 20){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，标题长度不能大于20位");
+            return resultInfo.toString();
+        }else if(title.length() >= 0 && title.length() <= 20){
+            String pattern = "^^(?!_)(?!.*?_$)[\\u3000|\\u00A0|\\u0020|a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(title);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("修改失败，标题含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String content = request.getParameter("content").trim();
+        //对名称
+        if(content.length() <= 0){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，文本内容长度不能为空");
+            return resultInfo.toString();
+        }else if(title.length() > 4096){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，文本内容长度不能大于4096位");
+            return resultInfo.toString();
+        }else if(title.length() >= 0 && title.length() <= 4096){
+            String pattern = "^^[|\\uff0c|\\u3001|\\u3002|\\uff08|\\uff09|\\u201c|\\u201d|\\s|\\u0026|\\u002e|a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(title);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("修改失败，文本内容含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String introduction = request.getParameter("introduction");
+        if(introduction != null){
+            String pattern = "^(/)?+(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(introduction);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("修改失败，简介链接含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String honor = request.getParameter("honor");
+        if(honor != null){
+            String pattern = "^(/)?+(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(honor);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("修改失败，荣耀链接含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String culture = request.getParameter("culture");
+        if(honor != null){
+            String pattern = "^(/)?+(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(culture);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("修改失败，文化链接含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+
+        String course = request.getParameter("course");
+        if(honor != null){
+            String pattern = "^(/)?+(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(course);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("修改失败，历程链接含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String order = request.getParameter("order");
+        MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
+        MultipartFile multipartFile = req.getFile("imgFile");
+
+        String url = null;
+        if(multipartFile != null){
+            try {
+                url = Upload.upload(request);
+            } catch (IOException e) {
+                System.out.println("未修改图片");
+            }
+        }
+        WebsiteAboutus websiteAboutus = new WebsiteAboutus();
+        websiteAboutus.setId(request.getParameter("id"));
+        websiteAboutus.setImgurl(url);
+        websiteAboutus.setTitle(title);
+        websiteAboutus.setContent(content.replaceAll("\"","&quot;"));
+        websiteAboutus.setCourse(course);
+        websiteAboutus.setCulture(culture);
+        websiteAboutus.setHonor(honor);
+        websiteAboutus.setIntroduction(introduction);
+        websiteAboutus.setOrder(Integer.parseInt(order));
+        websiteAboutus.setCreatetime(new Date());
+        Integer count = 0;
+        if(url != null){
+            count = websiteAboutusMapper.updateByPrimaryKey(websiteAboutus);
+        }else{
+            count = websiteAboutusMapper.updateByPrimaryKeyNotUrl(websiteAboutus);
         }
         if(count > 0){
             resultInfo.setCode("1");

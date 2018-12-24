@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>关于我们</title>
+    <link th:href="@{../bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{../bootstrap/css/bootstrap-theme.css}" rel="stylesheet">
+    <link th:href="@{../myCSS/manage.css}" rel="stylesheet">
+</head>
+<body >
+<table class="table table-striped">
+    <caption><button data-toggle="modal" data-target="#myModal_addAboutUS" class="btn btn-primary">添加</button></caption>
+    <thead>
+    <tr>
+        <th>标题</th>
+        <th>图片地址</th>
+        <th>正文内容</th>
+        <th>简介链接地址</th>
+        <th>荣誉链接地址</th>
+        <th>文化链接地址</th>
+        <th>历程链接地址</th>
+        <th>显示顺序</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="m : ${list}">
+        <td th:text="${m.id}" style="display: none;"></td>
+        <td th:text="${m.title}"></td>
+        <td th:text="${m.imgurl}"></td>
+        <td th:text="${m.content.substring(0,15)}+......"></td>
+        <td th:text="${m.introduction}"></td>
+        <td th:text="${m.honor}"></td>
+        <td th:text="${m.culture}"></td>
+        <td th:text="${m.course}"></td>
+        <td th:text="${m.order}"></td>
+        <td>
+            <button class="btn btn-primary editAboutUS" data-toggle="modal" data-target="#myModal_editAboutUS">修改</button>
+            <button class="btn btn-primary deleteAboutUS"  data-placement="auto" data-container="body" data-toggle="popover">删除</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div th:replace="home/addAboutUS"></div>
+<div th:replace="home/editAboutUS"></div>
+<div th:replace="home/msg"></div>
+<script th:src="@{../jquery/jquery-3.3.1.min.js}" type="text/javascript"></script>
+<script th:src="@{../bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
+<script th:src="@{../jquery/jquery.validate.min.js}" type="text/javascript"></script>
+<script th:src="@{../jquery/localization/messages_zh.js}" type="text/javascript"></script>
+<script th:src="@{../myJS/manage.js}" type="text/javascript"></script>
+<!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
+<script type="text/javascript" src="../wangEditor/wangEditor.min.js"></script>
+<script type="text/javascript" src="../wangEditor/xss.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor;
+    var editor = new E('#content');
+    var editor_edit = new E('#edit_content');
+    editor.customConfig.uploadFileName = 'imgFile';
+    // 配置服务器端地址
+    editor.customConfig.uploadImgServer = '/upload';
+    editor.create();
+    editor_edit.customConfig.uploadFileName = 'imgFile';
+    // 配置服务器端地址
+    editor_edit.customConfig.uploadImgServer = '/upload';
+    editor_edit.create();
+</script>
+</body>
+</html>

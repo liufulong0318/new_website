@@ -103,4 +103,23 @@ public class ManageController {
         return manageService.editCooperativeUser(request);
     }
     //-------------END--------------"合作用户"的增加、删除、修改、查询--------------------------
+
+    //------------START--------------"关于我们"的增加、删除、修改、查询--------------------------
+    @RequestMapping("/addAboutUS")
+    public String addAboutUS(HttpServletRequest request){
+        return manageService.addAboutUS(request);
+    }
+    @RequestMapping("/deleteAboutUSById")
+    public String deleteAboutUSById(HttpServletRequest request){
+        return manageService.deleteAboutUSById(request);
+    }
+    @RequestMapping("/getAboutUSById")
+    public String getAboutUSById(HttpServletRequest request){
+        return manageService.getAboutUSById(request);
+    }
+    @RequestMapping("/editAboutUS")
+    public String editAboutUS(HttpServletRequest request){
+        return manageService.editAboutUS(request);
+    }
+    //-------------END--------------"关于我们"的增加、删除、修改、查询--------------------------
 }
