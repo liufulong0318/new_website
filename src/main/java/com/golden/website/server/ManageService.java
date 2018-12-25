@@ -69,4 +69,12 @@ public interface ManageService {
     String getGoldenInfoById(HttpServletRequest request);
     String editGoldenInfo(HttpServletRequest request);
     //-------------END--------------庚顿信息模块管理增加、删除、修改、查询接口--------------------------
+    //------------START--------------字典管理增加、删除、修改、查询接口--------------------------
+    String addEnum(HttpServletRequest request);
+    List<WebsiteEnum> getAllGroupByTypeOrderByEnumkey();
+    List<WebsiteEnum> getWebsiteEnumByType(HttpServletRequest request);
+    String deleteEnumById(HttpServletRequest request);
+    String getEnumById(HttpServletRequest request);
+    String editEnum(HttpServletRequest request);
+    //-------------END--------------字典管理管理增加、删除、修改、查询接口--------------------------
 }

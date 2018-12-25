@@ -78,4 +78,13 @@ public class manageRouterController {
         return "home/goldenInfo";
     }
     //----------END--------庚顿信息模块管理---------------------------
+//----------START--------字典管理---------------------------
+    @RequestMapping("/enum")
+    public String getAllEum(Model model){
+        List<WebsiteEnum> list =  manageService.getAllGroupByTypeOrderByEnumkey();
+        model.addAttribute("list",list);
+        return "home/enum";
+    }
+    //----------END--------字典管理---------------------------
+
 }

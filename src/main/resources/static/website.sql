@@ -1,19 +1,36 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : springboot
-Source Server Version : 50717
+Source Server         : golden_oa
+Source Server Version : 50559
 Source Host           : localhost:3306
 Source Database       : website
 
 Target Server Type    : MYSQL
-Target Server Version : 50717
+Target Server Version : 50559
 File Encoding         : 65001
 
-Date: 2018-12-25 00:30:55
+Date: 2018-12-25 18:40:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for demo
+-- ----------------------------
+DROP TABLE IF EXISTS `demo`;
+CREATE TABLE `demo` (
+  `id` varchar(36) COLLATE utf8_bin NOT NULL,
+  `module` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  `menu` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  `title` varchar(60) COLLATE utf8_bin DEFAULT NULL,
+  `createtime` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of demo
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for website_aboutus
@@ -111,6 +128,54 @@ INSERT INTO `website_dowhat` VALUES ('9ed50e78-b170-4957-b35e-0a7682594ee7', '/u
 INSERT INTO `website_dowhat` VALUES ('e9b7c8b9-738d-4291-83c6-b21f90fdee75', '/upload/4ad2575f-3db0-4c2c-a2e3-37cb0bc813dc.png', '通用组态', '/product', '1', '2018-12-20 11:27:20');
 
 -- ----------------------------
+-- Table structure for website_enum
+-- ----------------------------
+DROP TABLE IF EXISTS `website_enum`;
+CREATE TABLE `website_enum` (
+  `id` varchar(36) COLLATE utf8_bin NOT NULL,
+  `enumkey` int(2) NOT NULL,
+  `enumvalue` varchar(60) COLLATE utf8_bin NOT NULL,
+  `type` int(1) NOT NULL COMMENT '1、module 2、menu 3、title',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of website_enum
+-- ----------------------------
+INSERT INTO `website_enum` VALUES ('06271d48-3be3-40f1-90e4-446ffadf535b', '1', '首页', '1');
+INSERT INTO `website_enum` VALUES ('08a56ff2-c735-4ef5-9f7b-ff0f81784cb7', '2', '软件产品', '1');
+INSERT INTO `website_enum` VALUES ('0d4ad6c0-6fe7-4c7c-a113-f293b24c8f8c', '3', '客户案例', '1');
+INSERT INTO `website_enum` VALUES ('0ed23026-8554-4992-a326-2197586c93fa', '4', '行业领域', '1');
+INSERT INTO `website_enum` VALUES ('0f7623cf-aa47-42f3-b65d-bffc7f4e8fef', '5', '关于庚顿', '1');
+INSERT INTO `website_enum` VALUES ('118f5079-cbc2-4fbe-b350-ab446b11ee51', '34', '产品购买', '1');
+INSERT INTO `website_enum` VALUES ('20890950-5edc-4407-9e37-d08be0334c60', '6', '资料下载', '1');
+INSERT INTO `website_enum` VALUES ('3e8cd626-af62-4562-a5bc-de417a3385f9', '7', '成立宣言', '2');
+INSERT INTO `website_enum` VALUES ('4a120372-bb0b-408b-a7da-af18a2a5ee10', '8', '公司简介', '2');
+INSERT INTO `website_enum` VALUES ('50acff3f-59d4-4ca4-bc22-3b4e4a9c4d47', '9', '资质荣誉', '2');
+INSERT INTO `website_enum` VALUES ('520ce9b6-a3ae-479d-8a2a-bf5d6694fd86', '10', '企业文化', '2');
+INSERT INTO `website_enum` VALUES ('5e30405c-a47d-4c6e-8686-e74417cb3f22', '11', '庚顿动态', '2');
+INSERT INTO `website_enum` VALUES ('5fa98576-f049-46d3-abce-765223274d49', '12', '庚顿分享', '2');
+INSERT INTO `website_enum` VALUES ('6261dc34-907e-4fa8-bcbc-45e14e7aa60b', '13', '联系我们', '2');
+INSERT INTO `website_enum` VALUES ('670ac178-662d-4b38-bb24-38b9a6cde294', '14', '能效管控一体化平台', '3');
+INSERT INTO `website_enum` VALUES ('6814c9a3-7c23-4c1e-a11a-95dc54918439', '15', '金风科技全球监控平台', '3');
+INSERT INTO `website_enum` VALUES ('687a0b6d-50b2-4b4a-b554-e1e216cef901', '16', '国能生物生产运行监控系统', '3');
+INSERT INTO `website_enum` VALUES ('6c348578-6fc4-49d1-bead-16bbe564f613', '17', '公共机构能耗监管中心', '3');
+INSERT INTO `website_enum` VALUES ('71648dd6-d09a-4079-9a7c-8e28848f6048', '18', '国华能源生产管理信息系统', '3');
+INSERT INTO `website_enum` VALUES ('73a94e56-bfde-494e-b921-7554cc3be15b', '19', '风电集控', '3');
+INSERT INTO `website_enum` VALUES ('831243ef-fb8f-4aee-8396-4a315fbbd614', '20', '轨道交通', '3');
+INSERT INTO `website_enum` VALUES ('99f43874-721c-4ad6-97e9-e0fd049e7184', '21', '智慧城市', '3');
+INSERT INTO `website_enum` VALUES ('9b19714f-ac49-4546-b3d0-27d0e249f47f', '22', '智能楼宇', '3');
+INSERT INTO `website_enum` VALUES ('9c081e3e-f46a-4a7d-ac6d-6a5c3a9e30c4', '23', '火力发电', '3');
+INSERT INTO `website_enum` VALUES ('a476e7bc-5bbe-4f7f-b8fa-6753dcdd8879', '24', '安全生产', '3');
+INSERT INTO `website_enum` VALUES ('a8a2a8ff-422f-4eb5-9aea-614f3d32a830', '25', '智能电网', '3');
+INSERT INTO `website_enum` VALUES ('bbbc5f47-9ace-46f3-84a4-15d5fadfee7a', '26', '节能环保', '3');
+INSERT INTO `website_enum` VALUES ('c0fef97d-3c9f-4744-8138-961a905c8d66', '27', '智能消防', '3');
+INSERT INTO `website_enum` VALUES ('d41ec6a6-6660-408d-ba08-5fd736cf996e', '28', '集团生产', '3');
+INSERT INTO `website_enum` VALUES ('d98f3f94-ec0d-4620-92fc-4cd40f75d15e', '29', '数据库软件', '2');
+INSERT INTO `website_enum` VALUES ('daf93f9a-494f-4834-a506-47e9fde8cddd', '30', '可视化软件', '2');
+INSERT INTO `website_enum` VALUES ('f8ae94f0-a2f7-45ec-b593-f2541e7738c4', '31', '数据融合软件', '2');
+
+-- ----------------------------
 -- Table structure for website_golden
 -- ----------------------------
 DROP TABLE IF EXISTS `website_golden`;
@@ -118,6 +183,7 @@ CREATE TABLE `website_golden` (
   `id` varchar(36) COLLATE utf8_bin NOT NULL,
   `title` varchar(60) COLLATE utf8_bin NOT NULL,
   `content` varchar(8192) COLLATE utf8_bin NOT NULL,
+  `menu` varchar(30) COLLATE utf8_bin DEFAULT NULL,
   `module` int(2) NOT NULL COMMENT '1、成立宣言\r\n2、公司简介\r\n3、资质荣誉\r\n4、企业文化\r\n5、庚顿动态\r\n6、庚顿分享\r\n7、联系我们',
   `createtime` datetime NOT NULL,
   PRIMARY KEY (`id`)
@@ -126,7 +192,7 @@ CREATE TABLE `website_golden` (
 -- ----------------------------
 -- Records of website_golden
 -- ----------------------------
-INSERT INTO `website_golden` VALUES ('10178314-85d1-4cce-837b-53ed09c2b5ad', '企业文化', '<p>庚顿愿景：技术达到世界领先，产品超越国际一流，产业确立民族品牌。<br><p>庚顿使命：做中国的数据库，助力中华民族的伟大复兴。<br><p>庚顿理念：专注、创新、发展。<br><p>专注于数据处理领域，坚持持续创新，实现企业的可持续发展；<br><p>只有专注我们才有高效率，只有持续创新我们才能立而不倒、不战而胜。<br><p>庚顿原则：一个中心、四个坚持<br><p>以解决问题为中心，坚持艰苦奋斗，坚持持续创新，坚持利益分享，坚持培训队伍。<br><p>庚顿文化：坦诚、分享、坚持。&nbsp;&nbsp;</p></p></p></p></p></p></p></p>', '4', '2018-12-25 00:19:19');
+INSERT INTO `website_golden` VALUES ('10178314-85d1-4cce-837b-53ed09c2b5ad', '企业文化', '<p>庚顿愿景：技术达到世界领先，产品超越国际一流，产业确立民族品牌。<br><p>庚顿使命：做中国的数据库，助力中华民族的伟大复兴。<br><p>庚顿理念：专注、创新、发展。<br><p>专注于数据处理领域，坚持持续创新，实现企业的可持续发展；<br><p>只有专注我们才有高效率，只有持续创新我们才能立而不倒、不战而胜。<br><p>庚顿原则：一个中心、四个坚持<br><p>以解决问题为中心，坚持艰苦奋斗，坚持持续创新，坚持利益分享，坚持培训队伍。<br><p>庚顿文化：坦诚、分享、坚持。&nbsp;&nbsp;</p></p></p></p></p></p></p></p>', '5', '10', '2018-12-25 00:19:19');
 
 -- ----------------------------
 -- Table structure for website_homeproduct

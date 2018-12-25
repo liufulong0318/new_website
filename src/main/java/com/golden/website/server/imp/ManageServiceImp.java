@@ -35,6 +35,8 @@ public class ManageServiceImp implements ManageService{
     WebsiteAboutusMapper websiteAboutusMapper;
     @Autowired
     WebsiteGoldenMapper websiteGoldenMapper;
+    @Autowired
+    WebsiteEnumMapper websiteEnumMapper;
     //-----------START--------------轮播图的增加、删除、修改、查询------------------
     @Override
     public String addLunbotu(HttpServletRequest request) {
@@ -1269,4 +1271,119 @@ public class ManageServiceImp implements ManageService{
         return resultInfo.toString();
     }
     //-------------END--------------庚顿信息模块管理增加、删除、修改、查询接口实现--------------------------
+
+    //------------START--------------字典管理增加、删除、修改、查询接口实现--------------------------
+    @Override
+    public String addEnum(HttpServletRequest request) {
+        ResultInfo resultInfo =  new ResultInfo();
+        String enumvalue = request.getParameter("enumvalue").trim();
+        //对名称
+        if(enumvalue.length() <= 0){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加失败，字典值长度不能为空");
+            return resultInfo.toString();
+        }else if(enumvalue.length() > 60){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加失败，字典值长度不能大于60位");
+            return resultInfo.toString();
+        }else if(enumvalue.length() >= 0 && enumvalue.length() <= 60){
+            String pattern = "^^(?!_)(?!.*?_$)[\\u3000|\\u0020|\\u00A0|a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(enumvalue);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("添加失败，字典值含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+
+        String enumkey = request.getParameter("enumkey");
+        String type = request.getParameter("type");
+        WebsiteEnum websiteEnum = new WebsiteEnum();
+        websiteEnum.setId(UUID.randomUUID().toString());
+        websiteEnum.setEnumkey(Integer.parseInt(enumkey));
+        websiteEnum.setEnumvalue(enumvalue);
+        websiteEnum.setType(Integer.parseInt(type));
+        Integer count = websiteEnumMapper.insert(websiteEnum);
+        if(count > 0){
+            resultInfo.setCode("1");
+            resultInfo.setMsg("添加成功");
+        }else{
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加失败，请稍后重试");
+        }
+        return resultInfo.toString();
+    }
+
+    @Override
+    public List<WebsiteEnum> getAllGroupByTypeOrderByEnumkey() {
+        return websiteEnumMapper.selectAll();
+    }
+
+    @Override
+    public List<WebsiteEnum> getWebsiteEnumByType(HttpServletRequest request) {
+        return websiteEnumMapper.selectAllByType(request.getParameter("type"));
+    }
+
+
+    @Override
+    public String deleteEnumById(HttpServletRequest request) {
+        int num = websiteEnumMapper.deleteByPrimaryKey(request.getParameter("id"));
+        ResultInfo resultInfo =  new ResultInfo();
+        if(num >= 1 ){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("删除信息成功");
+        }else{
+            resultInfo.setCode("1");
+            resultInfo.setMsg("删除信息失败");
+        }
+        return resultInfo.toString();
+    }
+
+    @Override
+    public String getEnumById(HttpServletRequest request) {
+        return websiteEnumMapper.selectByPrimaryKey(request.getParameter("id")).toString();
+    }
+
+    @Override
+    public String editEnum(HttpServletRequest request) {
+        ResultInfo resultInfo =  new ResultInfo();
+        String enumvalue = request.getParameter("enumvalue").trim();
+        //对名称
+        if(enumvalue.length() <= 0){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，字典值长度不能为空");
+            return resultInfo.toString();
+        }else if(enumvalue.length() > 60){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，字典值长度不能大于60位");
+            return resultInfo.toString();
+        }else if(enumvalue.length() >= 0 && enumvalue.length() <= 60){
+            String pattern = "^^(?!_)(?!.*?_$)[\\u3000|\\u00A0|\\u0020|a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(enumvalue);
+            if(!m.matches()){
+                resultInfo.setCode("0");
+                resultInfo.setMsg("修改失败，字典值含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String enumkey = request.getParameter("enumkey");
+        String type = request.getParameter("type");
+        WebsiteEnum websiteEnum = new WebsiteEnum();
+        websiteEnum.setId(request.getParameter("id"));
+        websiteEnum.setEnumkey(Integer.parseInt(enumkey));
+        websiteEnum.setEnumvalue(enumvalue);
+        websiteEnum.setType(Integer.parseInt(type));
+        Integer count  = websiteEnumMapper.updateByPrimaryKey(websiteEnum);
+        if(count > 0){
+            resultInfo.setCode("1");
+            resultInfo.setMsg("修改成功");
+        }else{
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，请稍后重试");
+        }
+        return resultInfo.toString();
+    }
+    //-------------END--------------字典管理增加、删除、修改、查询接口实现--------------------------
 }

@@ -141,4 +141,22 @@ public class ManageController {
         return manageService.editGoldenInfo(request);
     }
     //-------------END--------------"庚顿信息模块管理"的增加、删除、修改、查询--------------------------
+    //------------START--------------"字典管理"的增加、删除、修改、查询--------------------------
+    @RequestMapping("/addEnum")
+    public String addEnum(HttpServletRequest request){
+        return manageService.addEnum(request);
+    }
+    @RequestMapping("/deleteEnumById")
+    public String deleteEnumById(HttpServletRequest request){
+        return manageService.deleteEnumById(request);
+    }
+    @RequestMapping("/getEnumById")
+    public String getEnumById(HttpServletRequest request){
+        return manageService.getEnumById(request);
+    }
+    @RequestMapping("/editEnum")
+    public String editEnum(HttpServletRequest request){
+        return manageService.editEnum(request);
+    }
+    //-------------END--------------"字典管理"的增加、删除、修改、查询--------------------------
 }
