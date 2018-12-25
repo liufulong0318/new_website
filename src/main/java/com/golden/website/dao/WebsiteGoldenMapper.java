@@ -1,10 +1,7 @@
 package com.golden.website.dao;
 
 import com.golden.website.dataobject.WebsiteGolden;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -43,7 +40,7 @@ public interface WebsiteGoldenMapper {
      *
      * @mbg.generated
      */
-    @Select("select * from website_golden order by module asc")
+    @Select("select a.*,b.enumvalue as enumvalueMenu,c.enumvalue as enumvalueModule from website_golden a left join website_enum b on a.menu = b.enumkey left join website_enum c on a.module = c.enumkey  order by module asc ")
     List<WebsiteGolden> selectAll();
 
 

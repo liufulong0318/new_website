@@ -76,5 +76,6 @@ public interface ManageService {
     String deleteEnumById(HttpServletRequest request);
     String getEnumById(HttpServletRequest request);
     String editEnum(HttpServletRequest request);
+    List<WebsiteEnum> getAllMenu();
     //-------------END--------------字典管理管理增加、删除、修改、查询接口--------------------------
 }

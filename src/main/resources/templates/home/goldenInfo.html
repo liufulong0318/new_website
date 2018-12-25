@@ -14,8 +14,9 @@
     <thead>
     <tr>
         <th>标题</th>
+        <th>所属菜单</th>
+        <th>所属模块</th>
         <th>正文内容</th>
-        <th>模块</th>
         <th>操作</th>
     </tr>
     </thead>
@@ -23,8 +24,9 @@
     <tr th:each="m : ${list}">
         <td th:text="${m.id}" style="display: none;"></td>
         <td th:text="${m.title}"></td>
+        <td th:text="${m.enumvalueMenu}"></td>
+        <td th:text="${m.enumvalueModule}"></td>
         <td th:text="${m.content.substring(0,15)}+......"></td>
-        <td th:text="${m.module}"></td>
         <td>
             <button class="btn btn-primary editGoldenInfo" data-toggle="modal" data-target="#myModal_editGoldenInfo">修改</button>
             <button class="btn btn-primary deleteGoldenInfo"  data-placement="auto" data-container="body" data-toggle="popover">删除</button>

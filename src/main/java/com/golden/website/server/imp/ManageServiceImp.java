@@ -1385,5 +1385,10 @@ public class ManageServiceImp implements ManageService{
         }
         return resultInfo.toString();
     }
+
+    @Override
+    public List<WebsiteEnum> getAllMenu() {
+        return websiteEnumMapper.getAllMenu();
+    }
     //-------------END--------------字典管理增加、删除、修改、查询接口实现--------------------------
 }

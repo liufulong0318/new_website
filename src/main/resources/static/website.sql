@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : golden_oa
-Source Server Version : 50559
+Source Server         : springboot
+Source Server Version : 50717
 Source Host           : localhost:3306
 Source Database       : website
 
 Target Server Type    : MYSQL
-Target Server Version : 50559
+Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-12-25 18:40:31
+Date: 2018-12-26 01:40:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;

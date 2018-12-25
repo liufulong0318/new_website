@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -74,7 +75,9 @@ public class manageRouterController {
     @RequestMapping("/goldenInfo")
     public String goldenInfo(Model model){
         List<WebsiteGolden> list =  manageService.getAllOrderByModuleASC();
+        List<WebsiteEnum> listmenu =  manageService.getAllMenu();
         model.addAttribute("list",list);
+        model.addAttribute("listmenu",listmenu);
         return "home/goldenInfo";
     }
     //----------END--------庚顿信息模块管理---------------------------
