@@ -30,6 +30,7 @@
 <script th:src="@{../jquery/jquery.validate.min.js}" type="text/javascript"></script>
 <script th:src="@{../jquery/localization/messages_zh.js}" type="text/javascript"></script>
 <script th:src="@{../myJS/md5.js}" type="text/javascript"></script>
+<script th:src="@{../myJS/index.js}" type="text/javascript"></script>
 <script type="text/javascript">
     var screenHeight = document.documentElement.clientHeight;
     var screenWidth = document.documentElement.clientWidth;
@@ -37,6 +38,21 @@
     body.style.width = screenWidth + "px";
     body.style.height = screenHeight + "px";
 </script>
-<script th:src="@{../myJS/index.js}" type="text/javascript"></script>
+<script th:inline="javascript">
+    var list = [[${list}]];
+    $("#myProductTitle").html(list[0].title);
+    $("#myProductContent").html(list[0].content);
+
+    $(".list-group-item").on("click",function () {
+        var list = [[${list}]];
+        var id = $(this).attr("id");
+        for(var i = 0;i<list.length;i++){
+            if(list[i].id == id){
+                $("#myProductTitle").html(list[i].title);
+                $("#myProductContent").html(list[i].content);
+            }
+        }
+    })
+</script>
 </body>
 </html>

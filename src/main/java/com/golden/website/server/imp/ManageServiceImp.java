@@ -1164,11 +1164,14 @@ public class ManageServiceImp implements ManageService{
             }
         }
         String module = request.getParameter("module");
+        String menu = request.getParameter("menu");
         WebsiteGolden websiteGolden = new WebsiteGolden();
         websiteGolden.setId(UUID.randomUUID().toString());
         websiteGolden.setTitle(title);
-        websiteGolden.setContent(content.replaceAll("\"","&quot;"));
+        websiteGolden.setContent(content.replaceAll("\"","'"));
+//        websiteGolden.setContent(content);
         websiteGolden.setModule(Integer.parseInt(module));
+        websiteGolden.setMenu(Integer.parseInt(menu));
         websiteGolden.setCreatetime(new Date());
         Integer count = websiteGoldenMapper.insert(websiteGolden);
         if(count > 0){
@@ -1254,11 +1257,13 @@ public class ManageServiceImp implements ManageService{
             }
         }
         String module = request.getParameter("module");
+        String menu = request.getParameter("menu");
         WebsiteGolden websiteGolden = new WebsiteGolden();
         websiteGolden.setId(request.getParameter("id"));
         websiteGolden.setTitle(title);
-        websiteGolden.setContent(content.replaceAll("\"","&quot;"));
+        websiteGolden.setContent(content.replaceAll("\"","'"));
         websiteGolden.setModule(Integer.parseInt(module));
+        websiteGolden.setMenu(Integer.parseInt(menu));
         websiteGolden.setCreatetime(new Date());
         Integer count  = websiteGoldenMapper.updateByPrimaryKey(websiteGolden);
         if(count > 0){
@@ -1390,5 +1395,31 @@ public class ManageServiceImp implements ManageService{
     public List<WebsiteEnum> getAllMenu() {
         return websiteEnumMapper.getAllMenu();
     }
+
+    @Override
+    public List<WebsiteEnum> getAllModule() {
+        return websiteEnumMapper.getAllModule();
+    }
+
+
     //-------------END--------------字典管理增加、删除、修改、查询接口实现--------------------------
+
+    //-----------------------START------------前台软件产品使用的接口实现------------------------------------------
+    @Override
+    public List<WebsiteGolden>  selectAllByMenu1() {
+        return websiteGoldenMapper.selectAllByMenu1();
+    }
+    @Override
+    public List<WebsiteGolden>  selectAllByMenu2() {
+        return websiteGoldenMapper.selectAllByMenu2();
+    }
+    @Override
+    public List<WebsiteGolden>  selectAllByMenu3() {
+        return websiteGoldenMapper.selectAllByMenu3();
+    }
+    @Override
+    public List<WebsiteGolden>  selectAllByMenu4() {
+        return websiteGoldenMapper.selectAllByMenu4();
+    }
+    //-----------------------END------------前台软件产品使用的接口实现------------------------------------------
 }

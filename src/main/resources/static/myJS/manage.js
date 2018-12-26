@@ -539,6 +539,7 @@ $(document).ready(function(){
         var content = filterXSS(editor.txt.html())  // 此处进行 xss 攻击过滤
         formdata.append("content",content);
         formdata.append("module",$("#module").val());
+        formdata.append("menu",$("#menu").val());
         $.ajax({
             url: "addGoldenInfo",
             type: "POST",
@@ -576,8 +577,8 @@ $(document).ready(function(){
             $("#edit_id").val(obj2.id);
             $("#edit_title").val(obj2.title);
             editor_edit.txt.html(obj2.content);
-
             $("#edit_module").val(obj2.module);
+            $("#edit_menu").val(obj2.menu);
         });
     })
     $('.deleteGoldenInfo').popover(
@@ -594,7 +595,9 @@ $(document).ready(function(){
         formdata.append("id",$("#edit_id").val());
         formdata.append("title",$("#edit_title").val());
         var content = filterXSS(editor_edit.txt.html());  // 此处进行 xss 攻击过滤
+        formdata.append("content",content);
         formdata.append("module",$("#edit_module").val());
+        formdata.append("menu",$("#edit_menu").val());
         $.ajax({
             url: "editGoldenInfo",
             type: "POST",

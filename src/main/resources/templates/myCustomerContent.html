@@ -1,29 +1,8 @@
 <div class="content">
     <div class="myProduct">
         <div class="list-group">
-            <a href="/customer?productName='1'" class="list-group-item">
-                <h4 class="list-group-item-heading">
-                    能效管控一体化平台
-                </h4>
-            </a>
-            <a href="/customer?productName='2'" class="list-group-item">
-                <h4 class="list-group-item-heading">
-                    金风科技全球监控中心
-                </h4>
-            </a>
-            <a href="/customer?productName='3'" class="list-group-item">
-                <h4 class="list-group-item-heading">
-                    国能生物生产运行监控系统
-                </h4>
-            </a>
-            <a href="/customer?productName='4'" class="list-group-item">
-                <h4 class="list-group-item-heading">
-                    公共机构能耗监管中心
-                </h4>
-            </a>
-            <a href="/customer?productName='5'" class="list-group-item">
-                <h4 class="list-group-item-heading">
-                    国华能源生产管理信息系统
+            <a class="list-group-item" th:each="list : ${list}" th:id="${list.id}">
+                <h4 class="list-group-item-heading"  th:text="${list.title}">
                 </h4>
             </a>
         </div>
@@ -32,12 +11,11 @@
     <div class="myProductContent">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title" th:text="${title}">
+                <h3 class="panel-title" id="myProductTitle">
                 </h3>
             </div>
-            <div class="panel-body" th:utext="${html}">
+            <div class="panel-body" id="myProductContent">
             </div>
-
         </div>
     </div>
     <div style="clear: both;"></div>

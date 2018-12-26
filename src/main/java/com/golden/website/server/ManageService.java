@@ -77,5 +77,12 @@ public interface ManageService {
     String getEnumById(HttpServletRequest request);
     String editEnum(HttpServletRequest request);
     List<WebsiteEnum> getAllMenu();
+    List<WebsiteEnum> getAllModule();
     //-------------END--------------字典管理管理增加、删除、修改、查询接口--------------------------
+    //-------------START--------------软件产品前台页面使用的接口--------------------------
+    List<WebsiteGolden> selectAllByMenu1();
+    List<WebsiteGolden> selectAllByMenu2();
+    List<WebsiteGolden> selectAllByMenu3();
+    List<WebsiteGolden> selectAllByMenu4();
+    //-------------END--------------软件产品前台页面使用的接口--------------------------
 }

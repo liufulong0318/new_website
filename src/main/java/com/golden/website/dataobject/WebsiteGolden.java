@@ -40,7 +40,7 @@ public class WebsiteGolden implements Serializable {
      *
      * @mbg.generated
      */
-    private String menu;
+    private Integer menu;
 
     /**
      *
@@ -148,7 +148,7 @@ public class WebsiteGolden implements Serializable {
      *
      * @mbg.generated
      */
-    public String getMenu() {
+    public Integer getMenu() {
         return menu;
     }
 
@@ -160,8 +160,8 @@ public class WebsiteGolden implements Serializable {
      *
      * @mbg.generated
      */
-    public void setMenu(String menu) {
-        this.menu = menu == null ? null : menu.trim();
+    public void setMenu(Integer menu) {
+        this.menu = menu;
     }
 
     /**
@@ -238,7 +238,7 @@ public class WebsiteGolden implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        sb.append("\",id\":\"").append(id);
+        sb.append("\"id\":\"").append(id);
         sb.append("\", \"title\":\"").append(title);
         sb.append("\", \"content\":\"").append(content);
         sb.append("\", \"menu\":\"").append(menu);

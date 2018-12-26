@@ -24,7 +24,7 @@ public interface WebsiteEnumMapper {
      *
      * @mbg.generated
      */
-    @Insert("insert into website_enum (id,enumkey,enumvalue,type) values (#{id},#{enumkey},#{enumvalue},#{type}")
+    @Insert("insert into website_enum (id,enumkey,enumvalue,type) values (#{id},#{enumkey},#{enumvalue},#{type})")
     int insert(WebsiteEnum record);
 
     /**
@@ -58,4 +58,7 @@ public interface WebsiteEnumMapper {
     int updateByPrimaryKey(WebsiteEnum record);
     @Select("select * from website_enum where type = 2")
     List<WebsiteEnum> getAllMenu();
+
+    @Select("select * from website_enum where type = 1")
+    List<WebsiteEnum> getAllModule();
 }

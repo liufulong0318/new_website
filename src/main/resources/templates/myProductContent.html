@@ -6,14 +6,8 @@
                     数据库软件
                 </h4>
             </a>
-            <a href="/golden_cloud" class="list-group-item">
-                <h4 class="list-group-item-heading">
-                    庚云实时数据库管理系统
-                </h4>
-            </a>
-            <a href="/golden_star" class="list-group-item">
-                <h4 class="list-group-item-heading">
-                    庚星时序数据库管理系统
+            <a class="list-group-item" th:each="l_1 : ${list[0]}" th:id="${l_1.id}">
+                <h4 class="list-group-item-heading" th:text="${l_1.title}">
                 </h4>
             </a>
         </div>
@@ -23,14 +17,8 @@
                     可视化软件
                 </h4>
             </a>
-            <a href="/golden_configuration" class="list-group-item">
-                <h4 class="list-group-item-heading">
-                    庚顿通用监控组态平台
-                </h4>
-            </a>
-            <a href="/golden_visualization" class="list-group-item">
-                <h4 class="list-group-item-heading">
-                    庚顿可视化产品系列
+            <a  class="list-group-item" th:each="l_1 : ${list[1]}" th:id="${l_1.id}">
+                <h4 class="list-group-item-heading" th:text="${l_1.title}">
                 </h4>
             </a>
         </div>
@@ -40,14 +28,9 @@
                     数据融合软件
                 </h4>
             </a>
-            <a href="/golden_collection" class="list-group-item">
-                <h4 class="list-group-item-heading">
-                    庚顿数据采集适配器
-                </h4>
-            </a>
-            <a href="/golden_export" class="list-group-item">
-                <h4 class="list-group-item-heading">
-                    庚顿数据输出适配器
+            <a  class="list-group-item" th:each="l_1 : ${list[2]}" th:id="${l_1.id}">
+                <h4 class="list-group-item-heading" th:text="${l_1.title}">
+
                 </h4>
             </a>
         </div>
@@ -56,12 +39,11 @@
     <div class="myProductContent">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title" th:text="${title}">
+                <h3 class="panel-title" id="myProductTitle">
                 </h3>
             </div>
-            <div class="panel-body" th:utext="${html}">
+            <div class="panel-body" id="myProductContent">
             </div>
-
         </div>
     </div>
     <div style="clear: both;"></div>

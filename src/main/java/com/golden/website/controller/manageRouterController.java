@@ -76,8 +76,10 @@ public class manageRouterController {
     public String goldenInfo(Model model){
         List<WebsiteGolden> list =  manageService.getAllOrderByModuleASC();
         List<WebsiteEnum> listmenu =  manageService.getAllMenu();
+        List<WebsiteEnum> listmodule =  manageService.getAllModule();
         model.addAttribute("list",list);
         model.addAttribute("listmenu",listmenu);
+        model.addAttribute("listmodule",listmodule);
         return "home/goldenInfo";
     }
     //----------END--------庚顿信息模块管理---------------------------

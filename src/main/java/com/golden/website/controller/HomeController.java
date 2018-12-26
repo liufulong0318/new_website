@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -45,6 +46,28 @@ public class HomeController {
     @RequestMapping("manage")
     public String manage(Model model){
         return "manage";
+    }
+
+    @RequestMapping("product")
+    public String product(Model model){
+        List<List<WebsiteGolden>> list = new ArrayList<List<WebsiteGolden>>();
+        List<WebsiteGolden> list_1 = manageService.selectAllByMenu1();
+        List<WebsiteGolden> list_2 = manageService.selectAllByMenu2();
+        List<WebsiteGolden> list_3 = manageService.selectAllByMenu3();
+        list.add(list_1);
+        list.add(list_2);
+        list.add(list_3);
+        model.addAttribute("list_1", list_1);
+        model.addAttribute("list_2", list_2);
+        model.addAttribute("list_3", list_3);
+        model.addAttribute("list",list);
+        return "product";
+    }
+    @RequestMapping("customer")
+    public String customer(Model model){
+        List<WebsiteGolden> list = manageService.selectAllByMenu4();
+        model.addAttribute("list",list);
+        return "customer";
     }
 
 }

@@ -17,34 +17,34 @@ public class UserController {
 //        model.addAttribute("name","liufulong");
 //        return "home";
 //    }
-    @RequestMapping("product")
-    public String product(Model model){
-        userService.getUser();
-        model.addAttribute("title","庚云实时数据库管理系统");
-        model.addAttribute("html","<div class=\"contents\">\n" +
-                "\t\t        \t<div class=\"wrap\"><p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">庚云实时数据库管理系统是庚顿公司推出的具有自主知识产权的工业基础软件产品。用于采集、存储、分析机器设备产生的海量实时/历史传感数据。特别适用于工业自动化、生产管理、节能环保、智能制造、智慧城市、智慧医疗等领域。</span></font></p>\n" +
-                "<p>&nbsp;</p>\n" +
-                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">庚云实时数据库管理系统支持多种工业及物联网通信协议，可采集现场传感数据并做分析处理。支持C++、java、.net等二次开发接口，可将数据提供给上层应用系统，并能与Hadoop、Spark等主流的大数据平台有机融合。</span></font></p>\n" +
-                "<p>&nbsp;</p>\n" +
-                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">庚云实时数据库管理系统作为庚顿公司旗舰版实时数据库，通用性和易用性极高，数据库管理人员可快速掌握。用户可方便地基于实时数据库构建各类应用系统，包括：&nbsp; &nbsp;</span></font></p>\n" +
-                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\"><br>\n" +
-                "</span></font><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（1）海量实时/历史数据中心</span></font></p>\n" +
-                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（2）发电厂厂级监控信息系统（SIS）</span></font></p>\n" +
-                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（3）流程企业制造执行系统（MES）</span></font></p>\n" +
-                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（4）企业能源管理系统（EMS）</span></font></p>\n" +
-                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（5）数据采集与监视控制系统（SCADA）</span></font></p>\n" +
-                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（6）生产过程监控系统</span></font></p>\n" +
-                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（7）生产调度系统</span></font></p>\n" +
-                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（8）水利、环境、油井、煤矿、城市管网、通信基站等远程监控系统</span></font></p>\n" +
-                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（9）城市轨道交通综合监控系统</span></font></p>\n" +
-                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（10）电动汽车远程服务与管理系统</span></font></p>\n" +
-                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（11）智慧城市集中监控系统</span></font></p>\n" +
-                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（12）传感器数据采集与交换系统</span></font></p>\n" +
-                "<div><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\"><br>\n" +
-                "</span></font></div> </div>\n" +
-                "\t\t      \t</div>");
-        return "product";
-    }
+//    @RequestMapping("product")
+//    public String product(Model model){
+//        userService.getUser();
+//        model.addAttribute("title","庚云实时数据库管理系统");
+//        model.addAttribute("html","<div class=\"contents\">\n" +
+//                "\t\t        \t<div class=\"wrap\"><p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">庚云实时数据库管理系统是庚顿公司推出的具有自主知识产权的工业基础软件产品。用于采集、存储、分析机器设备产生的海量实时/历史传感数据。特别适用于工业自动化、生产管理、节能环保、智能制造、智慧城市、智慧医疗等领域。</span></font></p>\n" +
+//                "<p>&nbsp;</p>\n" +
+//                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">庚云实时数据库管理系统支持多种工业及物联网通信协议，可采集现场传感数据并做分析处理。支持C++、java、.net等二次开发接口，可将数据提供给上层应用系统，并能与Hadoop、Spark等主流的大数据平台有机融合。</span></font></p>\n" +
+//                "<p>&nbsp;</p>\n" +
+//                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">庚云实时数据库管理系统作为庚顿公司旗舰版实时数据库，通用性和易用性极高，数据库管理人员可快速掌握。用户可方便地基于实时数据库构建各类应用系统，包括：&nbsp; &nbsp;</span></font></p>\n" +
+//                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\"><br>\n" +
+//                "</span></font><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（1）海量实时/历史数据中心</span></font></p>\n" +
+//                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（2）发电厂厂级监控信息系统（SIS）</span></font></p>\n" +
+//                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（3）流程企业制造执行系统（MES）</span></font></p>\n" +
+//                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（4）企业能源管理系统（EMS）</span></font></p>\n" +
+//                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（5）数据采集与监视控制系统（SCADA）</span></font></p>\n" +
+//                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（6）生产过程监控系统</span></font></p>\n" +
+//                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（7）生产调度系统</span></font></p>\n" +
+//                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（8）水利、环境、油井、煤矿、城市管网、通信基站等远程监控系统</span></font></p>\n" +
+//                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（9）城市轨道交通综合监控系统</span></font></p>\n" +
+//                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（10）电动汽车远程服务与管理系统</span></font></p>\n" +
+//                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（11）智慧城市集中监控系统</span></font></p>\n" +
+//                "<p><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\">（12）传感器数据采集与交换系统</span></font></p>\n" +
+//                "<div><font color=\"#808080\" face=\"微软雅黑, sans-serif\"><span style=\"font-size: 13.3333px;\"><br>\n" +
+//                "</span></font></div> </div>\n" +
+//                "\t\t      \t</div>");
+//        return "product";
+//    }
     @RequestMapping("golden_cloud")
     public String golden_cloud(Model model){
         userService.getUser();
@@ -170,35 +170,35 @@ public class UserController {
                 "\t\t      \t</div>");
         return "product";
     }
-    @RequestMapping("customer")
-    public String customer(Model model,String productName ){
-        System.out.println("sss  "+productName);
-        model.addAttribute("title","能效管控一体化平台");
-        model.addAttribute("html","<div class=\"contents\">\n" +
-                "\t\t\t\t    <div class=\"wrap\"><p style=\"text-indent: 32px; \">能效管控一体化平台是一个以能源管理为中心的信息系统管理平台，从设计的角度使用不同的视图对系统进行综合的描述，包括数据采集、综合监控、与信息系统交换、节能调度管理支持、基础能源管理、重点能耗设备管理、能源信息发布、系统配置及权限管理等部分。系统可采集DCS/PLC中的生产数据及计量数据，提供对生产运行数据的在线查询功能，实现能源管理及全厂能源信息的充分共享；这套完整安全可靠的实时能源数据管理系统能够提高生产过程运行的质量和效率，节能降耗，增加企业的经济效益。</p>\n" +
-                "<p style=\"text-indent: 32px; \">&nbsp;</p>\n" +
-                "<p><span style=\"text-indent: 24pt; font-size: 12pt; font-family: 宋体;\"><img src=\"http://52.83.234.27:80/gd/upload/fck/image/4c67f635ca4a4e739370e6b320975ef9.png\" width=\"558\" height=\"333\" alt=\"\"></span></p>\n" +
-                "<p>&nbsp;</p>\n" +
-                "<p><span style=\"text-indent: 24pt; font-size: 12pt; font-family: 宋体;\"><img src=\"http://52.83.234.27:80/gd/upload/fck/image/eb9319a184244cb9a98c588f13426ba8.png\" width=\"558\" height=\"345\" alt=\"\"></span></p>\n" +
-                "<p class=\"MsoNormal\" align=\"left\">&nbsp;</p>\n" +
-                "<p class=\"MsoNormal\" align=\"left\">重点用户：顺成集团</p>\n" +
-                "<p class=\"MsoNormal\" align=\"left\">项目名称：河南省顺成集团能源管理中心实时生产能源管理信息系统</p>\n" +
-                "<p class=\"MsoNormal\" align=\"left\">案例简介：</p>\n" +
-                "<p class=\"MsoNormal\" align=\"left\">&nbsp; &nbsp; &nbsp; &nbsp;能源管理中心系统搭建在集团办公大楼，与ERP、OA等现有信息系统对接并实现数据共享。集团各分厂、车间或主要设备对于已有DCS或PLC已经采集的能源数据通过与DCS系统接口方式实现，同时对于不具备自动采集条件的重点监测点通过人工录入方式上送到中心，以满足集团能源集中管理的需要。</p>\n" +
-                "<p class=\"MsoNormal\" align=\"left\">&nbsp; &nbsp; &nbsp; &nbsp;系统具有实时数据采集、海量数据存储、历史数据追忆和数据分析的能力，系统不仅将分散在各生产现场的实时能源信息集成起来，并为管理者提供全面的实时监控能源信息的统一平台，通过对数据的再次加工处理，提炼出真正对生产管理、经营决策有用的数据，从而在产生经营管理和实时过程控制之间架起一座桥梁，达到两者之间的信息交换和紧密集成。</p>\n" +
-                "<p class=\"MsoNormal\" align=\"left\">&nbsp; &nbsp; &nbsp; &nbsp;系统以庚顿实时数据库管理系统和能效管控平台为基础建设，可采集DCS/PLC中的生产数据和计量数据，具备对生产运行数据的在线查询能力，实现全厂能源信息的充分共享；是一套完整的、安全可靠的实时能源数据管理系统，提高生产过程运行质量和效率，节能降耗，增加企业的经济效益。</p>\n" +
-                "<p class=\"MsoNormal\" align=\"left\">&nbsp;</p>\n" +
-                "<p class=\"MsoNormal\" align=\"left\"><img src=\"http://52.83.234.27:80/gd/upload/fck/image/6a68268e86ed436d94f868ac2f0db797.png\" width=\"817\" height=\"430\" alt=\"\"></p>\n" +
-                "<p class=\"MsoNormal\" align=\"left\">&nbsp;</p>\n" +
-                "<p class=\"MsoNormal\" align=\"left\"><img src=\"http://52.83.234.27:80/gd/upload/fck/image/c102b2faa6e343c68730331f1a06a299.png\" width=\"817\" height=\"354\" alt=\"\"></p>\n" +
-                "<p class=\"MsoNormal\" align=\"left\">&nbsp;</p>\n" +
-                "<p class=\"MsoNormal\" align=\"left\" style=\"text-indent: 21pt;\">&nbsp;</p>\n" +
-                "<p class=\"MsoNormal\" style=\"text-indent: 21pt;\">&nbsp;</p>\n" +
-                "<p class=\"MsoNormal\" align=\"left\" style=\"text-indent: 21pt;\">&nbsp;</p>\n" +
-                "<p class=\"MsoNormal\" align=\"left\" style=\"text-indent: 21pt;\">&nbsp;</p></div>\n" +
-                "\t\t\t  \t</div>");
-        return "customer";
-    }
+//    @RequestMapping("customer")
+//    public String customer(Model model,String productName ){
+//        System.out.println("sss  "+productName);
+//        model.addAttribute("title","能效管控一体化平台");
+//        model.addAttribute("html","<div class=\"contents\">\n" +
+//                "\t\t\t\t    <div class=\"wrap\"><p style=\"text-indent: 32px; \">能效管控一体化平台是一个以能源管理为中心的信息系统管理平台，从设计的角度使用不同的视图对系统进行综合的描述，包括数据采集、综合监控、与信息系统交换、节能调度管理支持、基础能源管理、重点能耗设备管理、能源信息发布、系统配置及权限管理等部分。系统可采集DCS/PLC中的生产数据及计量数据，提供对生产运行数据的在线查询功能，实现能源管理及全厂能源信息的充分共享；这套完整安全可靠的实时能源数据管理系统能够提高生产过程运行的质量和效率，节能降耗，增加企业的经济效益。</p>\n" +
+//                "<p style=\"text-indent: 32px; \">&nbsp;</p>\n" +
+//                "<p><span style=\"text-indent: 24pt; font-size: 12pt; font-family: 宋体;\"><img src=\"http://52.83.234.27:80/gd/upload/fck/image/4c67f635ca4a4e739370e6b320975ef9.png\" width=\"558\" height=\"333\" alt=\"\"></span></p>\n" +
+//                "<p>&nbsp;</p>\n" +
+//                "<p><span style=\"text-indent: 24pt; font-size: 12pt; font-family: 宋体;\"><img src=\"http://52.83.234.27:80/gd/upload/fck/image/eb9319a184244cb9a98c588f13426ba8.png\" width=\"558\" height=\"345\" alt=\"\"></span></p>\n" +
+//                "<p class=\"MsoNormal\" align=\"left\">&nbsp;</p>\n" +
+//                "<p class=\"MsoNormal\" align=\"left\">重点用户：顺成集团</p>\n" +
+//                "<p class=\"MsoNormal\" align=\"left\">项目名称：河南省顺成集团能源管理中心实时生产能源管理信息系统</p>\n" +
+//                "<p class=\"MsoNormal\" align=\"left\">案例简介：</p>\n" +
+//                "<p class=\"MsoNormal\" align=\"left\">&nbsp; &nbsp; &nbsp; &nbsp;能源管理中心系统搭建在集团办公大楼，与ERP、OA等现有信息系统对接并实现数据共享。集团各分厂、车间或主要设备对于已有DCS或PLC已经采集的能源数据通过与DCS系统接口方式实现，同时对于不具备自动采集条件的重点监测点通过人工录入方式上送到中心，以满足集团能源集中管理的需要。</p>\n" +
+//                "<p class=\"MsoNormal\" align=\"left\">&nbsp; &nbsp; &nbsp; &nbsp;系统具有实时数据采集、海量数据存储、历史数据追忆和数据分析的能力，系统不仅将分散在各生产现场的实时能源信息集成起来，并为管理者提供全面的实时监控能源信息的统一平台，通过对数据的再次加工处理，提炼出真正对生产管理、经营决策有用的数据，从而在产生经营管理和实时过程控制之间架起一座桥梁，达到两者之间的信息交换和紧密集成。</p>\n" +
+//                "<p class=\"MsoNormal\" align=\"left\">&nbsp; &nbsp; &nbsp; &nbsp;系统以庚顿实时数据库管理系统和能效管控平台为基础建设，可采集DCS/PLC中的生产数据和计量数据，具备对生产运行数据的在线查询能力，实现全厂能源信息的充分共享；是一套完整的、安全可靠的实时能源数据管理系统，提高生产过程运行质量和效率，节能降耗，增加企业的经济效益。</p>\n" +
+//                "<p class=\"MsoNormal\" align=\"left\">&nbsp;</p>\n" +
+//                "<p class=\"MsoNormal\" align=\"left\"><img src=\"http://52.83.234.27:80/gd/upload/fck/image/6a68268e86ed436d94f868ac2f0db797.png\" width=\"817\" height=\"430\" alt=\"\"></p>\n" +
+//                "<p class=\"MsoNormal\" align=\"left\">&nbsp;</p>\n" +
+//                "<p class=\"MsoNormal\" align=\"left\"><img src=\"http://52.83.234.27:80/gd/upload/fck/image/c102b2faa6e343c68730331f1a06a299.png\" width=\"817\" height=\"354\" alt=\"\"></p>\n" +
+//                "<p class=\"MsoNormal\" align=\"left\">&nbsp;</p>\n" +
+//                "<p class=\"MsoNormal\" align=\"left\" style=\"text-indent: 21pt;\">&nbsp;</p>\n" +
+//                "<p class=\"MsoNormal\" style=\"text-indent: 21pt;\">&nbsp;</p>\n" +
+//                "<p class=\"MsoNormal\" align=\"left\" style=\"text-indent: 21pt;\">&nbsp;</p>\n" +
+//                "<p class=\"MsoNormal\" align=\"left\" style=\"text-indent: 21pt;\">&nbsp;</p></div>\n" +
+//                "\t\t\t  \t</div>");
+//        return "customer";
+//    }
 
     @RequestMapping("solution")
     public String solution(Model model){
