@@ -1163,13 +1163,24 @@ public class ManageServiceImp implements ManageService{
                 return resultInfo.toString();
             }
         }
+        MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
+        MultipartFile multipartFile = req.getFile("imgFile");
+
+        String url = null;
+        if(multipartFile != null){
+            try {
+                url = Upload.upload(request);
+            } catch (IOException e) {
+                System.out.println("添加图片失败");
+            }
+        }
         String module = request.getParameter("module");
         String menu = request.getParameter("menu");
         WebsiteGolden websiteGolden = new WebsiteGolden();
         websiteGolden.setId(UUID.randomUUID().toString());
         websiteGolden.setTitle(title);
         websiteGolden.setContent(content.replaceAll("\"","'"));
-//        websiteGolden.setContent(content);
+        websiteGolden.setImgurl(url);
         websiteGolden.setModule(Integer.parseInt(module));
         websiteGolden.setMenu(Integer.parseInt(menu));
         websiteGolden.setCreatetime(new Date());
@@ -1256,6 +1267,17 @@ public class ManageServiceImp implements ManageService{
                 return resultInfo.toString();
             }
         }
+        MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
+        MultipartFile multipartFile = req.getFile("imgFile");
+
+        String url = null;
+        if(multipartFile != null){
+            try {
+                url = Upload.upload(request);
+            } catch (IOException e) {
+                System.out.println("未修改图片");
+            }
+        }
         String module = request.getParameter("module");
         String menu = request.getParameter("menu");
         WebsiteGolden websiteGolden = new WebsiteGolden();
@@ -1264,8 +1286,14 @@ public class ManageServiceImp implements ManageService{
         websiteGolden.setContent(content.replaceAll("\"","'"));
         websiteGolden.setModule(Integer.parseInt(module));
         websiteGolden.setMenu(Integer.parseInt(menu));
+        websiteGolden.setImgurl(url);
         websiteGolden.setCreatetime(new Date());
-        Integer count  = websiteGoldenMapper.updateByPrimaryKey(websiteGolden);
+        Integer count = 0;
+        if(url != null){
+            count = websiteGoldenMapper.updateByPrimaryKey(websiteGolden);
+        }else{
+            count = websiteGoldenMapper.updateByPrimaryKeyNotUrl(websiteGolden);
+        }
         if(count > 0){
             resultInfo.setCode("1");
             resultInfo.setMsg("修改信息成功");
@@ -1421,5 +1449,14 @@ public class ManageServiceImp implements ManageService{
     public List<WebsiteGolden>  selectAllByMenu4() {
         return websiteGoldenMapper.selectAllByMenu4();
     }
+    @Override
+    public List<WebsiteGolden>  selectAllByMenu5() {
+        return websiteGoldenMapper.selectAllByMenu5();
+    }
+    @Override
+    public List<WebsiteGolden>  selectAllByMenu6() {
+        return websiteGoldenMapper.selectAllByMenu6();
+    }
+
     //-----------------------END------------前台软件产品使用的接口实现------------------------------------------
 }

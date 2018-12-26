@@ -84,5 +84,7 @@ public interface ManageService {
     List<WebsiteGolden> selectAllByMenu2();
     List<WebsiteGolden> selectAllByMenu3();
     List<WebsiteGolden> selectAllByMenu4();
+    List<WebsiteGolden> selectAllByMenu5();
+    List<WebsiteGolden> selectAllByMenu6();
     //-------------END--------------软件产品前台页面使用的接口--------------------------
 }

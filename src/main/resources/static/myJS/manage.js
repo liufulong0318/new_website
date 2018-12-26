@@ -536,6 +536,8 @@ $(document).ready(function(){
     $("#addGoldenInfo").on('click',function () {
         var formdata = new FormData();
         formdata.append("title",$("#title").val());
+        var image = document.getElementById("inputfile");
+        formdata.append("imgFile",image.files[0]);
         var content = filterXSS(editor.txt.html())  // 此处进行 xss 攻击过滤
         formdata.append("content",content);
         formdata.append("module",$("#module").val());
@@ -594,6 +596,8 @@ $(document).ready(function(){
         var formdata = new FormData();
         formdata.append("id",$("#edit_id").val());
         formdata.append("title",$("#edit_title").val());
+        var image = document.getElementById("edit_inputfile");
+        formdata.append("imgFile",image.files[0]);
         var content = filterXSS(editor_edit.txt.html());  // 此处进行 xss 攻击过滤
         formdata.append("content",content);
         formdata.append("module",$("#edit_module").val());

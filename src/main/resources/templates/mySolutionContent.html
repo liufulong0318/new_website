@@ -1,73 +1,9 @@
 <div class="solution">
     <div class="row">
-        <div class="col-sm-6 col-md-3">
-            <a href="/solutionDetails?hyly=1" class="thumbnail" >
-                <img src="../images/1.jpg"
-                     alt="通用的占位符缩略图">
-                <h4>风电集控</h4>
-            </a>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <a href="/solutionDetails?hyly=2" class="thumbnail" >
-                <img src="../images/2.jpg"
-                     alt="通用的占位符缩略图">
-                <h4>轨道交通</h4>
-            </a>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <a href="/solutionDetails?hyly=3" class="thumbnail" >
-                <img src="../images/3.jpg"
-                     alt="通用的占位符缩略图">
-                <h4>智慧城市</h4>
-            </a>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <a href="/solutionDetails?hyly=4" class="thumbnail" >
-                <img src="../images/4.jpg"
-                     alt="通用的占位符缩略图">
-                <h4>智能楼宇</h4>
-            </a>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <a href="/solutionDetails?hyly=5" class="thumbnail" >
-                <img src="../images/5.png"
-                     alt="通用的占位符缩略图">
-                <h4>火力发电</h4>
-            </a>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <a href="/solutionDetails?hyly=6" class="thumbnail" >
-                <img src="../images/6.jpg"
-                     alt="通用的占位符缩略图">
-                <h4>安全生产</h4>
-            </a>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <a href="/solutionDetails?hyly=7" class="thumbnail" >
-                <img src="../images/7.jpg"
-                     alt="通用的占位符缩略图">
-                <h4>智能电网</h4>
-            </a>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <a href="/solutionDetails?hyly=8" class="thumbnail" >
-                <img src="../images/8.jpg"
-                     alt="通用的占位符缩略图">
-                <h4>节能环保</h4>
-            </a>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <a href="/solutionDetails?hyly=9" class="thumbnail" >
-                <img src="../images/9.jpg"
-                     alt="通用的占位符缩略图">
-                <h4>智慧消防</h4>
-            </a>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <a href="/solutionDetails?hyly=10" class="thumbnail" >
-                <img src="../images/10.jpg"
-                     alt="通用的占位符缩略图">
-                <h4>集团生产</h4>
+        <div class="col-sm-6 col-md-3" th:each="list:${list}">
+            <a th:href="@{'/solutionDetails?id='+${list.id}}" class="thumbnail" >
+                <img th:src="${list.imgurl}">
+                <h4 th:text="${list.title}"></h4>
             </a>
         </div>
     </div>

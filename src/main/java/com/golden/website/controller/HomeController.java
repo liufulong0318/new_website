@@ -69,5 +69,25 @@ public class HomeController {
         model.addAttribute("list",list);
         return "customer";
     }
+    @RequestMapping("solution")
+    public String solution(Model model){
+        List<WebsiteGolden> list = manageService.selectAllByMenu5();
+        model.addAttribute("list",list);
+        return "solution";
+    }
 
+    @RequestMapping("solutionDetails")
+    public String solutionDetails(Model model,String id){
+        List<WebsiteGolden> list = manageService.selectAllByMenu5();
+        model.addAttribute("list",list);
+        model.addAttribute("id",id);
+        return "solutionDetails";
+    }
+    @RequestMapping("about")
+    public String aboutContent(Model model, String id) {
+        List<WebsiteGolden> list = manageService.selectAllByMenu6();
+        model.addAttribute("list",list);
+        model.addAttribute("id",id);
+        return "about";
+    }
 }
