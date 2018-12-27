@@ -66,4 +66,10 @@ public interface WebsiteGoldenMapper {
     @Update("update website_golden set title = #{title},content=#{content}, module= #{module},menu = #{menu},createtime = #{createtime} where id = #{id} ")
     int updateByPrimaryKeyNotUrl(WebsiteGolden record);
 
+    @Select("select * from website_golden where menu = 11")
+    WebsiteGolden selectGoldenDynamicTop3();
+
+    @Select("select * from website_golden where menu = 12")
+    WebsiteGolden selectGoldenShareTop3();
+
 }

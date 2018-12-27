@@ -29,11 +29,11 @@
         <td th:text="${m.id}" style="display: none;"></td>
         <td th:text="${m.title}"></td>
         <td th:text="${m.imgurl}"></td>
-        <td th:text="${m.content.substring(0,15)}+......"></td>
-        <td th:text="${m.introduction}"></td>
-        <td th:text="${m.honor}"></td>
-        <td th:text="${m.culture}"></td>
-        <td th:text="${m.course}"></td>
+        <td th:text="${m.content.substring(0,15)}+..."></td>
+        <td th:text="${m.introduction.substring(0,15)}+..."></td>
+        <td th:text="${m.honor.substring(0,15)}+..."></td>
+        <td th:text="${m.culture.substring(0,15)}+..."></td>
+        <td th:text="${m.course.substring(0,15)}+..."></td>
         <td th:text="${m.order}"></td>
         <td>
             <button class="btn btn-primary editAboutUS" data-toggle="modal" data-target="#myModal_editAboutUS">修改</button>

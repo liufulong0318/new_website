@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -891,7 +892,7 @@ public class ManageServiceImp implements ManageService{
         }
         String introduction = request.getParameter("introduction");
         if(introduction != null){
-            String pattern = "^(/)?+(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            String pattern = "^(/)?+(?!_)(?!.*?_$)[\\u003f|\\u002d|\\u003d|a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(introduction);
             if(!m.matches()){
@@ -902,7 +903,7 @@ public class ManageServiceImp implements ManageService{
         }
         String honor = request.getParameter("honor");
         if(honor != null){
-            String pattern = "^(/)?+(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            String pattern = "^(/)?+(?!_)(?!.*?_$)[\\u003f|\\u002d|\\u003d|a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(honor);
             if(!m.matches()){
@@ -913,7 +914,7 @@ public class ManageServiceImp implements ManageService{
         }
         String culture = request.getParameter("culture");
         if(honor != null){
-            String pattern = "^(/)?+(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            String pattern = "^(/)?+(?!_)(?!.*?_$)[\\u003f|\\u002d|\\u003d|a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(culture);
             if(!m.matches()){
@@ -925,7 +926,7 @@ public class ManageServiceImp implements ManageService{
 
         String course = request.getParameter("course");
         if(honor != null){
-            String pattern = "^(/)?+(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            String pattern = "^(/)?+(?!_)(?!.*?_$)[\\u003f|\\u002d|\\u003d|a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(course);
             if(!m.matches()){
@@ -1036,7 +1037,7 @@ public class ManageServiceImp implements ManageService{
         }
         String introduction = request.getParameter("introduction");
         if(introduction != null){
-            String pattern = "^(/)?+(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            String pattern = "^(/)?+(?!_)(?!.*?_$)[\\u003f|\\u002d|\\u003d|a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(introduction);
             if(!m.matches()){
@@ -1047,7 +1048,7 @@ public class ManageServiceImp implements ManageService{
         }
         String honor = request.getParameter("honor");
         if(honor != null){
-            String pattern = "^(/)?+(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            String pattern = "^(/)?+(?!_)(?!.*?_$)[\\u003f|\\u002d|\\u003d|a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(honor);
             if(!m.matches()){
@@ -1058,7 +1059,7 @@ public class ManageServiceImp implements ManageService{
         }
         String culture = request.getParameter("culture");
         if(honor != null){
-            String pattern = "^(/)?+(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            String pattern = "^(/)?+(?!_)(?!.*?_$)[\\u003f|\\u002d|\\u003d|a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(culture);
             if(!m.matches()){
@@ -1070,7 +1071,7 @@ public class ManageServiceImp implements ManageService{
 
         String course = request.getParameter("course");
         if(honor != null){
-            String pattern = "^(/)?+(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
+            String pattern = "^(/)?+(?!_)(?!.*?_$)[\\u003f|\\u002d|\\u003d|a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(course);
             if(!m.matches()){
@@ -1459,4 +1460,49 @@ public class ManageServiceImp implements ManageService{
     }
 
     //-----------------------END------------前台软件产品使用的接口实现------------------------------------------
+    //-------------START--------------首页中的庚顿动态和庚顿分享使用的接口实现--------------------------
+    @Override
+    public List<String> getGoldenDynamicTop3() {
+        WebsiteGolden websiteGolden = websiteGoldenMapper.selectGoldenDynamicTop3();
+        String str = websiteGolden.getContent();
+        String [] s = str.split("</blockquote>");
+        List<String> list = new ArrayList<String>();
+        int num =0;
+        for(int i =1; i<4;i++){
+            String sss = s[i];
+            String [] ss = sss.split("<br>");
+            for(String ssss : ss){
+                if(num < 3){
+                    if(ssss != null && ssss.trim() != "" && ssss.indexOf("blockquote")< 1 && ssss != "null"&& (!ssss.equals(""))){
+                        list.add(ssss);
+                        num ++;
+                    }
+                }
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<String> getGoldenShareTop3() {
+        WebsiteGolden websiteGolden = websiteGoldenMapper.selectGoldenShareTop3();
+        String str = websiteGolden.getContent();
+        String [] s = str.split("</blockquote>");
+        List<String> list = new ArrayList<String>();
+        int num =0;
+        for(int i =1; i<4;i++){
+            String sss = s[i];
+            String [] ss = sss.split("<br>");
+            for(String ssss : ss){
+                if(num < 3){
+                    if(ssss != null && ssss.trim() != "" && ssss.indexOf("blockquote")< 1 && ssss != "null"&& (!ssss.equals(""))){
+                        list.add(ssss);
+                        num ++;
+                    }
+                }
+            }
+        }
+        return list;
+    }
+    //-------------END--------------首页中的庚顿动态和庚顿分享使用的接口实现--------------------------
 }

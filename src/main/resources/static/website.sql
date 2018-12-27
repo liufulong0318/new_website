@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : springboot
-Source Server Version : 50717
+Source Server         : golden_oa
+Source Server Version : 50559
 Source Host           : localhost:3306
 Source Database       : website
 
 Target Server Type    : MYSQL
-Target Server Version : 50717
+Target Server Version : 50559
 File Encoding         : 65001
 
-Date: 2018-12-26 23:53:47
+Date: 2018-12-27 19:21:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -53,7 +53,7 @@ CREATE TABLE `website_aboutus` (
 -- ----------------------------
 -- Records of website_aboutus
 -- ----------------------------
-INSERT INTO `website_aboutus` VALUES ('b203e2fc-9853-42c2-92a8-72e5f3d5bc2a', '关于我们', '/upload/08c62bc5-3f1f-489d-9e9b-1a270b310b95.png', '<h4><p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;北京庚顿数据科技有限公司专业从事自主知识产权的&quot;实时数据库管理系统&quot;研发及产业化，作为一种基础软件，实时数据库管理系统在工业化和信息化融合过程中起着重要的支撑作用，是新一代信息技术产业中的关键。该领域关系国家安全、产业关联广泛，存在巨大的创新空间。<br></span></p><p>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>我们深知这项事业的艰巨性、复杂性和长期性。我们更清楚地认识到，没有基础软件的突破，我国就无法跻身世界信息技术产业强国之列。有鉴于此，我们立志“啃得了骨头、耐得住寂寞、顶得住诱惑”，决心长期专注实时数据库领域，打造优秀人才队伍、提升创新能力、突破核心技术、掌握自主知识产权、研发创新产品系列、形成高附加值的产业链条。&nbsp;&nbsp;<span><br></span></span><p>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>我们有一个梦想：让中国的实时数据库软件领先全球，让中国的基础软件领先全球!<br></span></p></p><p></p><p>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们坚信：就像中华民族的伟大复兴一定能实现一样，我们的梦想一定能实现!</p></h4>', '/product', '/product', '/product', '/product', '1', '2018-12-24 22:27:29');
+INSERT INTO `website_aboutus` VALUES ('b203e2fc-9853-42c2-92a8-72e5f3d5bc2a', '关于我们', '/upload/08c62bc5-3f1f-489d-9e9b-1a270b310b95.png', '<h4><p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;北京庚顿数据科技有限公司专业从事自主知识产权的&quot;实时数据库管理系统&quot;研发及产业化，作为一种基础软件，实时数据库管理系统在工业化和信息化融合过程中起着重要的支撑作用，是新一代信息技术产业中的关键。该领域关系国家安全、产业关联广泛，存在巨大的创新空间。<br></span></p><p>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>我们深知这项事业的艰巨性、复杂性和长期性。我们更清楚地认识到，没有基础软件的突破，我国就无法跻身世界信息技术产业强国之列。有鉴于此，我们立志“啃得了骨头、耐得住寂寞、顶得住诱惑”，决心长期专注实时数据库领域，打造优秀人才队伍、提升创新能力、突破核心技术、掌握自主知识产权、研发创新产品系列、形成高附加值的产业链条。&nbsp;&nbsp;<span><br></span></span></p><p>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>我们有一个梦想：让中国的实时数据库软件领先全球，让中国的基础软件领先全球!<br></span></p><p></p><p></p><p>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们坚信：就像中华民族的伟大复兴一定能实现一样，我们的梦想一定能实现!</p></h4>', '/about?id=dcdb9cc1-529d-40ad-8bb8-3fc313ca6dc4', '/about?id=86e81023-73c1-47d6-bb75-e25d16d797a0', '/about?id=192a78ad-d439-4ab0-a58d-b82023c89a81', '/about?id=f0453a5f-467d-4087-9b1a-2dea83530294', '1', '2018-12-27 16:26:28');
 
 -- ----------------------------
 -- Table structure for website_cooperativeuser
@@ -150,6 +150,8 @@ INSERT INTO `website_enum` VALUES ('0ed23026-8554-4992-a326-2197586c93fa', '4', 
 INSERT INTO `website_enum` VALUES ('0f7623cf-aa47-42f3-b65d-bffc7f4e8fef', '5', '关于庚顿', '1');
 INSERT INTO `website_enum` VALUES ('118f5079-cbc2-4fbe-b350-ab446b11ee51', '34', '产品购买', '1');
 INSERT INTO `website_enum` VALUES ('20890950-5edc-4407-9e37-d08be0334c60', '6', '资料下载', '1');
+INSERT INTO `website_enum` VALUES ('3522e056-fc8b-4a93-a689-f0e6289e49d2', '0', '女', '5');
+INSERT INTO `website_enum` VALUES ('38c0c68a-7677-41b2-bbfc-41b88203d2c0', '1', '禁用', '4');
 INSERT INTO `website_enum` VALUES ('3e8cd626-af62-4562-a5bc-de417a3385f9', '7', '成立宣言', '2');
 INSERT INTO `website_enum` VALUES ('4a120372-bb0b-408b-a7da-af18a2a5ee10', '8', '公司简介', '2');
 INSERT INTO `website_enum` VALUES ('50acff3f-59d4-4ca4-bc22-3b4e4a9c4d47', '9', '资质荣誉', '2');
@@ -163,6 +165,7 @@ INSERT INTO `website_enum` VALUES ('687a0b6d-50b2-4b4a-b554-e1e216cef901', '16',
 INSERT INTO `website_enum` VALUES ('6c348578-6fc4-49d1-bead-16bbe564f613', '17', '公共机构能耗监管中心', '3');
 INSERT INTO `website_enum` VALUES ('71648dd6-d09a-4079-9a7c-8e28848f6048', '18', '国华能源生产管理信息系统', '3');
 INSERT INTO `website_enum` VALUES ('73a94e56-bfde-494e-b921-7554cc3be15b', '19', '风电集控', '3');
+INSERT INTO `website_enum` VALUES ('7572f283-5533-4a6c-b575-d38603088ef8', '1', '男', '5');
 INSERT INTO `website_enum` VALUES ('831243ef-fb8f-4aee-8396-4a315fbbd614', '20', '轨道交通', '3');
 INSERT INTO `website_enum` VALUES ('94e2ac45-bc6e-4c49-883d-2478f8d05e43', '35', '客户案例', '2');
 INSERT INTO `website_enum` VALUES ('99f43874-721c-4ad6-97e9-e0fd049e7184', '21', '智慧城市', '3');
@@ -170,6 +173,7 @@ INSERT INTO `website_enum` VALUES ('9b19714f-ac49-4546-b3d0-27d0e249f47f', '22',
 INSERT INTO `website_enum` VALUES ('9c081e3e-f46a-4a7d-ac6d-6a5c3a9e30c4', '23', '火力发电', '3');
 INSERT INTO `website_enum` VALUES ('a476e7bc-5bbe-4f7f-b8fa-6753dcdd8879', '24', '安全生产', '3');
 INSERT INTO `website_enum` VALUES ('a8a2a8ff-422f-4eb5-9aea-614f3d32a830', '25', '智能电网', '3');
+INSERT INTO `website_enum` VALUES ('ae74a824-6c00-4de9-ac15-0a674d16d665', '0', '正常', '4');
 INSERT INTO `website_enum` VALUES ('bbbc5f47-9ace-46f3-84a4-15d5fadfee7a', '26', '节能环保', '3');
 INSERT INTO `website_enum` VALUES ('c0fef97d-3c9f-4744-8138-961a905c8d66', '27', '智能消防', '3');
 INSERT INTO `website_enum` VALUES ('d41ec6a6-6660-408d-ba08-5fd736cf996e', '28', '集团生产', '3');
@@ -262,18 +266,18 @@ CREATE TABLE `website_industrycase` (
 -- ----------------------------
 -- Records of website_industrycase
 -- ----------------------------
-INSERT INTO `website_industrycase` VALUES ('13c48c9c-8010-4bfc-9baa-1c1eb0a7301e', '数据中心', '/upload/e2ccec57-14e9-4a80-827a-76632c1e9b62.png', '/product', '11', '2018-12-21 17:42:54');
-INSERT INTO `website_industrycase` VALUES ('19c22f06-cbc0-4b5d-b9a8-5819991af1d5', '农夫山泉', '/upload/8a81e21b-37d3-4db6-9a60-1c0c3d4186ec.png', '/product', '5', '2018-12-21 14:59:08');
-INSERT INTO `website_industrycase` VALUES ('1f82b0fa-4bd7-4819-9cc7-46377e5cdcdf', '胜利油田', '/upload/d22f15c5-6699-4e2c-b9a8-ed22a1b46951.jpg', '/product', '4', '2018-12-21 14:58:40');
-INSERT INTO `website_industrycase` VALUES ('2152d0ba-4013-436a-bdcd-a870c0e8fef9', '国华能源', '/upload/d0e39d58-a0df-48ee-bfca-ffc8115862a4.jpg', '/product', '12', '2018-12-21 17:42:48');
-INSERT INTO `website_industrycase` VALUES ('5b178731-a9c4-471f-8877-9dadc144fcab', '安徽安泰生物', '/upload/e01ba0f8-e25f-4435-bbbe-c8b27b560e4d.jpg', '/product', '3', '2018-12-21 14:58:16');
-INSERT INTO `website_industrycase` VALUES ('6ffb2601-cac3-4d8e-ac7d-6270bc0bdce9', '煤矿领域', '/upload/80fc60ee-7beb-4013-9113-a0ec3d0a2f57.jpg', '/product', '7', '2018-12-21 17:34:14');
-INSERT INTO `website_industrycase` VALUES ('9b4281b9-4333-477b-bf32-63eb4bba3fd7', '智能制造', '/upload/cadc38b0-ff0f-4ce0-a92d-f806b3d635bb.jpg', '/product', '10', '2018-12-21 15:03:59');
-INSERT INTO `website_industrycase` VALUES ('a3fda4e9-7817-444d-9711-6ea68ec8ebb7', '国能生物集团', '/upload/19e62400-9cf9-4335-9464-1c1c2e05681b.png', '/product', '2', '2018-12-21 14:53:15');
-INSERT INTO `website_industrycase` VALUES ('af0e923b-5e51-4f34-8986-34e18e7a34d1', '金风科技', '/upload/2e1fbaaa-22c9-4643-a1f5-6feac30abdad.jpg', '/product', '1', '2018-12-21 15:11:14');
-INSERT INTO `website_industrycase` VALUES ('d7c66589-24d1-4e2e-9760-3c8016d7c34e', '国家电网', '/upload/5f6229d4-dec1-4fcb-a0f4-6b3c6b66340a.jpg', '/product', '8', '2018-12-21 15:00:29');
-INSERT INTO `website_industrycase` VALUES ('f654d80e-771c-4661-974f-42fd58b9ecb9', '火电发电', '/upload/c05dfcda-d7d8-407e-ae00-f91010689405.png', '/product', '6', '2018-12-21 14:59:30');
-INSERT INTO `website_industrycase` VALUES ('fb140881-a371-4a86-b1f4-538872f57d03', '光伏发电', '/upload/7383201c-a568-493f-826b-42016c2d8e11.jpg', '/product', '9', '2018-12-21 15:00:55');
+INSERT INTO `website_industrycase` VALUES ('13c48c9c-8010-4bfc-9baa-1c1eb0a7301e', '数据中心', '/upload/e2ccec57-14e9-4a80-827a-76632c1e9b62.png', '/solution', '11', '2018-12-27 09:38:39');
+INSERT INTO `website_industrycase` VALUES ('19c22f06-cbc0-4b5d-b9a8-5819991af1d5', '农夫山泉', '/upload/8a81e21b-37d3-4db6-9a60-1c0c3d4186ec.png', '/solution', '5', '2018-12-27 09:37:58');
+INSERT INTO `website_industrycase` VALUES ('1f82b0fa-4bd7-4819-9cc7-46377e5cdcdf', '胜利油田', '/upload/d22f15c5-6699-4e2c-b9a8-ed22a1b46951.jpg', '/solution', '4', '2018-12-27 09:37:54');
+INSERT INTO `website_industrycase` VALUES ('2152d0ba-4013-436a-bdcd-a870c0e8fef9', '国华能源', '/upload/d0e39d58-a0df-48ee-bfca-ffc8115862a4.jpg', '/solution', '12', '2018-12-27 09:38:34');
+INSERT INTO `website_industrycase` VALUES ('5b178731-a9c4-471f-8877-9dadc144fcab', '安徽安泰生物', '/upload/e01ba0f8-e25f-4435-bbbe-c8b27b560e4d.jpg', '/solution', '3', '2018-12-27 09:37:40');
+INSERT INTO `website_industrycase` VALUES ('6ffb2601-cac3-4d8e-ac7d-6270bc0bdce9', '煤矿领域', '/upload/80fc60ee-7beb-4013-9113-a0ec3d0a2f57.jpg', '/solution', '7', '2018-12-27 09:38:08');
+INSERT INTO `website_industrycase` VALUES ('9b4281b9-4333-477b-bf32-63eb4bba3fd7', '智能制造', '/upload/cadc38b0-ff0f-4ce0-a92d-f806b3d635bb.jpg', '/solution', '10', '2018-12-27 09:38:25');
+INSERT INTO `website_industrycase` VALUES ('a3fda4e9-7817-444d-9711-6ea68ec8ebb7', '国能生物集团', '/upload/19e62400-9cf9-4335-9464-1c1c2e05681b.png', '/solution', '2', '2018-12-27 09:37:29');
+INSERT INTO `website_industrycase` VALUES ('af0e923b-5e51-4f34-8986-34e18e7a34d1', '金风科技', '/upload/2e1fbaaa-22c9-4643-a1f5-6feac30abdad.jpg', '/solution', '1', '2018-12-27 09:37:22');
+INSERT INTO `website_industrycase` VALUES ('d7c66589-24d1-4e2e-9760-3c8016d7c34e', '国家电网', '/upload/5f6229d4-dec1-4fcb-a0f4-6b3c6b66340a.jpg', '/solution', '8', '2018-12-27 09:38:14');
+INSERT INTO `website_industrycase` VALUES ('f654d80e-771c-4661-974f-42fd58b9ecb9', '火电发电', '/upload/c05dfcda-d7d8-407e-ae00-f91010689405.png', '/solution', '6', '2018-12-27 09:38:04');
+INSERT INTO `website_industrycase` VALUES ('fb140881-a371-4a86-b1f4-538872f57d03', '光伏发电', '/upload/7383201c-a568-493f-826b-42016c2d8e11.jpg', '/solution', '9', '2018-12-27 09:38:20');
 
 -- ----------------------------
 -- Table structure for website_lunbotu
@@ -313,6 +317,7 @@ CREATE TABLE `website_pwd` (
 INSERT INTO `website_pwd` VALUES ('9ffe6b2a-1b6d-4b0f-b50b-ef3c12c0111a', '1bbd886460827015e5d605ed44252251');
 INSERT INTO `website_pwd` VALUES ('bb7c79e1-f748-4389-9bb4-30418b5fd9a9', '25d55ad283aa400af464c76d713c07ad');
 INSERT INTO `website_pwd` VALUES ('d14b0ae0-db90-41f5-84a5-303cc3dc74c3', '1bbd886460827015e5d605ed44252251');
+INSERT INTO `website_pwd` VALUES ('f07ba153-05e5-4017-8f89-891fab184b25', 'dd4b21e9ef71e1291183a46b913ae6f2');
 
 -- ----------------------------
 -- Table structure for website_user
@@ -324,7 +329,7 @@ CREATE TABLE `website_user` (
   `state` char(1) COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '0，正常 1，锁定',
   `errorCount` int(1) NOT NULL DEFAULT '0',
   `registerTime` datetime NOT NULL,
-  `sex` char(1) COLLATE utf8_bin DEFAULT '1' COMMENT '1 男，0 女',
+  `sex` char(1) COLLATE utf8_bin NOT NULL DEFAULT '1' COMMENT '1 男，0 女',
   `name` varchar(60) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -332,6 +337,7 @@ CREATE TABLE `website_user` (
 -- ----------------------------
 -- Records of website_user
 -- ----------------------------
-INSERT INTO `website_user` VALUES ('9ffe6b2a-1b6d-4b0f-b50b-ef3c12c0111a', 'golden', '0', '0', '2018-12-17 15:38:00', null, null);
-INSERT INTO `website_user` VALUES ('bb7c79e1-f748-4389-9bb4-30418b5fd9a9', 'forlong', '0', '0', '2018-12-17 15:28:56', null, null);
-INSERT INTO `website_user` VALUES ('d14b0ae0-db90-41f5-84a5-303cc3dc74c3', 'golden', '0', '0', '2018-12-17 15:41:41', null, null);
+INSERT INTO `website_user` VALUES ('9ffe6b2a-1b6d-4b0f-b50b-ef3c12c0111a', 'golden', '0', '0', '2018-12-17 15:38:00', '1', null);
+INSERT INTO `website_user` VALUES ('bb7c79e1-f748-4389-9bb4-30418b5fd9a9', 'forlong', '0', '0', '2018-12-17 15:28:56', '1', null);
+INSERT INTO `website_user` VALUES ('d14b0ae0-db90-41f5-84a5-303cc3dc74c3', 'golden', '1', '0', '2018-12-17 15:41:41', '1', null);
+INSERT INTO `website_user` VALUES ('f07ba153-05e5-4017-8f89-891fab184b25', 'liufulong', '0', '0', '2018-12-27 15:53:05', '1', null);

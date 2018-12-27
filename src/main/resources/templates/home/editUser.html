@@ -1,0 +1,64 @@
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal_editUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel_MSG">
+                    修改信息
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="addLunbotuForm">
+                    <input id="edit_id" style="display: none;">
+                    <div class="form-group">
+                        <label for="edit_loginusername" class="col-sm-2 control-label">用户名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="edit_loginusername" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_name" class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="edit_name" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_sex" class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-10">
+                            <select id="edit_sex" class="form-control">
+                                <option value="0">女</option>
+                                <option value="1">男</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_state" class="col-sm-2 control-label">用户状态</label>
+                        <div class="col-sm-10">
+                            <select id="edit_state" class="form-control">
+                                <option value="0">正常</option>
+                                <option value="1">禁用</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_registertime" class="col-sm-2 control-label">注册时间</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="edit_registertime" disabled>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    关闭
+                </button>
+                <button type="button" class="btn btn-primary" id="editUser">
+                    保存
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>

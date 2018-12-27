@@ -87,4 +87,8 @@ public interface ManageService {
     List<WebsiteGolden> selectAllByMenu5();
     List<WebsiteGolden> selectAllByMenu6();
     //-------------END--------------软件产品前台页面使用的接口--------------------------
+    //-------------START--------------首页中的庚顿动态和庚顿分享--------------------------
+    List<String> getGoldenDynamicTop3();
+    List<String> getGoldenShareTop3();
+    //-------------END--------------首页中的庚顿动态和庚顿分享--------------------------
 }

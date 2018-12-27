@@ -1,5 +1,6 @@
 package com.golden.website.controller;
 
+import com.golden.website.dao.WebsiteUserMapper;
 import com.golden.website.dataobject.*;
 import com.golden.website.server.ManageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,12 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/")
-public class manageRouterController {
+public class ManageRouterController {
 
     @Autowired
     ManageService manageService;
+    @Autowired
+    WebsiteUserMapper websiteUserMapper;
 
     //----------START--------轮播图---------------------------
     @RequestMapping("/lunbotu")
@@ -83,7 +86,7 @@ public class manageRouterController {
         return "home/goldenInfo";
     }
     //----------END--------庚顿信息模块管理---------------------------
-//----------START--------字典管理---------------------------
+    //----------START--------字典管理---------------------------
     @RequestMapping("/enum")
     public String getAllEum(Model model){
         List<WebsiteEnum> list =  manageService.getAllGroupByTypeOrderByEnumkey();
@@ -91,5 +94,14 @@ public class manageRouterController {
         return "home/enum";
     }
     //----------END--------字典管理---------------------------
+
+    //----------START--------用户管理---------------------------
+    @RequestMapping("/userManage")
+    public String getAllUser(Model model){
+        List<WebsiteUser> list =  websiteUserMapper.selectAll();
+        model.addAttribute("list",list);
+        return "home/userManage";
+    }
+    //----------END--------用户管理---------------------------
 
 }

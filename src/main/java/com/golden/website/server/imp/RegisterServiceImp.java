@@ -84,6 +84,7 @@ public class RegisterServiceImp implements RegisterService{
         websiteUser.setLoginusername(loginUserName);
         websiteUser.setRegistertime(new Date());
         websiteUser.setState("0");
+        websiteUser.setSex("1");
         websiteUser.setErrorcount(0);
         int saveUserInfo = websiteUserMapper.insert(websiteUser);
         if(saveUserInfo < 1){

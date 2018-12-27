@@ -695,5 +695,68 @@ $(document).ready(function(){
     })
     //-------------------------字典管理使用的函数----------------END---------------------
 
+
+    //-------------------------用户管理的函数----------------START---------------------
+    //删除
+    $(".deleteUser").on('click',function () {
+        var td = $(this).parent().parent().children();
+        var id = td[0].innerHTML;
+        var obj = new Object();
+        obj.id = id;
+        $.post("/deleteUserById",obj,function(data,status){
+            var obj2 = JSON.parse(data);
+            $("#myModal_tips .modal-body").html(obj2.msg);
+            $("#tips").click();
+        });
+    })
+    //修改
+    $(".editUser").on('click',function () {
+        var td = $(this).parent().parent().children();
+        var id = td[0].innerHTML;
+        var obj = new Object();
+        obj.id = id;
+        $.post("/getUserById",obj,function(data,status){
+            var obj2 = JSON.parse(data);
+            $("#edit_id").val(obj2.id);
+            $("#edit_loginusername").val(obj2.loginusername);
+            $("#edit_name").val(obj2.name);
+            $("#edit_sex").val(obj2.sex);
+            $("#edit_state").val(obj2.state);
+            $("#edit_registertime").val(obj2.registertime);
+        });
+    })
+    $('.deleteUser').popover(
+        {
+            trigger:'hover', //触发方式
+            title:"提示",//设置 弹出框 的标题
+            html: true, // 为true的话，data-content里就能放html代码了
+            content:"确定要删除该信息?"//这里可以直接写字符串，也可以 是一个函数，该函数返回一个字符串；
+        }
+    );
+    //修改提交
+    $("#editUser").on('click',function () {
+        var formdata = new FormData();
+        formdata.append("id",$("#edit_id").val());
+        formdata.append("loginusername",$("#edit_loginusername").val());
+        formdata.append("name",$("#edit_name").val());
+        formdata.append("sex",$("#edit_sex").val());
+        formdata.append("state",$("#edit_state").val());
+        formdata.append("registertime",$("#edit_registertime").val());
+        $.ajax({
+            url: "editUser",
+            type: "POST",
+            data: formdata,
+            processData: false,
+            contentType : false,
+            success :function (data) {
+                var obj2 = JSON.parse(data);
+                $('#myModal_editUser').modal("hide");
+                $("#myModal_tips .modal-body").html(obj2.msg);
+                $("#tips").click();
+            }
+        });
+    })
+    //-------------------------用户管理使用的函数----------------END---------------------
+
     $("#addLunbotuForm").validate();
 })

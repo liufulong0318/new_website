@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+    <link th:href="@{../bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{../bootstrap/css/bootstrap-theme.css}" rel="stylesheet">
+    <link th:href="@{../myCSS/manage.css}" rel="stylesheet">
+</head>
+<body >
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>登录用户名</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>状态</th>
+        <th>注册时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="m : ${list}">
+        <td th:text="${m.id}" style="display: none;"></td>
+        <td th:text="${m.loginusername}"></td>
+        <td th:text="${m.name}"></td>
+        <td th:text="${m.sexenumvalue}"></td>
+        <td th:text="${m.stateenumvalue}"></td>
+        <td th:text="${#dates.format(m.registertime,  'yyyy-MM-dd HH:mm:ss')}"></td>
+        <td>
+            <button class="btn btn-primary editUser" data-toggle="modal" data-target="#myModal_editUser">修改</button>
+            <button class="btn btn-primary deleteUser"  data-placement="auto" data-container="body" data-toggle="popover">删除</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div th:replace="home/editUser"></div>
+<div th:replace="home/msg"></div>
+<script th:src="@{../jquery/jquery-3.3.1.min.js}" type="text/javascript"></script>
+<script th:src="@{../bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
+<script th:src="@{../jquery/jquery.validate.min.js}" type="text/javascript"></script>
+<script th:src="@{../jquery/localization/messages_zh.js}" type="text/javascript"></script>
+<script th:src="@{../myJS/manage.js}" type="text/javascript"></script>
+</body>
+</html>
