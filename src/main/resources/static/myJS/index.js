@@ -9,6 +9,9 @@ $(document).ready(function(){
     $('#myModal').on('hide.bs.modal', function () {
         $("#myModal input").val("");
     });
+    $('#myModal_login').on('hide.bs.modal', function () {
+        $("#myModal_login input").val("");
+    });
     $("#submit").on('click',function () {
         var arr = $("#signupForm").find("input");
         var obj = new Object();
@@ -22,7 +25,19 @@ $(document).ready(function(){
             $("#ok_btn").click();
         });
     })
-
+    $("#login").on('click',function () {
+        var arr = $("#loginForm").find("input");
+        var obj = new Object();
+        obj.loginusername = $(arr[0]).val();
+        obj.password = hex_md5($(arr[1]).val());
+        obj.code = $(arr[2]).val();
+        $.post("/login",obj,function(data,status){
+            var obj2 = JSON.parse(data);
+            $('#myModal_login').modal("hide");
+            $("#myModal_MSG .modal-body").html(obj2.msg);
+            $("#ok_btn").click();
+        });
+    })
     $("#OK").on("click",function () {
         $('#myModal_MSG').modal("hide");
     });
@@ -34,6 +49,13 @@ function generatingVerificationCode() {
     $.get("/GeneratingVerificationCode",function(data,status){
         var arr = data.split("|");
         $("#generatingCode").attr("src",arr[0]);
+        $("#token").attr("value",arr[1]);
+    });
+};
+function generatingVerificationCode_login() {
+    $.get("/GeneratingVerificationCode",function(data,status){
+        var arr = data.split("|");
+        $("#generatingCode_login").attr("src",arr[0]);
         $("#token").attr("value",arr[1]);
     });
 };

@@ -1,6 +1,5 @@
 package com.golden.website.controller;
 
-import com.golden.website.commons.ResultInfo;
 import com.golden.website.dataobject.WebsiteUser;
 import com.golden.website.server.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +26,9 @@ public class UserController {
     @RequestMapping("editUser")
     public String editUser(HttpServletRequest request){
         return userService.editUser(request).toString();
+    }
+    @RequestMapping("login")
+    public String login(HttpServletRequest request){
+        return userService.login(request).toString();
     }
 }

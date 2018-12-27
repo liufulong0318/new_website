@@ -325,6 +325,15 @@ p img{
 #myModal .form-group label{
     min-width: 100px;
 }
+#myModalLabel_login {
+    text-align: center;
+}
+#myModal_login .form-group{
+    margin: 0px 0px 15px 10%;
+}
+#myModal_login .form-group label{
+    min-width: 100px;
+}
 
 .menu{
     width: 250px;

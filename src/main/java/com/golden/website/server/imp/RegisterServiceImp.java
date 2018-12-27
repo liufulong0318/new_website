@@ -56,7 +56,7 @@ public class RegisterServiceImp implements RegisterService{
         }else{
             String pattern = "^[A-Za-z0-9]+$";
             Pattern r = Pattern.compile(pattern);
-            Matcher m = r.matcher(loginUserName);
+            Matcher m = r.matcher(password);
             if(!m.matches()){
                 resultInfo.setCode("0");
                 resultInfo.setMsg("注册失败，密码含有非法字符");
