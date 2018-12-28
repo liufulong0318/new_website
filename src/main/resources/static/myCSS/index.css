@@ -40,6 +40,10 @@ p img{
 .myCarousel_home {
     height: calc(100% - 54px);
 }
+#myCarousel img{
+    width: 100%;
+    height: 100%;
+}
 #dowhat .panel-body:nth-child(1){
     float: left;
     width: 25%;
@@ -366,3 +370,40 @@ p img{
 #homeIndustryCase li:nth-child(10){width: 15%;height: 30%;list-style-type: none;float: left;margin: 2% 0px 0px 2%;position: absolute;left: 32%;top:65%;}
 #homeIndustryCase li:nth-child(11){width: 15%;height: 30%;list-style-type: none;float: left;margin: 2% 0px 0px 2%;position: absolute;left: 49%;top:65%;}
 #homeIndustryCase li:nth-child(12){width: 32%;height: 65%;list-style-type: none;float: left;margin: 0px 0px 0px 2%;position: absolute;left: 66%;top:35%;}
+
+@media (min-width: 768px){
+    .navbar-brand{
+        font-size: 14px;
+        padding: 10px;
+    }
+    .navbar-header{
+        font-size: 14px;
+    }
+}
+@media (min-width: 1200px){
+    .navbar-brand{
+        font-size: 16px;
+        padding: 10px;
+    }
+    .navbar-header{
+        font-size: 16px;
+    }
+}
+@media (min-width: 1366px){
+    .navbar-brand{
+        font-size: 16px;
+        padding: 15px;
+    }
+    .navbar-header{
+        font-size: 16px;
+    }
+}
+@media (min-width: 1920px){
+    .navbar-brand{
+        font-size: 18px;
+        padding: 15px;
+    }
+    .navbar-header{
+        font-size: 18px;
+    }
+}
