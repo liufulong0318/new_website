@@ -40,6 +40,8 @@ public class HomeController {
         model.addAttribute("websiteAboutus",websiteAboutus);//关于我们
         model.addAttribute("goldendynamic",goldendynamic);//庚顿动态top3
         model.addAttribute("goldenshare",goldenshare);//庚顿分享top3
+//        model.addAttribute("token","aaa");//测试
+//        model.addAttribute("loginuusername","forlong");//测试
         return "home";
     }
     @RequestMapping("")

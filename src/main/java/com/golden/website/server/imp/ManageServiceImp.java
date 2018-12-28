@@ -1494,10 +1494,8 @@ public class ManageServiceImp implements ManageService{
             String sss = s[i];
             String [] ss = sss.split("<blockquote>");
             for(String ssss : ss){
-//                System.out.println(ssss);
                 if(num < 3){
                     if(ssss != null && ssss.trim() != "" && ssss.indexOf("div")< 1 && ssss != "null"&& (!ssss.equals(""))){
-                        System.out.println(ssss);
                         list.add(ssss);
                         num ++;
                     }

@@ -10,9 +10,12 @@ import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -146,6 +149,10 @@ public class UserServiceImp implements UserService {
             resultInfo.setMsg("登录失败，用户名被锁定");
             return resultInfo;
         }
+//        HttpSession session = request.getSession();
+//        System.out.println(session.getId());
+//        session.setAttribute("token", UUID.randomUUID().toString());
+//        session.setAttribute("loginusername", loginusername);
         return resultInfo;
     }
 }
