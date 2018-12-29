@@ -1,7 +1,7 @@
 <div class="solution">
     <div class="row">
         <div class="col-sm-6 col-md-3" th:each="list:${list}">
-            <a th:href="@{'/solutionDetails?id='+${list.id}}" class="thumbnail" >
+            <a th:href="@{'/solutionDetails?id='+${list.id}}" class="thumbnail">
                 <img th:src="${list.imgurl}">
                 <h4 th:text="${list.title}"></h4>
             </a>

@@ -19,11 +19,11 @@ public class UploadController {
 
         byte[] bs = multipartFile.getBytes();
         String filePath = System.getProperty("user.dir");
-        String filename=null;
+        String filename = null;
         int stateInt = 1;
         if (bs.length > 0) {
             try {
-                filePath = filePath.substring(0,filePath.lastIndexOf("\\")).replace("\\","/")+"/upload";
+                filePath = filePath.substring(0, filePath.lastIndexOf("\\")).replace("\\", "/") + "/upload";
                 File validateCodeFolder = new File(filePath);
                 if (!validateCodeFolder.exists()) {
                     validateCodeFolder.mkdirs();
@@ -31,7 +31,7 @@ public class UploadController {
                 // 将字符串转换成二进制，用于显示图片
                 // 将上面生成的图片格式字符串 imgStr，还原成图片显示
                 String src_filename = multipartFile.getOriginalFilename();
-                String type = src_filename.substring(src_filename.lastIndexOf("."),src_filename.length());
+                String type = src_filename.substring(src_filename.lastIndexOf("."), src_filename.length());
                 String uuid = UUID.randomUUID().toString();
                 filename = uuid + type;
                 InputStream in = new ByteArrayInputStream(bs);
@@ -57,7 +57,7 @@ public class UploadController {
         StringBuffer info = new StringBuffer();
         info.append("{");
         info.append("\"errno\":\"0\",");
-        info.append("\"data\":[\"/upload/"+filename+"\"]");
+        info.append("\"data\":[\"/upload/" + filename + "\"]");
         info.append("}");
         return info.toString();
     }

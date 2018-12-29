@@ -13,7 +13,7 @@ public class InterceptorConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new Interceptor()).addPathPatterns("/**")//拦截所有请求
-                .excludePathPatterns("/upload/**","/bootstrap/**","/images/**","/jquery/**","/myCSS/**","/myJS/**");//取消静态资源的拦截
+                .excludePathPatterns("/upload/**", "/bootstrap/**", "/images/**", "/jquery/**", "/myCSS/**", "/myJS/**");//取消静态资源的拦截
         super.addInterceptors(registry);
     }
 }

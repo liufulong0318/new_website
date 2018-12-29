@@ -4,6 +4,7 @@ import com.golden.website.dataobject.WebsiteUser;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+
 @Mapper
 public interface WebsiteUserMapper {
     /**
@@ -50,6 +51,7 @@ public interface WebsiteUserMapper {
      */
     @Update("update website_user set sex=#{sex},state=#{state} where id = #{id}")
     int updateByPrimaryKey(WebsiteUser record);
+
     @Select("select loginusername from WEBSITE_USER  where loginusername = #{loginusername}")
     List<WebsiteUser> checkLoginusername(String loginusername);
 

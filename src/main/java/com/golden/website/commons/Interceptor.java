@@ -43,7 +43,7 @@ public class Interceptor extends HandlerInterceptorAdapter {
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,  ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 //        if(response.getStatus()==500){
 //            modelAndView.setViewName("/error/500");
 //        }else if(response.getStatus()==404){

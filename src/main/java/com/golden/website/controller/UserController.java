@@ -16,19 +16,22 @@ public class UserController {
     UserService userService;
 
     @RequestMapping("getAllUser")
-    public List<WebsiteUser> getAllUser(){
+    public List<WebsiteUser> getAllUser() {
         return userService.getAllUser();
     }
+
     @RequestMapping("getUserById")
-    public String getUserById(HttpServletRequest request){
+    public String getUserById(HttpServletRequest request) {
         return userService.getUserById(request).toString();
     }
+
     @RequestMapping("editUser")
-    public String editUser(HttpServletRequest request){
+    public String editUser(HttpServletRequest request) {
         return userService.editUser(request).toString();
     }
+
     @RequestMapping("login")
-    public String login(HttpServletRequest request){
+    public String login(HttpServletRequest request) {
         return userService.login(request).toString();
     }
 }

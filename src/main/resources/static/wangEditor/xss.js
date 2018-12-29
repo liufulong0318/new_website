@@ -1,4 +1,27 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function e(t, n, r) {
+    function s(o, u) {
+        if (!n[o]) {
+            if (!t[o]) {
+                var a = typeof require == "function" && require;
+                if (!u && a) return a(o, !0);
+                if (i) return i(o, !0);
+                var f = new Error("Cannot find module '" + o + "'");
+                throw f.code = "MODULE_NOT_FOUND", f
+            }
+            var l = n[o] = {exports: {}};
+            t[o][0].call(l.exports, function (e) {
+                var n = t[o][1][e];
+                return s(n ? n : e)
+            }, l, l.exports, e, t, n, r)
+        }
+        return n[o].exports
+    }
+
+    var i = typeof require == "function" && require;
+    for (var o = 0; o < r.length; o++) s(r[o]);
+    return s
+})({
+    1: [function (require, module, exports) {
         /**
          * default settings
          *
@@ -315,10 +338,12 @@
          */
         function StripTagBody(tags, next) {
             if (typeof next !== "function") {
-                next = function() {};
+                next = function () {
+                };
             }
 
             var isRemoveAllTag = !Array.isArray(tags);
+
             function isRemoveTag(tag) {
                 if (isRemoveAllTag) return true;
                 return _.indexOf(tags, tag) !== -1;
@@ -328,7 +353,7 @@
             var posStart = false;
 
             return {
-                onIgnoreTag: function(tag, html, options) {
+                onIgnoreTag: function (tag, html, options) {
                     if (isRemoveTag(tag)) {
                         if (options.isClosing) {
                             var ret = "[/removed]";
@@ -349,10 +374,10 @@
                         return next(tag, html, options);
                     }
                 },
-                remove: function(html) {
+                remove: function (html) {
                     var rethtml = "";
                     var lastPos = 0;
-                    _.forEach(removeList, function(pos) {
+                    _.forEach(removeList, function (pos) {
                         rethtml += html.slice(lastPos, pos[0]);
                         lastPos = pos[1];
                     });
@@ -371,6 +396,7 @@
         function stripCommentTag(html) {
             return html.replace(STRIP_COMMENT_TAG_REGEXP, "");
         }
+
         var STRIP_COMMENT_TAG_REGEXP = /<!--[\s\S]*?-->/g;
 
         /**
@@ -381,7 +407,7 @@
          */
         function stripBlankChar(html) {
             var chars = html.split("");
-            chars = chars.filter(function(char) {
+            chars = chars.filter(function (char) {
                 var c = char.charCodeAt(0);
                 if (c === 127) return false;
                 if (c <= 31) {
@@ -415,7 +441,7 @@
         exports.cssFilter = defaultCSSFilter;
         exports.getDefaultCSSWhiteList = getDefaultCSSWhiteList;
 
-    },{"./util":4,"cssfilter":8}],2:[function(require,module,exports){
+    }, {"./util": 4, "cssfilter": 8}], 2: [function (require, module, exports) {
         /**
          * xss
          *
@@ -452,11 +478,12 @@
         function isWorkerEnv() {
             return typeof self !== 'undefined' && typeof DedicatedWorkerGlobalScope !== 'undefined' && self instanceof DedicatedWorkerGlobalScope;
         }
+
         if (isWorkerEnv()) {
             self.filterXSS = module.exports;
         }
 
-    },{"./default":1,"./parser":3,"./xss":5}],3:[function(require,module,exports){
+    }, {"./default": 1, "./parser": 3, "./xss": 5}], 3: [function (require, module, exports) {
         /**
          * Simple HTML Parser
          *
@@ -697,9 +724,9 @@
         exports.parseTag = parseTag;
         exports.parseAttr = parseAttr;
 
-    },{"./util":4}],4:[function(require,module,exports){
+    }, {"./util": 4}], 4: [function (require, module, exports) {
         module.exports = {
-            indexOf: function(arr, item) {
+            indexOf: function (arr, item) {
                 var i, j;
                 if (Array.prototype.indexOf) {
                     return arr.indexOf(item);
@@ -711,7 +738,7 @@
                 }
                 return -1;
             },
-            forEach: function(arr, fn, scope) {
+            forEach: function (arr, fn, scope) {
                 var i, j;
                 if (Array.prototype.forEach) {
                     return arr.forEach(fn, scope);
@@ -720,20 +747,20 @@
                     fn.call(scope, arr[i], i, arr);
                 }
             },
-            trim: function(str) {
+            trim: function (str) {
                 if (String.prototype.trim) {
                     return str.trim();
                 }
                 return str.replace(/(^\s*)|(\s*$)/g, "");
             },
-            spaceIndex: function(str) {
+            spaceIndex: function (str) {
                 var reg = /\s|\n|\t/;
                 var match = reg.exec(str);
                 return match ? match.index : -1;
             }
         };
 
-    },{}],5:[function(require,module,exports){
+    }, {}], 5: [function (require, module, exports) {
         /**
          * filter xss
          *
@@ -840,7 +867,7 @@
          * @param {String} html
          * @return {String}
          */
-        FilterXSS.prototype.process = function(html) {
+        FilterXSS.prototype.process = function (html) {
             // compatible with the input
             html = html || "";
             html = html.toString();
@@ -879,7 +906,7 @@
 
             var retHtml = parseTag(
                 html,
-                function(sourcePosition, position, tag, html, isClosing) {
+                function (sourcePosition, position, tag, html, isClosing) {
                     var info = {
                         sourcePosition: sourcePosition,
                         position: position,
@@ -898,7 +925,7 @@
 
                         var attrs = getAttrs(html);
                         var whiteAttrList = whiteList[tag];
-                        var attrsHtml = parseAttr(attrs.html, function(name, value) {
+                        var attrsHtml = parseAttr(attrs.html, function (name, value) {
                             // call `onTagAttr()`
                             var isWhiteAttr = _.indexOf(whiteAttrList, name) !== -1;
                             var ret = onTagAttr(tag, name, value, isWhiteAttr);
@@ -946,7 +973,7 @@
 
         module.exports = FilterXSS;
 
-    },{"./default":1,"./parser":3,"./util":4,"cssfilter":8}],6:[function(require,module,exports){
+    }, {"./default": 1, "./parser": 3, "./util": 4, "cssfilter": 8}], 6: [function (require, module, exports) {
         /**
          * cssfilter
          *
@@ -964,7 +991,7 @@
          * @param {Object} obj
          * @return {Boolean}
          */
-        function isNull (obj) {
+        function isNull(obj) {
             return (obj === undefined || obj === null);
         }
 
@@ -974,7 +1001,7 @@
          * @param {Object} obj
          * @return {Object}
          */
-        function shallowCopyObject (obj) {
+        function shallowCopyObject(obj) {
             var ret = {};
             for (var i in obj) {
                 ret[i] = obj[i];
@@ -991,7 +1018,7 @@
          *   - {Function} onIgnoreAttr
          *   - {Function} safeAttrValue
          */
-        function FilterCSS (options) {
+        function FilterCSS(options) {
             options = shallowCopyObject(options || {});
             options.whiteList = options.whiteList || DEFAULT.whiteList;
             options.onAttr = options.onAttr || DEFAULT.onAttr;
@@ -1058,14 +1085,14 @@
 
         module.exports = FilterCSS;
 
-    },{"./default":7,"./parser":9,"./util":10}],7:[function(require,module,exports){
+    }, {"./default": 7, "./parser": 9, "./util": 10}], 7: [function (require, module, exports) {
         /**
          * cssfilter
          *
          * @author 老雷<leizongmin@gmail.com>
          */
 
-        function getDefaultWhiteList () {
+        function getDefaultWhiteList() {
             // 白名单值说明：
             // true: 允许该属性
             // Function: function (val) { } 返回true表示允许该属性，其他值均表示不允许
@@ -1421,7 +1448,7 @@
          * @param {Object} options
          * @return {String}
          */
-        function onAttr (name, value, options) {
+        function onAttr(name, value, options) {
             // do nothing
         }
 
@@ -1433,7 +1460,7 @@
          * @param {Object} options
          * @return {String}
          */
-        function onIgnoreAttr (name, value, options) {
+        function onIgnoreAttr(name, value, options) {
             // do nothing
         }
 
@@ -1458,7 +1485,7 @@
         exports.onIgnoreAttr = onIgnoreAttr;
         exports.safeAttrValue = safeAttrValue;
 
-    },{}],8:[function(require,module,exports){
+    }, {}], 8: [function (require, module, exports) {
         /**
          * cssfilter
          *
@@ -1476,7 +1503,7 @@
          * @param {Object} options 选项：whiteList, onAttr, onIgnoreAttr
          * @return {String}
          */
-        function filterCSS (html, options) {
+        function filterCSS(html, options) {
             var xss = new FilterCSS(options);
             return xss.process(html);
         }
@@ -1492,7 +1519,7 @@
             window.filterCSS = module.exports;
         }
 
-    },{"./css":6,"./default":7}],9:[function(require,module,exports){
+    }, {"./css": 6, "./default": 7}], 9: [function (require, module, exports) {
         /**
          * cssfilter
          *
@@ -1510,7 +1537,7 @@
          *   参数格式： function (sourcePosition, position, name, value, source)
          * @return {String}
          */
-        function parseStyle (css, onAttr) {
+        function parseStyle(css, onAttr) {
             css = _.trimRight(css);
             if (css[css.length - 1] !== ';') css += ';';
             var cssLength = css.length;
@@ -1519,7 +1546,7 @@
             var i = 0;
             var retCSS = '';
 
-            function addNewAttr () {
+            function addNewAttr() {
                 // 如果没有正常的闭合圆括号，则直接忽略当前属性
                 if (!isParenthesisOpen) {
                     var source = _.trim(css.slice(lastPos, i));
@@ -1568,7 +1595,7 @@
 
         module.exports = parseStyle;
 
-    },{"./util":10}],10:[function(require,module,exports){
+    }, {"./util": 10}], 10: [function (require, module, exports) {
         module.exports = {
             indexOf: function (arr, item) {
                 var i, j;
@@ -1605,4 +1632,5 @@
             }
         };
 
-    },{}]},{},[2]);
+    }, {}]
+}, {}, [2]);

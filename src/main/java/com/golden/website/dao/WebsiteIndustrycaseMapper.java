@@ -4,6 +4,7 @@ import com.golden.website.dataobject.WebsiteIndustrycase;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+
 @Mapper
 public interface WebsiteIndustrycaseMapper {
     /**

@@ -12,7 +12,7 @@ public class StaticResourceConfigurer implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         String filePath = System.getProperty("user.dir");
-        filePath = filePath.substring(0,filePath.lastIndexOf("\\")).replace("\\","/")+"/upload/";
-        registry.addResourceHandler("/upload/**").addResourceLocations("file:"+filePath);
+        filePath = filePath.substring(0, filePath.lastIndexOf("\\")).replace("\\", "/") + "/upload/";
+        registry.addResourceHandler("/upload/**").addResourceLocations("file:" + filePath);
     }
 }

@@ -8,9 +8,11 @@
     <link th:href="@{../bootstrap/css/bootstrap-theme.css}" rel="stylesheet">
     <link th:href="@{../myCSS/manage.css}" rel="stylesheet">
 </head>
-<body >
+<body>
 <table class="table table-striped">
-    <caption><button data-toggle="modal" data-target="#myModal_addIndustryCase" class="btn btn-primary">添加</button></caption>
+    <caption>
+        <button data-toggle="modal" data-target="#myModal_addIndustryCase" class="btn btn-primary">添加</button>
+    </caption>
     <thead>
     <tr>
         <th>标题</th>
@@ -28,8 +30,12 @@
         <td th:text="${m.hrefurl}"></td>
         <td th:text="${m.order}"></td>
         <td>
-            <button class="btn btn-primary editIndustryCase" data-toggle="modal" data-target="#myModal_editIndustryCase">修改</button>
-            <button class="btn btn-primary deleteIndustryCase"  data-placement="auto" data-container="body" data-toggle="popover">删除</button>
+            <button class="btn btn-primary editIndustryCase" data-toggle="modal"
+                    data-target="#myModal_editIndustryCase">修改
+            </button>
+            <button class="btn btn-primary deleteIndustryCase" data-placement="auto" data-container="body"
+                    data-toggle="popover">删除
+            </button>
         </td>
     </tr>
     </tbody>

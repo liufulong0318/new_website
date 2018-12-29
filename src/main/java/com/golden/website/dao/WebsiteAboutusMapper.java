@@ -4,6 +4,7 @@ import com.golden.website.dataobject.WebsiteAboutus;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+
 @Mapper
 public interface WebsiteAboutusMapper {
     /**
@@ -53,6 +54,7 @@ public interface WebsiteAboutusMapper {
      */
     @Update("update website_aboutus set title = #{title},imgurl = #{imgurl},content = #{content},introduction = #{introduction},honor = #{honor},culture = #{culture},course=#{course},`order`=#{order},createtime=#{createtime}")
     int updateByPrimaryKey(WebsiteAboutus record);
+
     @Update("update website_aboutus set title = #{title},content = #{content},introduction = #{introduction},honor = #{honor},culture = #{culture},course=#{course},`order`=#{order},createtime=#{createtime}")
     int updateByPrimaryKeyNotUrl(WebsiteAboutus record);
 }

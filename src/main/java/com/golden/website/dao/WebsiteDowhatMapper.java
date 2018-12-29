@@ -4,6 +4,7 @@ import com.golden.website.dataobject.WebsiteDowhat;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+
 @Mapper
 public interface WebsiteDowhatMapper {
     /**
@@ -50,6 +51,7 @@ public interface WebsiteDowhatMapper {
      */
     @Update("update website_dowhat set title=#{title},hrefUrl=#{hrefUrl},iconUrl=#{iconUrl},`order` = #{order},createtime = #{createtime} where id = #{id}")
     int updateByPrimaryKey(WebsiteDowhat record);
+
     @Update("update website_dowhat set title=#{title},hrefUrl=#{hrefUrl},`order` = #{order},createtime = #{createtime} where id = #{id}")
     int updateByPrimaryKeyNotUrl(WebsiteDowhat record);
 }

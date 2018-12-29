@@ -16,22 +16,22 @@ import java.util.Random;
 
 public class GeneratingVerificationCode {
     public static String createImage() throws IOException {
-        char[] codeSequence = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+        char[] codeSequence = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
                 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W',
                 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
-                'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y','z','0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+                'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
         int width = 80;
         int height = 30;
         StringBuffer sb = new StringBuffer();
         Random random = new Random();
-        for(int i = 0;i < 4;i++){
+        for (int i = 0; i < 4; i++) {
             sb.append(codeSequence[random.nextInt(62)]);
         }
         String content = sb.toString();
         Jedis jedis = new Jedis("127.0.0.1");
-        jedis.set(content,content.hashCode()+"");
-        jedis.expire(content,120);
+        jedis.set(content, content.hashCode() + "");
+        jedis.expire(content, 120);
         File file = new File("D://timg.jpg");
         Font font = new Font("Serif", Font.BOLD, 16);
 
@@ -51,7 +51,7 @@ public class GeneratingVerificationCode {
         double y = (height - stringBounds.getHeight()) / 2;
         double ascent = -stringBounds.getY();
         double baseY = y + ascent;
-        graphics2D.drawString(content, (int)x, (int)baseY);
+        graphics2D.drawString(content, (int) x, (int) baseY);
 
         // 1.将图片写到实体图片里
         ImageIO.write(bufferedImage, "jpg", file);
@@ -61,7 +61,7 @@ public class GeneratingVerificationCode {
         // 3.将图片以base64的形式展示
         BASE64Encoder base64Encoder = new BASE64Encoder();
         byte[] byteArray = byteArrayOutputStream.toByteArray();
-        return("data:image/png;base64," +
+        return ("data:image/png;base64," +
                 base64Encoder.encodeBuffer(byteArray).trim());
     }
 }

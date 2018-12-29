@@ -43,11 +43,11 @@
     $("#myProductTitle").html(list[0].title);
     $("#myProductContent").html(list[0].content);
 
-    $(".list-group-item").on("click",function () {
+    $(".list-group-item").on("click", function () {
         var list = [[${list}]];
         var id = $(this).attr("id");
-        for(var i = 0;i<list.length;i++){
-            if(list[i].id == id){
+        for (var i = 0; i < list.length; i++) {
+            if (list[i].id == id) {
                 $("#myProductTitle").html(list[i].title);
                 $("#myProductContent").html(list[i].content);
             }

@@ -1,6 +1,7 @@
-.table-striped thead th{
+.table-striped thead th {
     text-align: center;
 }
-.table-striped tbody tr td{
+
+.table-striped tbody tr td {
     text-align: center;
 }

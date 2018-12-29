@@ -69,19 +69,19 @@ public class UserServiceImp implements UserService {
         String loginusername = request.getParameter("loginusername");
 
         //对用户名进行验证
-        if(loginusername.length() < 6){
+        if (loginusername.length() < 6) {
             resultInfo.setCode("0");
             resultInfo.setMsg("登录失败，用户名错误");
             return resultInfo;
-        }else if(loginusername.length() > 30){
+        } else if (loginusername.length() > 30) {
             resultInfo.setCode("0");
             resultInfo.setMsg("登录失败，用户名错误");
             return resultInfo;
-        }else if(loginusername.length() >= 6 && loginusername.length() <= 30){
+        } else if (loginusername.length() >= 6 && loginusername.length() <= 30) {
             String pattern = "^[A-Za-z0-9]+$";
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(loginusername);
-            if(!m.matches()){
+            if (!m.matches()) {
                 resultInfo.setCode("0");
                 resultInfo.setMsg("登录失败，用户名含有非法字符");
                 return resultInfo;
@@ -89,22 +89,22 @@ public class UserServiceImp implements UserService {
         }
         //检查用户名是否存在
         List<WebsiteUser> list = websiteUserMapper.checkLoginusername(loginusername);
-        if(list.size() < 1){
+        if (list.size() < 1) {
             resultInfo.setCode("0");
             resultInfo.setMsg("登录失败，用户名不存在");
             return resultInfo;
         }
         String password = request.getParameter("password");
         //验证密码
-        if(password.length() != 32){
+        if (password.length() != 32) {
             resultInfo.setCode("0");
             resultInfo.setMsg("登录失败，密码错误");
             return resultInfo;
-        }else{
+        } else {
             String pattern = "^[A-Za-z0-9]+$";
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(password);
-            if(!m.matches()){
+            if (!m.matches()) {
                 resultInfo.setCode("0");
                 resultInfo.setMsg("登录失败，密码含有非法字符");
                 return resultInfo;
@@ -114,13 +114,13 @@ public class UserServiceImp implements UserService {
         //验证码校验
         Jedis jedis = new Jedis("localhost");
         Boolean exists = jedis.exists(code);
-        if(exists){
-            if(!((code.hashCode()+"").equals(jedis.get(code)))){
+        if (exists) {
+            if (!((code.hashCode() + "").equals(jedis.get(code)))) {
                 resultInfo.setCode("0");
                 resultInfo.setMsg("登录失败，验证码错误");
                 return resultInfo;
             }
-        }else{
+        } else {
             resultInfo.setCode("0");
             resultInfo.setMsg("登录失败，验证码失效");
             return resultInfo;
@@ -130,12 +130,12 @@ public class UserServiceImp implements UserService {
         a.setLoginusername(loginusername);
         a.setPassword(password);
         WebsiteUser websiteUser = websiteUserMapper.checkLoginusernameAndPassword(a);
-        if(websiteUser == null){
+        if (websiteUser == null) {
             WebsiteUser w1 = websiteUserMapper.selectByLoginUserName(loginusername);
             int errorCount = w1.getErrorcount();
-            if(errorCount != 3){//错误次数未达到3次，更新错误次数，不锁定
+            if (errorCount != 3) {//错误次数未达到3次，更新错误次数，不锁定
                 websiteUserMapper.updateByLoginUsername_errorCount(loginusername);
-            }else{//更新用户状态为锁定
+            } else {//更新用户状态为锁定
                 websiteUserMapper.updateByLoginUsername_State(loginusername);
                 resultInfo.setCode("0");
                 resultInfo.setMsg("登录失败，用户名被锁定");
@@ -144,7 +144,7 @@ public class UserServiceImp implements UserService {
             resultInfo.setCode("0");
             resultInfo.setMsg("登录失败，用户名或密码错误");
             return resultInfo;
-        }else if("1".equals(websiteUser.getState())){
+        } else if ("1".equals(websiteUser.getState())) {
             resultInfo.setCode("0");
             resultInfo.setMsg("登录失败，用户名被锁定");
             return resultInfo;

@@ -8,7 +8,10 @@ import java.util.List;
 
 public interface UserService {
     WebsiteUser getUserById(HttpServletRequest request);
+
     List<WebsiteUser> getAllUser();
+
     ResultInfo editUser(HttpServletRequest request);
+
     ResultInfo login(HttpServletRequest request);
 }

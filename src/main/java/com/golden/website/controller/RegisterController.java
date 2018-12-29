@@ -19,12 +19,14 @@ public class RegisterController {
 
     @Autowired
     RegisterService registerService;
+
     @RequestMapping("register")
-    public String register(HttpServletRequest request){
+    public String register(HttpServletRequest request) {
         return registerService.register(request);
     }
+
     @RequestMapping("GeneratingVerificationCode")
     public String GeneratingVerificationCode() throws IOException {
-        return GeneratingVerificationCode.createImage()+"|"+ UUID.randomUUID();
+        return GeneratingVerificationCode.createImage() + "|" + UUID.randomUUID();
     }
 }

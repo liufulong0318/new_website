@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <!--<div class="navbar-header" style="height: 50px;vertical-align: middle; padding-top: 10px;">-->
-            <!--<img src="../images/logo.png">-->
+        <!--<img src="../images/logo.png">-->
         <!--</div>-->
         <div class="navbar-header">
             <a class="navbar-brand" href="/home">首页</a>
@@ -24,13 +24,15 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="/download">资料下载</a>
         </div>
-        <div class="navbar-header" style="float: right;padding: 10px 10px 0px 10px;line-height: 32px;font-size: 18px;color: #f59508;">
+        <div class="navbar-header"
+             style="float: right;padding: 10px 10px 0px 10px;line-height: 32px;font-size: 18px;color: #f59508;">
             <img src="../images/phone.png">
             <span>400-628-5226</span>&nbsp;&nbsp;
             <span>400-628-5226</span>
             <ul class="nav navbar-nav navbar-right" th:if="${session.token} != null">
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" th:utext="@{'欢迎您，'+${session.loginusername}}">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+                       th:utext="@{'欢迎您，'+${session.loginusername}}">
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
@@ -46,8 +48,10 @@
                 <!--<li data-toggle="modal" data-target="#myModal" onclick="generatingVerificationCode()"><a href="javascript:void(0)" th:utext="@{'欢迎您，'+${loginuusername}}"><span class="glyphicon glyphicon-user"></span> </a></li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right" th:if="${session.token} == null">
-                <li data-toggle="modal" data-target="#myModal" onclick="generatingVerificationCode()"><a href="javascript:void(0)" ><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-                <li data-toggle="modal" data-target="#myModal_login" onclick="generatingVerificationCode_login()"><a href="javascript:void(0)"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                <li data-toggle="modal" data-target="#myModal" onclick="generatingVerificationCode()"><a
+                        href="javascript:void(0)"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+                <li data-toggle="modal" data-target="#myModal_login" onclick="generatingVerificationCode_login()"><a
+                        href="javascript:void(0)"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
             </ul>
         </div>
         <!--<input style="display: none;" id="token" th:value="${token}" >-->
@@ -66,26 +70,32 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <form class="cmxform" id="signupForm" >
+                <form class="cmxform" id="signupForm">
                     <div class="form-group">
-                         <label for="username">用户名</label>
-                          <input id="username" name="username" class="form-control" type="text" placeholder="数字、字母组合(长度6~30)" minlength="6" maxlength="30" required>
+                        <label for="username">用户名</label>
+                        <input id="username" name="username" class="form-control" type="text"
+                               placeholder="数字、字母组合(长度6~30)" minlength="6" maxlength="30" required>
                     </div>
                     <div class="form-group">
-                         <label for="password">密码</label>
-                         <input id="password" name="password" class="form-control" type="password" placeholder="数字、字母组合(长度8)" maxlength="8" minlength="8" required>
+                        <label for="password">密码</label>
+                        <input id="password" name="password" class="form-control" type="password"
+                               placeholder="数字、字母组合(长度8)" maxlength="8" minlength="8" required>
                     </div>
                     <div class="form-group">
-                         <label for="confirm_password">验证密码</label>
-                         <input id="confirm_password" name="confirm_password" class="form-control" type="password" placeholder="请再次输入密码" maxlength="8" minlength="8" equalTo="#password" required>
+                        <label for="confirm_password">验证密码</label>
+                        <input id="confirm_password" name="confirm_password" class="form-control" type="password"
+                               placeholder="请再次输入密码" maxlength="8" minlength="8" equalTo="#password" required>
                     </div>
                     <div class="form-group">
                         <label for="verificationCode">验证码</label>
-                        <input type="text" class="form-control" placeholder="请输入验证码(区分大小写)" id="verificationCode" maxlength="4" minlength="4" required >
+                        <input type="text" class="form-control" placeholder="请输入验证码(区分大小写)" id="verificationCode"
+                               maxlength="4" minlength="4" required>
                     </div>
-                    <div class="form-group" >
-                        <img src="" id="generatingCode" onclick="generatingVerificationCode()" style="margin-left: 100px; border: 1px solid;width: 20%;">
-                        <a onclick="generatingVerificationCode()" style="cursor: pointer;text-decoration: none;">看不清楚</a>
+                    <div class="form-group">
+                        <img src="" id="generatingCode" onclick="generatingVerificationCode()"
+                             style="margin-left: 100px; border: 1px solid;width: 20%;">
+                        <a onclick="generatingVerificationCode()"
+                           style="cursor: pointer;text-decoration: none;">看不清楚</a>
                     </div>
                 </form>
             </div>
@@ -129,7 +139,8 @@
 </div>
 
 <!-- 模态框（Modal） -->
-<div class="modal fade" id="myModal_login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_login" aria-hidden="true">
+<div class="modal fade" id="myModal_login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_login"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -141,21 +152,25 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <form class="cmxform" id="loginForm" >
+                <form class="cmxform" id="loginForm">
                     <div class="form-group">
                         <label for="loginusername">用户名</label>
-                        <input id="loginusername" name="loginusername" class="form-control" type="text" placeholder="数字、字母组合(长度6~30)" minlength="6" maxlength="30" required>
+                        <input id="loginusername" name="loginusername" class="form-control" type="text"
+                               placeholder="数字、字母组合(长度6~30)" minlength="6" maxlength="30" required>
                     </div>
                     <div class="form-group">
                         <label for="loginpassword">密码</label>
-                        <input id="loginpassword" name="loginpassword" class="form-control" type="password" placeholder="数字、字母组合(长度8)" maxlength="8" minlength="8" required>
+                        <input id="loginpassword" name="loginpassword" class="form-control" type="password"
+                               placeholder="数字、字母组合(长度8)" maxlength="8" minlength="8" required>
                     </div>
                     <div class="form-group">
                         <label for="verificationCode_login">验证码</label>
-                        <input type="text" class="form-control" placeholder="请输入验证码(区分大小写)" id="verificationCode_login" maxlength="4" minlength="4" required >
+                        <input type="text" class="form-control" placeholder="请输入验证码(区分大小写)" id="verificationCode_login"
+                               maxlength="4" minlength="4" required>
                     </div>
-                    <div class="form-group" >
-                        <img src="" id="generatingCode_login" onclick="generatingVerificationCode_login()" style="margin-left: 100px; border: 1px solid;width: 20%;">
+                    <div class="form-group">
+                        <img src="" id="generatingCode_login" onclick="generatingVerificationCode_login()"
+                             style="margin-left: 100px; border: 1px solid;width: 20%;">
                         <a onclick="generatingVerificationCode_login()" style="cursor: pointer;text-decoration: none;">看不清楚</a>
                     </div>
                 </form>
