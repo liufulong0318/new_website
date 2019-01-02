@@ -48,7 +48,28 @@ public class HomeController {
 
     @RequestMapping("")
     public String home_(Model model) {
-        model.addAttribute("token", UUID.randomUUID());
+        List<WebsiteLunbotu> list = manageService.getAllOrderASC();
+        List<WebsiteDowhat> listDowhat = manageService.getAllOrderASC_Dowhat();
+        WebsiteHomeproduct WebsiteHomeproduct_top1 = manageService.getHomeProductTop_1();
+        WebsiteHomeproduct WebsiteHomeproduct_top2 = manageService.getHomeProductTop_2();
+        List<WebsiteIndustrycase> listIndustrycase = manageService.getAllOrderASC_IndustryCase();
+        List<WebsiteCooperativeuser> listCooperativeuser_1_12 = manageService.getAllOrderASC_CooperativeUser_1_12();
+        List<WebsiteCooperativeuser> listCooperativeuser_13_24 = manageService.getAllOrderASC_CooperativeUser_13_24();
+        List<WebsiteCooperativeuser> listCooperativeuser_25_36 = manageService.getAllOrderASC_CooperativeUser_25_36();
+        WebsiteAboutus websiteAboutus = manageService.getWebsiteAboutusTopOne();
+        List<String> goldendynamic = manageService.getGoldenDynamicTop3();
+        List<String> goldenshare = manageService.getGoldenShareTop3();
+        model.addAttribute("lunbotu", list);//轮播图
+        model.addAttribute("dowhat", listDowhat);//我们是做什么的
+        model.addAttribute("top1", WebsiteHomeproduct_top1);//我们的产品一
+        model.addAttribute("top2", WebsiteHomeproduct_top2);//我们的产品二
+        model.addAttribute("IC", listIndustrycase);//行业案例
+        model.addAttribute("listCU_1_12", listCooperativeuser_1_12);//合作用户轮播第一张
+        model.addAttribute("listCU_13_24", listCooperativeuser_13_24);//合作用户轮播第二张
+        model.addAttribute("listCU_25_36", listCooperativeuser_25_36);//合作用户第三张
+        model.addAttribute("websiteAboutus", websiteAboutus);//关于我们
+        model.addAttribute("goldendynamic", goldendynamic);//庚顿动态top3
+        model.addAttribute("goldenshare", goldenshare);//庚顿分享top3
         return "home";
     }
 

@@ -14,4 +14,7 @@ public interface UserService {
     ResultInfo editUser(HttpServletRequest request);
 
     ResultInfo login(HttpServletRequest request);
+
+    ResultInfo logout(HttpServletRequest request);
+
 }

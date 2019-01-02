@@ -149,10 +149,22 @@ public class UserServiceImp implements UserService {
             resultInfo.setMsg("登录失败，用户名被锁定");
             return resultInfo;
         }
-//        HttpSession session = request.getSession();
-//        System.out.println(session.getId());
-//        session.setAttribute("token", UUID.randomUUID().toString());
-//        session.setAttribute("loginusername", loginusername);
+        //登录成功，错误次数归0
+        websiteUserMapper.updateErrotCountByLoginUserName(loginusername);
+        HttpSession session = request.getSession();
+        session.setAttribute("token", UUID.randomUUID().toString());
+        session.setAttribute("loginusername", loginusername);
+        return resultInfo;
+    }
+
+    @Override
+    public ResultInfo logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String token = session.getAttribute("token").toString();
+        session.removeAttribute(token);
+        ResultInfo resultInfo = new ResultInfo();
+        resultInfo.setCode("1");
+        resultInfo.setMsg("退出成功");
         return resultInfo;
     }
 }

@@ -66,4 +66,7 @@ public interface WebsiteUserMapper {
 
     @Update("update WEBSITE_USER set state = (state + 1) where loginusername = #{loginusername}")
     int updateByLoginUsername_State(String loginusername);
+
+    @Update("update WEBSITE_USER set errorcount = 0 where loginusername = #{loginusername}")
+    int updateErrotCountByLoginUserName(String loginusername);
 }
