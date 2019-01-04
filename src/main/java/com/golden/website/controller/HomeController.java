@@ -3,10 +3,15 @@ package com.golden.website.controller;
 import com.golden.website.dataobject.*;
 import com.golden.website.server.ManageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -75,7 +80,14 @@ public class HomeController {
 
     @RequestMapping("manage")
     public String manage(Model model) {
-        return "manage";
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        String loginusername = session.getAttribute("loginusername").toString();
+        if(loginusername.equals("superadmin")){
+            return "manage";
+        }else{
+            return "error";
+        }
     }
 
     @RequestMapping("product")
