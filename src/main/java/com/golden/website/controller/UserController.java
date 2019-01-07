@@ -34,8 +34,5 @@ public class UserController {
     public String login(HttpServletRequest request) {
         return userService.login(request).toString();
     }
-    @RequestMapping("logout")
-    public String logout(HttpServletRequest request) {
-        return userService.logout(request).toString();
-    }
+
 }

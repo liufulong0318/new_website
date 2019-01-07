@@ -158,13 +158,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public ResultInfo logout(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        String token = session.getAttribute("token").toString();
-        session.removeAttribute(token);
-        ResultInfo resultInfo = new ResultInfo();
-        resultInfo.setCode("1");
-        resultInfo.setMsg("退出成功");
-        return resultInfo;
+    public void logout(HttpServletRequest request) {
+        request.getSession().invalidate();
     }
 }

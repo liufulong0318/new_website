@@ -1292,3 +1292,8 @@ java.lang.NullPointerException: null
 2019-01-04 15:16:46 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.home_
 2019-01-04 15:16:46 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - args={}
 2019-01-04 15:16:46 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - response=home
+2019-01-04 18:04:51 [main] INFO  com.golden.website.WebsiteApplicationTests - Starting WebsiteApplicationTests on DESKTOP-BVF3O4Q with PID 11336 (started by ธýถู in E:\website_new)
+2019-01-04 18:04:51 [main] INFO  com.golden.website.WebsiteApplicationTests - No active profile set, falling back to default profiles: default
+2019-01-04 18:05:00 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-01-04 18:05:02 [main] INFO  com.golden.website.WebsiteApplicationTests - Started WebsiteApplicationTests in 12.549 seconds (JVM running for 14.704)
+2019-01-04 18:05:03 [Thread-3] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'

@@ -9,8 +9,12 @@ $(document).ready(function () {
     $('#myModal').on('hide.bs.modal', function () {
         $("#myModal input").val("");
     });
+    $('#myModal_MSG').on('hide.bs.modal', function () {
+        window.location.reload();
+    });
     $('#myModal_login').on('hide.bs.modal', function () {
         $("#myModal_login input").val("");
+        $("body").css("papadding-right","0px");
     });
     $("#submit").on('click', function () {
         var arr = $("#signupForm").find("input");
@@ -38,6 +42,13 @@ $(document).ready(function () {
             $("#ok_btn").click();
         });
     })
+    $("#logout").on('click', function () {
+        $.post("/logout", function (data, status) {
+            if(status == "success"){
+                window.location.reload();
+            }
+        });
+    })
     $("#OK").on("click", function () {
         $('#myModal_MSG').modal("hide");
     });
@@ -59,7 +70,6 @@ function generatingVerificationCode_login() {
     $.get("/GeneratingVerificationCode", function (data, status) {
         var arr = data.split("|");
         $("#generatingCode_login").attr("src", arr[0]);
-        $("#token").attr("value", arr[1]);
     });
 };
 

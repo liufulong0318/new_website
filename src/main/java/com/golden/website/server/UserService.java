@@ -15,6 +15,6 @@ public interface UserService {
 
     ResultInfo login(HttpServletRequest request);
 
-    ResultInfo logout(HttpServletRequest request);
+    void logout(HttpServletRequest request);
 
 }
