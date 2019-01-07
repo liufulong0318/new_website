@@ -148,7 +148,7 @@ public class ManageServiceImp implements ManageService {
             }
         }
         String link = request.getParameter("link");
-        if (link != null) {
+        if (link != null && link != "" && !(link.equals(""))) {
             String pattern = "^((http|https)://)?([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?$";
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(link);

@@ -6,7 +6,8 @@
     <!-- 轮播（Carousel）项目 -->
     <div class="carousel-inner">
         <div class="item" th:each="lbt:${lunbotu}">
-            <a th:href="@{'http://'+${lbt.link}}" target="_blank"><img th:src="${lbt.url}"></a>
+            <a th:if="${lbt.link} != ''" th:href="@{'http://'+${lbt.link}}" target="_blank"><img th:src="${lbt.url}"></a>
+            <a th:if="${lbt.link} == ''"  target="_blank"><img th:src="${lbt.url}"></a>
         </div>
     </div>
     <!-- 轮播（Carousel）导航 -->

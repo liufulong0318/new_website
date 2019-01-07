@@ -35,10 +35,12 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="javascript:void(0);">我的订单</a></li>
-                        <li class="divider"></li>
-                        <li><a href="javascript:void(0);">我的信息</a></li>
-                        <li class="divider"></li>
+                        <li th:if="${session.loginusername} == superadmin"><a href="/manage">后台管理</a></li>
+                        <li class="divider" th:if="${session.loginusername} == superadmin"></li>
+                        <li><a href="javascript:void(0);" th:if="${session.loginusername} != superadmin">我的订单</a></li>
+                        <li class="divider" th:if="${session.loginusername} != superadmin"></li>
+                        <li><a href="javascript:void(0);" th:if="${session.loginusername} != superadmin">我的信息</a></li>
+                        <li class="divider" th:if="${session.loginusername} != superadmin"></li>
                         <li><a href="javascript:void(0);">修改密码</a></li>
                         <li class="divider"></li>
                         <li><a href="javascript:void(0);" id="logout">退出</a></li>

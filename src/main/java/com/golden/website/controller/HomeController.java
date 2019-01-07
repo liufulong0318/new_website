@@ -85,9 +85,13 @@ public class HomeController {
     public String manage(Model model) {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         HttpSession session = request.getSession();
-        String loginusername = session.getAttribute("loginusername").toString();
-        if(loginusername.equals("superadmin")){
-            return "manage";
+        if(session.getAttribute("loginusername") != null){
+            String loginusername = session.getAttribute("loginusername").toString();
+            if(loginusername.equals("superadmin")){
+                return "manage";
+            }else{
+                return "error";
+            }
         }else{
             return "error";
         }
