@@ -60,7 +60,19 @@ public class UserServiceImp implements UserService {
         }
         return resultInfo;
     }
-
+    @Override
+    public ResultInfo deleteUerById(HttpServletRequest request) {
+        ResultInfo resultInfo = new ResultInfo();
+        int num = websiteUserMapper.deleteByPrimaryKey(request.getParameter("id"));
+        if(num > 0){
+            resultInfo.setCode("1");
+            resultInfo.setMsg("删除成功");
+        }else{
+            resultInfo.setCode("0");
+            resultInfo.setMsg("删除失败，请稍后重试");
+        }
+        return resultInfo;
+    }
     @Override
     public ResultInfo login(HttpServletRequest request) {
         ResultInfo resultInfo = new ResultInfo();

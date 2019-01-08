@@ -13,6 +13,8 @@ public interface UserService {
 
     ResultInfo editUser(HttpServletRequest request);
 
+    ResultInfo deleteUerById(HttpServletRequest request);
+
     ResultInfo login(HttpServletRequest request);
 
     void logout(HttpServletRequest request);

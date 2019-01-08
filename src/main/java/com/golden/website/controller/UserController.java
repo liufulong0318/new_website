@@ -30,6 +30,11 @@ public class UserController {
         return userService.editUser(request).toString();
     }
 
+    @RequestMapping("deleteUserById")
+    public String deleteUerById(HttpServletRequest request) {
+        return userService.deleteUerById(request).toString();
+    }
+
     @RequestMapping("login")
     public String login(HttpServletRequest request) {
         return userService.login(request).toString();
