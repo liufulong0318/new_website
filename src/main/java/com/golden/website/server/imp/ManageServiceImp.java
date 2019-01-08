@@ -47,11 +47,11 @@ public class ManageServiceImp implements ManageService {
         //对名称
         if (name.length() <= 0) {
             resultInfo.setCode("0");
-            resultInfo.setMsg("注册失败，名称长度不能为空");
+            resultInfo.setMsg("添加失败，名称长度不能为空");
             return resultInfo.toString();
         } else if (name.length() > 30) {
             resultInfo.setCode("0");
-            resultInfo.setMsg("注册失败，名称长度不能大于30位");
+            resultInfo.setMsg("添加失败，名称长度不能大于30位");
             return resultInfo.toString();
         } else if (name.length() >= 0 && name.length() <= 30) {
             String pattern = "^^(?!_)(?!.*?_$)[a-zA-Z0-9_\\u4e00-\\u9fa5]+$";
@@ -59,21 +59,21 @@ public class ManageServiceImp implements ManageService {
             Matcher m = r.matcher(name);
             if (!m.matches()) {
                 resultInfo.setCode("0");
-                resultInfo.setMsg("注册失败，名称含有非法字符");
+                resultInfo.setMsg("添加失败，名称含有非法字符");
                 return resultInfo.toString();
             }
         }
         String link = request.getParameter("link");
-        if (link != null) {
-            String pattern = "^((http|https)://)?([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?$";
-            Pattern r = Pattern.compile(pattern);
-            Matcher m = r.matcher(link);
-            if (!m.matches()) {
-                resultInfo.setCode("0");
-                resultInfo.setMsg("注册失败，链接不合法");
-                return resultInfo.toString();
-            }
-        }
+//        if (link != null) {
+//            String pattern = "^(/)?([\\w-]))$";
+//            Pattern r = Pattern.compile(pattern);
+//            Matcher m = r.matcher(link);
+//            if (!m.matches()) {
+//                resultInfo.setCode("0");
+//                resultInfo.setMsg("添加失败，链接不合法");
+//                return resultInfo.toString();
+//            }
+//        }
         String order = request.getParameter("order");
         String url = null;
         try {
@@ -148,16 +148,16 @@ public class ManageServiceImp implements ManageService {
             }
         }
         String link = request.getParameter("link");
-        if (link != null && link != "" && !(link.equals(""))) {
-            String pattern = "^((http|https)://)?([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?$";
-            Pattern r = Pattern.compile(pattern);
-            Matcher m = r.matcher(link);
-            if (!m.matches()) {
-                resultInfo.setCode("0");
-                resultInfo.setMsg("修改失败，链接不合法");
-                return resultInfo.toString();
-            }
-        }
+//        if (link != null && link != "" && !(link.equals(""))) {
+//            String pattern = "^((http|https)://)?([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?$";
+//            Pattern r = Pattern.compile(pattern);
+//            Matcher m = r.matcher(link);
+//            if (!m.matches()) {
+//                resultInfo.setCode("0");
+//                resultInfo.setMsg("修改失败，链接不合法");
+//                return resultInfo.toString();
+//            }
+//        }
         String order = request.getParameter("order");
         MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
         MultipartFile multipartFile = req.getFile("imgFile");
