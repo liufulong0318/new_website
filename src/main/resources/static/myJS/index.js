@@ -2,6 +2,21 @@
  * Created by Administrator on 2018/12/10.
  */
 $(document).ready(function () {
+    $.ajax({
+        async : false,
+        cache : false,
+        type:"post",
+        timeout : 3000, //超时时间设置，单位毫秒
+        datatype:"jsonp",
+        url:"http://52.83.234.27:8081/ZPSYS/golden/guanWang.action",
+        success:function(msg){
+            var obj = msg.split(",");
+            $(".important_data_1").html(obj[1]);
+            $(".important_data_2").html(obj[3]);
+            $(".important_data_3").html(parseInt(obj[2]/10000));
+            $(".important_data_4").html(obj[4]);
+        }
+    })
     $(".link").mouseout(function () {
         $(".link").hide();
     });

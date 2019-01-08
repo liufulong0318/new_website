@@ -3,9 +3,9 @@
         <div class="panel-body" style="float: left;">
             我们是<span>做什么的</span>
         </div>
-        <div class="panel-body" style="float: left;border-left: 1px #05abff solid;margin-top: 14px;height: 50px;">
+        <div class="panel-body" >
         </div>
-        <div class="panel-body" style="float: left;font-size: 16px;">
+        <div class="panel-body" style="float: left;">
             专注于自主知识产权的实时数据库管理系统研发及产业化<br>
             专业提供数据可视化平台产品及解决方案
         </div>
@@ -29,23 +29,21 @@
         <div class="panel-body" style="float: left;">
             我们的<span>产品</span>
         </div>
-        <div class="panel-body" style="float: left;border-left: 1px #05abff solid;margin-top: 14px;height: 50px;">
+        <div class="panel-body" >
         </div>
-        <div class="panel-body" style="float: left;font-size: 16px;">
+        <div class="panel-body" style="float: left;">
             数据库系列<br>
             可视化系列
         </div>
         <div style="clear: both;"></div>
     </div>
-    <div class="panel panel-default" style="border: none; font-size: 22px;text-align: center;height: 400px;">
+    <div class="panel panel-default" style="border: none; text-align: center;height: 400px;">
         <div class="panel-body" style="float: left; width: 100%;height: 100%;border: 1px solid #05abff;">
             <div style="float: left;width: 50%;height: 100%;"><img th:src="${top1.imgurl}"
                                                                    style="width: 100%;height: 100%;"/></div>
             <div style="float: left;width: 50%;height: 100%;font-size: 24px;padding: 15px;">
-                <span style="color: #666;text-align: left;display: block;padding: 10px;border-bottom: 1px dashed #00000030;"
-                      th:text="${top1.title}"></span>
-                <span style="color: #666;text-align: left;display: block;line-height: 36px;padding-top: 20px;"
-                      th:text="${top1.content}"></span>
+                <span id="top1_title" th:text="${top1.title}"></span>
+                <span id="top1_content" th:text="'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+${top1.content}"></span>
             </div>
             <div style="clear: both;"></div>
         </div>
@@ -54,10 +52,10 @@
          style="border: none; font-size: 22px;text-align: center; margin: 30px 0px;height: 400px;">
         <div class="panel-body" style="float: left; width: 100%;height: 100%;border: 1px solid #05abff;">
             <div style="float: left;width: 50%;height: 100%;font-size: 24px;padding: 15px;">
-                <span style="color: #666;text-align: left;display: block;padding: 10px;border-bottom: 1px dashed #00000030;"
+                <span id="top2_title"
                       th:text="${top2.title}"></span>
-                <span style="color: #666;text-align: left;display: block;line-height: 36px;padding-top: 20px;"
-                      th:text="${top2.content}"></span>
+                <span id="top2_content"
+                      th:text="'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+${top2.content}"></span>
             </div>
             <div style="float: left;width: 50%;height: 100%;"><img th:src="${top2.imgurl}"
                                                                    style="width: 100%;height: 100%;"/></div>
@@ -70,9 +68,9 @@
         <div class="panel-body" style="float: left;">
             我们的<span>行业案例</span>
         </div>
-        <div class="panel-body" style="float: left;border-left: 1px #05abff solid;margin-top: 14px;height: 50px;">
+        <div class="panel-body" >
         </div>
-        <div class="panel-body" style="float: left;font-size: 16px;">
+        <div class="panel-body" style="float: left;">
             风力发电 生产管理<br>
             智能电网 智能制造
         </div>
@@ -101,21 +99,21 @@
         </div>
     </div>
 </div>
-<div class="whatDoWeDo" style="height: 406px;">
+<div class="whatDoWeDo" id="hzyh">
     <div class="panel panel-default">
         <div class="panel-body" style="float: left;">
             我们的<span>合作用户</span>
         </div>
-        <div class="panel-body" style="float: left;border-left: 1px #05abff solid;margin-top: 14px;height: 50px;">
+        <div class="panel-body" >
         </div>
-        <div class="panel-body" style="float: left;font-size: 16px;">
+        <div class="panel-body" style="float: left;">
             智能制造 新能源 电网 电信<br>
             石油 煤炭 智慧城市 火力发电
         </div>
         <div style="clear: both;"></div>
     </div>
-    <div class="panel panel-default" style="border: none; font-size: 22px;text-align: center;">
-        <div class="panel-body" style="float: left; width: 100%;height: 300px;padding: 0px;">
+    <div class="panel panel-default" style="border: none; font-size: 22px;text-align: center;height: calc(100% - 136px);">
+        <div class="panel-body" style="float: left; width: 100%;height: 100%;padding: 0px;">
             <div id="myCarousel_1" class="carousel slide">
                 <!-- 轮播（Carousel）项目 -->
 
@@ -165,9 +163,6 @@
                 <span style="color: #666;text-align: left;display: block;padding: 10px;border-bottom: 1px dashed #00000030;"
                       th:text="${websiteAboutus.title}"></span>
                 <div th:utext="${websiteAboutus.content}" id="aboutUS"></div>
-                <!--<span style="color: #666;text-align: left;display: block;line-height: 22px;font-size:18px;padding-top: 20px;font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;北京庚顿数据科技有限公司专业从事自主知识产权的"实时数据库管理系统"研发及产业化，作为一种基础软件，实时数据库管理系统在工业化和信息化融合过程中起着重要的支撑作用，是新一代信息技术产业中的关键。该领域关系国家安全、产业关联广泛，存在巨大的创新空间。</span>-->
-                <!--<span style="color: #666;text-align: left;display: block;line-height: 22px;font-size:18px;padding-top: 20px;font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们深知这项事业的艰巨性、复杂性和长期性。我们更清楚地认识到，没有基础软件的突破，我国就无法跻身世界信息技术产业强国之列。有鉴于此，我们立志“啃得了骨头、耐得住寂寞、顶得住诱惑”，决心长期专注实时数据库领域，打造优秀人才队伍、提升创新能力、突破核心技术、掌握自主知识产权、研发创新产品系列、形成高附加值的产业链条。</span>-->
-                <!--<span style="color: #666;text-align: left;display: block;line-height: 22px;font-size:18px;padding-top: 20px;font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们有一个梦想：让中国的实时数据库软件领先全球，让中国的基础软件领先全球!我们坚信：就像中华民族的伟大复兴一定能实现一样，我们的梦想一定能实现!</span>-->
                 <span style="color: #666;display: block;line-height: 22px;font-size:18px;padding-top: 20px;"
                       class="about_us">
                     <ul>
@@ -183,44 +178,41 @@
         </div>
     </div>
 </div>
-<div class="whatDoWeDo" style="height: 330px;">
-    <div class="panel panel-default" style="border: none; font-size: 22px;text-align: center;">
+<div class="whatDoWeDo" id="dynamicAndshare">
+    <div class="panel panel-default" style="border: none; ">
         <div class="panel-body" style="float: left; width: 100%;height: 100%;padding: 0px;">
-            <div style="float: left;width: calc(45% - 2px);height: 100%;">
-                <div class="page-header">
-                    <h2>庚顿动态</h2>
+            <div style="float: left;width: calc(45% - 2px);height: 100%;font-size: 22px;">
+                <div class="page-header" style="text-align: center;">
+                    庚顿动态
                 </div>
                 <div class="list-group" style="text-align: left;">
                     <a href="/about?id=f0453a5f-467d-4087-9b1a-2dea83530294" class="list-group-item"
                        th:each="dynamic : ${goldendynamic}">
-                        <h5 class="list-group-item-heading"
-                            th:utext="@{'-   '+${dynamic}+'<span class=\'badge\' style=\'color: red;background-color: white;font-size: 14px;\'>新</span>'}">
-
-                        </h5>
+                        <span class="list-group-item-heading" th:utext="@{'-  '+${dynamic}+'<span class=\'badge\' style=\'color: red;background-color: white;font-size: 14px;\'>新</span>'}"></span>
                     </a>
-                    <a href="/about?id=f0453a5f-467d-4087-9b1a-2dea83530294" class="list-group-item">
-                        <h5 class="list-group-item-heading" style="text-align: center;">
+                    <a href="/about?id=f0453a5f-467d-4087-9b1a-2dea83530294" class="list-group-item" style="text-align: center;">
+                        <span class="list-group-item-heading" >
                             更多动态
-                        </h5>
+                        </span>
                     </a>
                 </div>
             </div>
             <div style="float: left;width: calc(45% - 2px);height: 100%;font-size: 22px;padding: 0px;margin-left: 10%;">
-                <div class="page-header">
-                    <h2>庚顿分享</h2>
+                <div class="page-header" style="text-align: center;">
+                    庚顿分享
                 </div>
                 <div class="list-group" style="text-align: left;">
                     <a href="/about?id=97ba3bfd-4ea1-456f-980e-e89aa32ec28a" class="list-group-item"
                        th:each="share : ${goldenshare}">
-                        <h5 class="list-group-item-heading"
+                        <span class="list-group-item-heading"
                             th:utext="@{'-   '+${share}+'<span class=\'badge\' style=\'color: red;background-color: white;font-size: 14px;\'>新</span>'}">
 
-                        </h5>
+                        </span>
                     </a>
-                    <a href="/about?id=97ba3bfd-4ea1-456f-980e-e89aa32ec28a" class="list-group-item">
-                        <h5 class="list-group-item-heading" style="text-align: center;">
+                    <a href="/about?id=97ba3bfd-4ea1-456f-980e-e89aa32ec28a" class="list-group-item" style="text-align: center;">
+                        <span class="list-group-item-heading" >
                             更多分享
-                        </h5>
+                        </span>
                     </a>
                 </div>
             </div>

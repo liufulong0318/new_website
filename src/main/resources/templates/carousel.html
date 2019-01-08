@@ -3,6 +3,24 @@
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" th:data-slide-to="${lbt.index}" th:each="l,lbt:${lunbotu}"></li>
     </ol>
+    <div class="information">
+        <div >
+            <div  class="important_data_1"></div>
+            <div ><span class="important_data_1"></span>年专注 中国原创 世界品质</div>
+        </div>
+        <div >
+            <div  class="important_data_2"></div>
+            <div >实时库超<span class="important_data_2"></span>套装机量</div>
+        </div>
+        <div>
+            <div  class="important_data_3"></div>
+            <div >管理超<span class="important_data_3"></span>万传感数据</div>
+        </div>
+        <div >
+            <div  class="important_data_4"></div>
+            <div >产品覆盖<span class="important_data_4"></span>个行业或领域</div>
+        </div>
+    </div>
     <!-- 轮播（Carousel）项目 -->
     <div class="carousel-inner">
         <div class="item" th:each="lbt:${lunbotu}">
