@@ -1,0 +1,200 @@
+2019-01-09 13:31:45 [restartedMain] INFO  com.golden.website.WebsiteApplication - Starting WebsiteApplication on DESKTOP-BVF3O4Q with PID 10768 (E:\website_new\target\classes started by 庚顿 in E:\website_new)
+2019-01-09 13:31:45 [restartedMain] INFO  com.golden.website.WebsiteApplication - No active profile set, falling back to default profiles: default
+2019-01-09 13:31:46 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-01-09 13:31:46 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-01-09 13:31:49 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 80 (http)
+2019-01-09 13:31:49 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-80"]
+2019-01-09 13:31:49 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-01-09 13:31:49 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/9.0.13
+2019-01-09 13:31:49 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_121\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\MySQL\MySQL Server 5.5\bin;C:\Users\庚顿\AppData\Local\Programs\Python\Python36-32;S;STEMROOT%\System32\OpenSSH\;E:\apache-maven-3.5.4\bin;"C:\Program Files\Java\jdk1.8.0_121\bin;C:\Program Files\Java\jdk1.8.0_121\jre\bin;";C:\Program Files\nodejs\;C:\Program Files\TortoiseGit\bin;C:\Program Files\Git\cmd;C:\Program Files\TortoiseSVN\bin;C:\Users\庚顿\AppData\Local\Microsoft\WindowsApps;;E:\Docker Toolbox;C:\Users\庚顿\AppData\Roaming\npm;.]
+2019-01-09 13:31:50 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-01-09 13:31:50 [restartedMain] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4096 ms
+2019-01-09 13:31:51 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-01-09 13:31:52 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-01-09 13:31:52 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-80"]
+2019-01-09 13:31:52 [restartedMain] INFO  org.apache.tomcat.util.net.NioSelectorPool - Using a shared selector for servlet write/read
+2019-01-09 13:31:52 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 80 (http) with context path ''
+2019-01-09 13:31:52 [restartedMain] INFO  com.golden.website.WebsiteApplication - Started WebsiteApplication in 8.18 seconds (JVM running for 14.573)
+2019-01-09 16:57:07 [http-nio-80-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-01-09 16:57:07 [http-nio-80-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-01-09 16:57:07 [http-nio-80-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 42 ms
+2019-01-09 16:57:07 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/home
+2019-01-09 16:57:07 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 16:57:07 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 16:57:07 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.home
+2019-01-09 16:57:07 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 16:57:07 [http-nio-80-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2019-01-09 16:57:08 [http-nio-80-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2019-01-09 16:57:08 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - response=home
+2019-01-09 18:30:16 [http-nio-80-exec-5] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/home
+2019-01-09 18:30:16 [http-nio-80-exec-5] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:30:16 [http-nio-80-exec-5] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:30:16 [http-nio-80-exec-5] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.home
+2019-01-09 18:30:16 [http-nio-80-exec-5] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:30:16 [http-nio-80-exec-5] INFO  com.golden.website.aspect.HttpAspect - response=home
+2019-01-09 18:30:23 [http-nio-80-exec-9] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/product
+2019-01-09 18:30:23 [http-nio-80-exec-9] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:30:23 [http-nio-80-exec-9] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:30:23 [http-nio-80-exec-9] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.product
+2019-01-09 18:30:23 [http-nio-80-exec-9] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:30:23 [http-nio-80-exec-9] INFO  com.golden.website.aspect.HttpAspect - response=product
+2019-01-09 18:30:26 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/customer
+2019-01-09 18:30:26 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:30:26 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:30:26 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.customer
+2019-01-09 18:30:26 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:30:26 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - response=customer
+2019-01-09 18:30:27 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/solution
+2019-01-09 18:30:27 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:30:27 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:30:27 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.solution
+2019-01-09 18:30:27 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:30:27 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - response=solution
+2019-01-09 18:30:28 [http-nio-80-exec-7] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/about
+2019-01-09 18:30:28 [http-nio-80-exec-7] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:30:28 [http-nio-80-exec-7] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:30:28 [http-nio-80-exec-7] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.aboutContent
+2019-01-09 18:30:28 [http-nio-80-exec-7] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:30:28 [http-nio-80-exec-7] INFO  com.golden.website.aspect.HttpAspect - response=about
+2019-01-09 18:30:29 [http-nio-80-exec-9] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/home
+2019-01-09 18:30:29 [http-nio-80-exec-9] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:30:29 [http-nio-80-exec-9] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:30:29 [http-nio-80-exec-9] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.home
+2019-01-09 18:30:29 [http-nio-80-exec-9] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:30:29 [http-nio-80-exec-9] INFO  com.golden.website.aspect.HttpAspect - response=home
+2019-01-09 18:30:30 [http-nio-80-exec-8] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/product
+2019-01-09 18:30:30 [http-nio-80-exec-8] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:30:30 [http-nio-80-exec-8] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:30:30 [http-nio-80-exec-8] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.product
+2019-01-09 18:30:30 [http-nio-80-exec-8] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:30:30 [http-nio-80-exec-8] INFO  com.golden.website.aspect.HttpAspect - response=product
+2019-01-09 18:30:31 [http-nio-80-exec-4] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/home
+2019-01-09 18:30:31 [http-nio-80-exec-4] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:30:31 [http-nio-80-exec-4] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:30:31 [http-nio-80-exec-4] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.home
+2019-01-09 18:30:31 [http-nio-80-exec-4] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:30:31 [http-nio-80-exec-4] INFO  com.golden.website.aspect.HttpAspect - response=home
+2019-01-09 18:31:13 [http-nio-80-exec-2] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/home
+2019-01-09 18:31:13 [http-nio-80-exec-2] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:31:13 [http-nio-80-exec-2] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:31:13 [http-nio-80-exec-2] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.home
+2019-01-09 18:31:13 [http-nio-80-exec-2] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:31:13 [http-nio-80-exec-2] INFO  com.golden.website.aspect.HttpAspect - response=home
+2019-01-09 18:31:16 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/home
+2019-01-09 18:31:16 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:31:16 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:31:16 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.home
+2019-01-09 18:31:16 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:31:16 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - response=home
+2019-01-09 18:31:16 [http-nio-80-exec-10] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/home
+2019-01-09 18:31:16 [http-nio-80-exec-10] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:31:16 [http-nio-80-exec-10] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:31:16 [http-nio-80-exec-10] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.home
+2019-01-09 18:31:16 [http-nio-80-exec-10] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:31:16 [http-nio-80-exec-10] INFO  com.golden.website.aspect.HttpAspect - response=home
+2019-01-09 18:31:17 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/home
+2019-01-09 18:31:17 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:31:17 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:31:17 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.home
+2019-01-09 18:31:17 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:31:17 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - response=home
+2019-01-09 18:31:27 [http-nio-80-exec-10] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/home
+2019-01-09 18:31:27 [http-nio-80-exec-10] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:31:27 [http-nio-80-exec-10] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:31:27 [http-nio-80-exec-10] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.home
+2019-01-09 18:31:27 [http-nio-80-exec-10] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:31:27 [http-nio-80-exec-10] INFO  com.golden.website.aspect.HttpAspect - response=home
+2019-01-09 18:32:21 [restartedMain] INFO  com.golden.website.WebsiteApplication - Starting WebsiteApplication on DESKTOP-BVF3O4Q with PID 5516 (E:\website_new\target\classes started by 庚顿 in E:\website_new)
+2019-01-09 18:32:21 [restartedMain] INFO  com.golden.website.WebsiteApplication - No active profile set, falling back to default profiles: default
+2019-01-09 18:32:21 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-01-09 18:32:21 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-01-09 18:32:26 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 80 (http)
+2019-01-09 18:32:26 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-80"]
+2019-01-09 18:32:26 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-01-09 18:32:26 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/9.0.13
+2019-01-09 18:32:26 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_121\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\MySQL\MySQL Server 5.5\bin;C:\Users\庚顿\AppData\Local\Programs\Python\Python36-32;S;STEMROOT%\System32\OpenSSH\;E:\apache-maven-3.5.4\bin;"C:\Program Files\Java\jdk1.8.0_121\bin;C:\Program Files\Java\jdk1.8.0_121\jre\bin;";C:\Program Files\nodejs\;C:\Program Files\TortoiseGit\bin;C:\Program Files\Git\cmd;C:\Program Files\TortoiseSVN\bin;C:\Users\庚顿\AppData\Local\Microsoft\WindowsApps;;E:\Docker Toolbox;C:\Users\庚顿\AppData\Roaming\npm;.]
+2019-01-09 18:32:26 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-01-09 18:32:26 [restartedMain] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 5446 ms
+2019-01-09 18:32:28 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-01-09 18:32:29 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-01-09 18:32:29 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-80"]
+2019-01-09 18:32:29 [restartedMain] INFO  org.apache.tomcat.util.net.NioSelectorPool - Using a shared selector for servlet write/read
+2019-01-09 18:32:29 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 80 (http) with context path ''
+2019-01-09 18:32:29 [restartedMain] INFO  com.golden.website.WebsiteApplication - Started WebsiteApplication in 9.647 seconds (JVM running for 14.108)
+2019-01-09 18:33:25 [http-nio-80-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-01-09 18:33:25 [http-nio-80-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-01-09 18:33:25 [http-nio-80-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 33 ms
+2019-01-09 18:33:25 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/home
+2019-01-09 18:33:25 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:33:25 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:33:25 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.home
+2019-01-09 18:33:25 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:33:25 [http-nio-80-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2019-01-09 18:33:26 [http-nio-80-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2019-01-09 18:33:26 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - response=home
+2019-01-09 18:33:30 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/home
+2019-01-09 18:33:30 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:33:30 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:33:30 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.home
+2019-01-09 18:33:30 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:33:30 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - response=home
+2019-01-09 18:33:54 [http-nio-80-exec-9] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/home
+2019-01-09 18:33:54 [http-nio-80-exec-9] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:33:54 [http-nio-80-exec-9] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:33:54 [http-nio-80-exec-9] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.home
+2019-01-09 18:33:54 [http-nio-80-exec-9] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:33:54 [http-nio-80-exec-9] INFO  com.golden.website.aspect.HttpAspect - response=home
+2019-01-09 18:33:58 [http-nio-80-exec-2] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/home
+2019-01-09 18:33:58 [http-nio-80-exec-2] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:33:58 [http-nio-80-exec-2] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:33:58 [http-nio-80-exec-2] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.home
+2019-01-09 18:33:58 [http-nio-80-exec-2] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:33:58 [http-nio-80-exec-2] INFO  com.golden.website.aspect.HttpAspect - response=home
+2019-01-09 18:34:06 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/product
+2019-01-09 18:34:06 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:34:06 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:34:06 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.product
+2019-01-09 18:34:06 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:34:06 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - response=product
+2019-01-09 18:35:03 [http-nio-80-exec-7] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/product
+2019-01-09 18:35:03 [http-nio-80-exec-7] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:35:03 [http-nio-80-exec-7] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:35:03 [http-nio-80-exec-7] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.product
+2019-01-09 18:35:03 [http-nio-80-exec-7] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:35:03 [http-nio-80-exec-7] INFO  com.golden.website.aspect.HttpAspect - response=product
+2019-01-09 18:35:05 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/customer
+2019-01-09 18:35:05 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:35:05 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:35:05 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.customer
+2019-01-09 18:35:05 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:35:05 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - response=customer
+2019-01-09 18:35:08 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/solution
+2019-01-09 18:35:08 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:35:08 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:35:08 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.solution
+2019-01-09 18:35:08 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:35:08 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - response=solution
+2019-01-09 18:35:09 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/about
+2019-01-09 18:35:09 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:35:09 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:35:09 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.aboutContent
+2019-01-09 18:35:09 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:35:09 [http-nio-80-exec-3] INFO  com.golden.website.aspect.HttpAspect - response=about
+2019-01-09 18:35:11 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/purchase
+2019-01-09 18:35:11 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:35:11 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:35:11 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.purchase
+2019-01-09 18:35:11 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:35:11 [http-nio-80-exec-6] INFO  com.golden.website.aspect.HttpAspect - response=purchase
+2019-01-09 18:35:12 [http-nio-80-exec-10] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/download
+2019-01-09 18:35:12 [http-nio-80-exec-10] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:35:12 [http-nio-80-exec-10] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:35:12 [http-nio-80-exec-10] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.download
+2019-01-09 18:35:12 [http-nio-80-exec-10] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:35:12 [http-nio-80-exec-10] INFO  com.golden.website.aspect.HttpAspect - response=download
+2019-01-09 18:35:14 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - url=http://localhost/product
+2019-01-09 18:35:14 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - method=GET
+2019-01-09 18:35:14 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - ip=0:0:0:0:0:0:0:1
+2019-01-09 18:35:14 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - class_method=com.golden.website.controller.HomeController.product
+2019-01-09 18:35:14 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - args={}
+2019-01-09 18:35:14 [http-nio-80-exec-1] INFO  com.golden.website.aspect.HttpAspect - response=product
