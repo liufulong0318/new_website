@@ -107,5 +107,13 @@ public class ManageRouterController {
         return "home/userManage";
     }
     //----------END--------用户管理---------------------------
+    //----------START--------用户管理---------------------------
+    @RequestMapping("/filemanage")
+    public String filemanage(Model model) {
+//        List<WebsiteUser> list = websiteUserMapper.selectAll();
+//        model.addAttribute("list", list);
+        return "home/filemanage";
+    }
+    //----------END--------用户管理---------------------------
 
 }
