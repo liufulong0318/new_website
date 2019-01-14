@@ -721,6 +721,7 @@ $(document).ready(function () {
             $("#edit_name").val(obj2.name);
             $("#edit_sex").val(obj2.sex);
             $("#edit_state").val(obj2.state);
+            $("#edit_role").val(obj2.role);
             $("#edit_registertime").val(obj2.registertime);
         });
     })
@@ -740,6 +741,7 @@ $(document).ready(function () {
         formdata.append("name", $("#edit_name").val());
         formdata.append("sex", $("#edit_sex").val());
         formdata.append("state", $("#edit_state").val());
+        formdata.append("role", $("#edit_role").val());
         formdata.append("registertime", $("#edit_registertime").val());
         $.ajax({
             url: "editUser",

@@ -87,6 +87,7 @@ public class RegisterServiceImp implements RegisterService {
         websiteUser.setState("0");
         websiteUser.setSex("1");
         websiteUser.setErrorcount(0);
+        websiteUser.setRole("0");
         int saveUserInfo = websiteUserMapper.insert(websiteUser);
         if (saveUserInfo < 1) {
             resultInfo.setCode("0");

@@ -43,6 +43,7 @@ public class UserServiceImp implements UserService {
         websiteUser.setState(request.getParameter("state"));
         websiteUser.setName(request.getParameter("name"));
         websiteUser.setSex(request.getParameter("sex"));
+        websiteUser.setRole(request.getParameter("role"));
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String registertime = request.getParameter("registertime");
         try {
@@ -73,6 +74,102 @@ public class UserServiceImp implements UserService {
         }
         return resultInfo;
     }
+
+    @Override
+    public ResultInfo updatePwd(HttpServletRequest request) {
+        ResultInfo resultInfo = new ResultInfo();
+        HttpSession session = request.getSession();
+        String loginusername = session.getAttribute("loginusername").toString();
+        //检查用户名是否存在
+        List<WebsiteUser> list = websiteUserMapper.checkLoginusername(loginusername);
+        if (list.size() < 1) {
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，用户名不存在");
+            return resultInfo;
+        }
+        String src_password = request.getParameter("src_password");
+        //验证密码
+        if (src_password.length() != 32) {
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，密码不合法");
+            return resultInfo;
+        } else {
+            String pattern = "^[A-Za-z0-9]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(src_password);
+            if (!m.matches()) {
+                resultInfo.setCode("0");
+                resultInfo.setMsg("修改失败，密码含有非法字符");
+                return resultInfo;
+            }
+        }
+        String new_password = request.getParameter("new_password");
+        //验证密码
+        if (new_password.length() != 32) {
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，密码不合法");
+            return resultInfo;
+        } else {
+            String pattern = "^[A-Za-z0-9]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(new_password);
+            if (!m.matches()) {
+                resultInfo.setCode("0");
+                resultInfo.setMsg("修改失败，密码含有非法字符");
+                return resultInfo;
+            }
+        }
+
+        String new_password2 = request.getParameter("new_password2");
+        //验证密码
+        if (new_password2.length() != 32) {
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，密码不合法");
+            return resultInfo;
+        } else {
+            String pattern = "^[A-Za-z0-9]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(new_password2);
+            if (!m.matches()) {
+                resultInfo.setCode("0");
+                resultInfo.setMsg("修改失败，密码含有非法字符");
+                return resultInfo;
+            }
+        }
+        if(!new_password.equals(new_password2)){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，两次密码不一致");
+            return resultInfo;
+        }
+        String code = request.getParameter("code");
+        //验证码校验
+        Jedis jedis = new Jedis("localhost");
+        Boolean exists = jedis.exists(code);
+        if (exists) {
+            if (!((code.hashCode() + "").equals(jedis.get(code)))) {
+                resultInfo.setCode("0");
+                resultInfo.setMsg("登录失败，验证码错误");
+                return resultInfo;
+            }
+        } else {
+            resultInfo.setCode("0");
+            resultInfo.setMsg("登录失败，验证码错误");
+            return resultInfo;
+        }
+        WebsiteUser websiteUser =  new WebsiteUser();
+        websiteUser.setLoginusername(loginusername);
+        websiteUser.setPassword(new_password);
+        int num = websiteUserMapper.updatePwdByLoginusername(websiteUser);
+        if(num > 0){
+            resultInfo.setCode("1");
+            resultInfo.setMsg("修改成功");
+        }else{
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，请稍后重试");
+        }
+        return resultInfo;
+    }
+
     @Override
     public ResultInfo login(HttpServletRequest request) {
         ResultInfo resultInfo = new ResultInfo();
@@ -134,7 +231,7 @@ public class UserServiceImp implements UserService {
             }
         } else {
             resultInfo.setCode("0");
-            resultInfo.setMsg("登录失败，验证码失效");
+            resultInfo.setMsg("登录失败，验证码错误");
             return resultInfo;
         }
         //验证用户名和密码是否正确
@@ -166,6 +263,7 @@ public class UserServiceImp implements UserService {
         HttpSession session = request.getSession();
         session.setAttribute("token", UUID.randomUUID().toString());
         session.setAttribute("loginusername", loginusername);
+        session.setAttribute("role",websiteUser.getRole());
         return resultInfo;
     }
 

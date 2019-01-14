@@ -35,6 +35,11 @@ public class UserController {
         return userService.deleteUerById(request).toString();
     }
 
+    @RequestMapping("updatePwd")
+    public String updatePwd(HttpServletRequest request) {
+        return userService.updatePwd(request).toString();
+    }
+
     @RequestMapping("login")
     public String login(HttpServletRequest request) {
         return userService.login(request).toString();

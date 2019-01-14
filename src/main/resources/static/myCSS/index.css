@@ -360,6 +360,16 @@ p img {
     min-width: 100px;
 }
 
+#myModalLabel_UpdatePwd {
+    text-align: center;
+}
+
+#myModal_UpdatePwd .form-group {
+    margin: 0px 0px 15px 10%;
+}
+#myModal_UpdatePwd .form-group label {
+    min-width: 100px;
+}
 .menu {
     width: 250px;
     height: calc(100% - 54px);

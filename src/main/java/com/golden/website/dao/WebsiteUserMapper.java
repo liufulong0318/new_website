@@ -22,7 +22,7 @@ public interface WebsiteUserMapper {
      *
      * @mbg.generated
      */
-    @Insert("insert into website_user (id,loginUserName, state, errorCount, registerTime, sex, name  )values (#{id},#{loginusername}, #{state}, #{errorcount},#{registertime}, #{sex}, #{name})")
+    @Insert("insert into website_user (id,loginUserName, state, errorCount, registerTime, sex, name, role  )values (#{id},#{loginusername}, #{state}, #{errorcount},#{registertime}, #{sex}, #{name}, #{role})")
     int insert(WebsiteUser record);
 
     /**
@@ -40,7 +40,12 @@ public interface WebsiteUserMapper {
      *
      * @mbg.generated
      */
-    @Select("select a.id,a.loginusername,a.name,a.registerTime,b.enumvalue as sexenumvalue,c.enumvalue as stateenumvalue from website_user a left join website_enum b on a.sex = b.enumkey left join website_enum c on a.state = c.enumkey where b.type = 5 and c.type = 4 order by registertime desc")
+    @Select("select a.id,a.loginusername,a.name,a.registerTime,b.enumvalue as sexenumvalue,c.enumvalue as stateenumvalue ,a.role,d.enumvalue as rolename from website_user a " +
+            "left join website_enum b on a.sex = b.enumkey " +
+            "left join website_enum c on a.state = c.enumkey " +
+            "left join website_enum d on a.role = d.enumkey " +
+            "where b.type = 5 and c.type = 4  and d.type = 6 " +
+            "order by registertime desc")
     List<WebsiteUser> selectAll();
 
     /**
@@ -49,13 +54,13 @@ public interface WebsiteUserMapper {
      *
      * @mbg.generated
      */
-    @Update("update website_user set sex=#{sex},state=#{state} where id = #{id}")
+    @Update("update website_user set sex=#{sex},state=#{state}, role = #{role} where id = #{id}")
     int updateByPrimaryKey(WebsiteUser record);
 
     @Select("select loginusername from WEBSITE_USER  where loginusername = #{loginusername}")
     List<WebsiteUser> checkLoginusername(String loginusername);
 
-    @Select("select a.loginUserName ,a.errorCount,a.state  from WEBSITE_USER a  left join website_pwd b on a.id = b.id where a.loginUserName = #{loginusername} and b.passWord = #{password}")
+    @Select("select a.loginUserName ,a.errorCount,a.state,a.role  from WEBSITE_USER a  left join website_pwd b on a.id = b.id where a.loginUserName = #{loginusername} and b.passWord = #{password}")
     WebsiteUser checkLoginusernameAndPassword(WebsiteUser record);
 
     @Select("select * from WEBSITE_USER where loginUserName = #{loginusername}")
@@ -69,4 +74,7 @@ public interface WebsiteUserMapper {
 
     @Update("update WEBSITE_USER set errorcount = 0 where loginusername = #{loginusername}")
     int updateErrotCountByLoginUserName(String loginusername);
+
+    @Update("update WEBSITE_PWD set passWord = #{password} where id = (select id from website_user where loginusername = #{loginusername})")
+    int updatePwdByLoginusername(WebsiteUser record);
 }

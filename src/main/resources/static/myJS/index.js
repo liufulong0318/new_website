@@ -67,6 +67,25 @@ $(document).ready(function () {
     $("#OK").on("click", function () {
         $('#myModal_MSG').modal("hide");
     });
+//修改密码
+    $("#up_pwd").on("click",function () {
+        generatingVerificationCode_UpdatePWD();
+        $("#up_btn").click();
+    })
+    $("#updatePwd").on("click",function () {
+        var arr = $("#updatePwdForm").find("input");
+        var obj = new Object();
+        obj.src_password = hex_md5($(arr[0]).val());
+        obj.new_password = hex_md5($(arr[1]).val());
+        obj.new_password2 = hex_md5($(arr[2]).val());
+        obj.code = $(arr[3]).val();
+        $.post("/updatePwd", obj, function (data, status) {
+            var obj2 = JSON.parse(data);
+            $('#myModal').modal("hide");
+            $("#myModal_MSG .modal-body").html(obj2.msg);
+            $("#ok_btn").click();
+        });
+    })
 });
 
 function hoverDiy(className) {
@@ -85,6 +104,14 @@ function generatingVerificationCode_login() {
     $.get("/GeneratingVerificationCode", function (data, status) {
         var arr = data.split("|");
         $("#generatingCode_login").attr("src", arr[0]);
+    });
+};
+
+
+function generatingVerificationCode_UpdatePWD() {
+    $.get("/GeneratingVerificationCode", function (data, status) {
+        var arr = data.split("|");
+        $("#generatingCode_UpdatePwd").attr("src", arr[0]);
     });
 };
 

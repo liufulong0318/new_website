@@ -16,6 +16,7 @@
         <th>姓名</th>
         <th>性别</th>
         <th>状态</th>
+        <th>角色</th>
         <th>注册时间</th>
         <th>操作</th>
     </tr>
@@ -27,6 +28,7 @@
         <td th:text="${m.name}"></td>
         <td th:text="${m.sexenumvalue}"></td>
         <td th:text="${m.stateenumvalue}"></td>
+        <td th:text="${m.rolename}"></td>
         <td th:text="${#dates.format(m.registertime,  'yyyy-MM-dd HH:mm:ss')}"></td>
         <td>
             <button class="btn btn-primary editUser" data-toggle="modal" data-target="#myModal_editUser">修改</button>

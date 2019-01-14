@@ -86,8 +86,8 @@ public class HomeController {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         HttpSession session = request.getSession();
         if(session.getAttribute("loginusername") != null){
-            String loginusername = session.getAttribute("loginusername").toString();
-            if(loginusername.equals("superadmin")){
+            String role = session.getAttribute("role").toString();
+            if(role.equals("1")){
                 return "manage";
             }else{
                 return "error";
