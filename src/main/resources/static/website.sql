@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50559
 File Encoding         : 65001
 
-Date: 2019-01-07 18:24:24
+Date: 2019-01-15 18:00:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -38,15 +38,15 @@ CREATE TABLE `demo` (
 DROP TABLE IF EXISTS `website_aboutus`;
 CREATE TABLE `website_aboutus` (
   `id` varchar(36) COLLATE utf8_bin NOT NULL,
-  `title` varchar(20) COLLATE utf8_bin NOT NULL,
-  `imgurl` varchar(60) COLLATE utf8_bin NOT NULL,
-  `content` varchar(2048) COLLATE utf8_bin NOT NULL,
-  `introduction` varchar(60) COLLATE utf8_bin DEFAULT NULL,
-  `honor` varchar(60) COLLATE utf8_bin DEFAULT NULL,
-  `culture` varchar(60) COLLATE utf8_bin DEFAULT NULL,
-  `course` varchar(60) COLLATE utf8_bin DEFAULT NULL,
-  `order` int(11) NOT NULL,
-  `createtime` datetime NOT NULL,
+  `title` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '标题名称',
+  `imgurl` varchar(60) COLLATE utf8_bin NOT NULL COMMENT '图片地址',
+  `content` varchar(2048) COLLATE utf8_bin NOT NULL COMMENT '文本内容',
+  `introduction` varchar(60) COLLATE utf8_bin DEFAULT NULL COMMENT '简介',
+  `honor` varchar(60) COLLATE utf8_bin DEFAULT NULL COMMENT '荣誉',
+  `culture` varchar(60) COLLATE utf8_bin DEFAULT NULL COMMENT '文化',
+  `course` varchar(60) COLLATE utf8_bin DEFAULT NULL COMMENT '历程',
+  `order` int(11) NOT NULL COMMENT '顺序',
+  `createtime` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -61,10 +61,10 @@ INSERT INTO `website_aboutus` VALUES ('b203e2fc-9853-42c2-92a8-72e5f3d5bc2a', '�
 DROP TABLE IF EXISTS `website_cooperativeuser`;
 CREATE TABLE `website_cooperativeuser` (
   `id` varchar(36) COLLATE utf8_bin NOT NULL,
-  `title` varchar(20) COLLATE utf8_bin NOT NULL,
-  `imgurl` varchar(60) COLLATE utf8_bin NOT NULL,
-  `order` int(2) NOT NULL,
-  `createtime` datetime DEFAULT NULL,
+  `title` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '标题名称',
+  `imgurl` varchar(60) COLLATE utf8_bin NOT NULL COMMENT '图片地址',
+  `order` int(2) NOT NULL COMMENT '展示顺序',
+  `createtime` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -112,11 +112,11 @@ INSERT INTO `website_cooperativeuser` VALUES ('fe080b1e-14f5-4355-9249-39ebf559e
 DROP TABLE IF EXISTS `website_dowhat`;
 CREATE TABLE `website_dowhat` (
   `id` varchar(36) COLLATE utf8_bin NOT NULL,
-  `iconUrl` varchar(60) COLLATE utf8_bin NOT NULL,
-  `title` varchar(6) COLLATE utf8_bin NOT NULL,
-  `hrefUrl` varchar(30) COLLATE utf8_bin NOT NULL,
-  `order` int(1) NOT NULL,
-  `createtime` datetime NOT NULL,
+  `iconUrl` varchar(60) COLLATE utf8_bin NOT NULL COMMENT '图标图片地址',
+  `title` varchar(6) COLLATE utf8_bin NOT NULL COMMENT '标题',
+  `hrefUrl` varchar(30) COLLATE utf8_bin NOT NULL COMMENT '跳转地址',
+  `order` int(1) NOT NULL COMMENT '展示顺序',
+  `createtime` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -149,6 +149,7 @@ INSERT INTO `website_enum` VALUES ('0d4ad6c0-6fe7-4c7c-a113-f293b24c8f8c', '3', 
 INSERT INTO `website_enum` VALUES ('0ed23026-8554-4992-a326-2197586c93fa', '4', '行业领域', '1');
 INSERT INTO `website_enum` VALUES ('0f7623cf-aa47-42f3-b65d-bffc7f4e8fef', '5', '关于庚顿', '1');
 INSERT INTO `website_enum` VALUES ('118f5079-cbc2-4fbe-b350-ab446b11ee51', '34', '产品购买', '1');
+INSERT INTO `website_enum` VALUES ('190a1c93-5ec4-4f95-91b8-cb1984167057', '1', '管理员', '6');
 INSERT INTO `website_enum` VALUES ('20890950-5edc-4407-9e37-d08be0334c60', '6', '资料下载', '1');
 INSERT INTO `website_enum` VALUES ('3522e056-fc8b-4a93-a689-f0e6289e49d2', '0', '女', '5');
 INSERT INTO `website_enum` VALUES ('38c0c68a-7677-41b2-bbfc-41b88203d2c0', '1', '禁用', '4');
@@ -167,6 +168,7 @@ INSERT INTO `website_enum` VALUES ('71648dd6-d09a-4079-9a7c-8e28848f6048', '18',
 INSERT INTO `website_enum` VALUES ('73a94e56-bfde-494e-b921-7554cc3be15b', '19', '风电集控', '3');
 INSERT INTO `website_enum` VALUES ('7572f283-5533-4a6c-b575-d38603088ef8', '1', '男', '5');
 INSERT INTO `website_enum` VALUES ('831243ef-fb8f-4aee-8396-4a315fbbd614', '20', '轨道交通', '3');
+INSERT INTO `website_enum` VALUES ('912241f7-855a-4905-9492-2b8443d4eb7c', '0', '游客', '6');
 INSERT INTO `website_enum` VALUES ('94e2ac45-bc6e-4c49-883d-2478f8d05e43', '35', '客户案例', '2');
 INSERT INTO `website_enum` VALUES ('99f43874-721c-4ad6-97e9-e0fd049e7184', '21', '智慧城市', '3');
 INSERT INTO `website_enum` VALUES ('9b19714f-ac49-4546-b3d0-27d0e249f47f', '22', '智能楼宇', '3');
@@ -187,12 +189,12 @@ INSERT INTO `website_enum` VALUES ('f8ae94f0-a2f7-45ec-b593-f2541e7738c4', '31',
 DROP TABLE IF EXISTS `website_golden`;
 CREATE TABLE `website_golden` (
   `id` varchar(36) COLLATE utf8_bin NOT NULL,
-  `title` varchar(60) COLLATE utf8_bin NOT NULL,
-  `content` varchar(8192) COLLATE utf8_bin NOT NULL,
-  `menu` int(2) DEFAULT NULL,
+  `title` varchar(60) COLLATE utf8_bin NOT NULL COMMENT '标题名称',
+  `content` varchar(8192) COLLATE utf8_bin NOT NULL COMMENT '文本内容',
+  `menu` int(2) DEFAULT NULL COMMENT '所属菜单',
   `module` int(2) NOT NULL COMMENT '1、成立宣言\r\n2、公司简介\r\n3、资质荣誉\r\n4、企业文化\r\n5、庚顿动态\r\n6、庚顿分享\r\n7、联系我们',
-  `imgurl` varchar(60) COLLATE utf8_bin DEFAULT NULL,
-  `createtime` datetime NOT NULL,
+  `imgurl` varchar(60) COLLATE utf8_bin DEFAULT NULL COMMENT '图片地址',
+  `createtime` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -234,12 +236,12 @@ INSERT INTO `website_golden` VALUES ('fffdd4f5-3683-4713-9f25-feb7091a9198', '�
 DROP TABLE IF EXISTS `website_homeproduct`;
 CREATE TABLE `website_homeproduct` (
   `id` varchar(36) COLLATE utf8_bin NOT NULL,
-  `title` varchar(20) COLLATE utf8_bin NOT NULL,
-  `imgurl` varchar(60) COLLATE utf8_bin NOT NULL,
-  `hrefurl` varchar(30) COLLATE utf8_bin DEFAULT NULL,
-  `content` varchar(4096) COLLATE utf8_bin NOT NULL,
-  `order` int(1) NOT NULL,
-  `createtime` datetime NOT NULL,
+  `title` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '标题名称',
+  `imgurl` varchar(60) COLLATE utf8_bin NOT NULL COMMENT '图片地址',
+  `hrefurl` varchar(30) COLLATE utf8_bin DEFAULT NULL COMMENT '跳转地址',
+  `content` varchar(4096) COLLATE utf8_bin NOT NULL COMMENT '文本内容',
+  `order` int(1) NOT NULL COMMENT '展示顺序',
+  `createtime` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -255,11 +257,11 @@ INSERT INTO `website_homeproduct` VALUES ('364afe3d-f6ea-48d6-98ec-7c6bc57c072a'
 DROP TABLE IF EXISTS `website_industrycase`;
 CREATE TABLE `website_industrycase` (
   `id` varchar(36) COLLATE utf8_bin NOT NULL,
-  `title` varchar(20) COLLATE utf8_bin NOT NULL,
-  `imgurl` varchar(60) COLLATE utf8_bin NOT NULL,
-  `hrefurl` varchar(30) COLLATE utf8_bin DEFAULT NULL,
-  `order` int(2) NOT NULL,
-  `createtime` datetime NOT NULL,
+  `title` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '标题名称',
+  `imgurl` varchar(60) COLLATE utf8_bin NOT NULL COMMENT '图片地址',
+  `hrefurl` varchar(30) COLLATE utf8_bin DEFAULT NULL COMMENT '跳转地址',
+  `order` int(2) NOT NULL COMMENT '展示顺序',
+  `createtime` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -280,26 +282,45 @@ INSERT INTO `website_industrycase` VALUES ('f654d80e-771c-4661-974f-42fd58b9ecb9
 INSERT INTO `website_industrycase` VALUES ('fb140881-a371-4a86-b1f4-538872f57d03', '光伏发电', '/upload/7383201c-a568-493f-826b-42016c2d8e11.jpg', '/solution', '9', '2018-12-27 09:38:20');
 
 -- ----------------------------
+-- Table structure for website_invoice
+-- ----------------------------
+DROP TABLE IF EXISTS `website_invoice`;
+CREATE TABLE `website_invoice` (
+  `id` varchar(36) COLLATE utf8_bin NOT NULL,
+  `type` char(1) COLLATE utf8_bin DEFAULT NULL COMMENT '开票种类 0 普票 1 增值发票',
+  `tin` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '纳税人识别号',
+  `phone` varchar(11) COLLATE utf8_bin DEFAULT NULL COMMENT '电话',
+  `bank` varchar(60) COLLATE utf8_bin DEFAULT NULL COMMENT '开户行',
+  `bankacount` varchar(30) COLLATE utf8_bin DEFAULT NULL COMMENT '开户行账号',
+  `createtime` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of website_invoice
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for website_lunbotu
 -- ----------------------------
 DROP TABLE IF EXISTS `website_lunbotu`;
 CREATE TABLE `website_lunbotu` (
   `id` varchar(36) COLLATE utf8_bin NOT NULL,
-  `name` varchar(30) COLLATE utf8_bin NOT NULL,
-  `url` varchar(100) COLLATE utf8_bin NOT NULL,
-  `link` varchar(60) COLLATE utf8_bin DEFAULT NULL,
-  `order` int(1) NOT NULL,
-  `createtime` datetime NOT NULL,
+  `name` varchar(30) COLLATE utf8_bin NOT NULL COMMENT '轮播图名称',
+  `url` varchar(100) COLLATE utf8_bin NOT NULL COMMENT '图片地址',
+  `link` varchar(60) COLLATE utf8_bin DEFAULT NULL COMMENT '跳转地址',
+  `order` int(1) NOT NULL COMMENT '展示顺序',
+  `createtime` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of website_lunbotu
 -- ----------------------------
-INSERT INTO `website_lunbotu` VALUES ('23f5cfa6-14c2-4533-b3f1-9df66cd2cae5', '助力物联网和大数据', '/upload/8bcbcb40-ddb3-40a0-910d-28c6f233b9bb.jpg', 'www.baidu.com', '4', '2018-12-20 09:25:59');
-INSERT INTO `website_lunbotu` VALUES ('2e4a4370-8805-4fa8-896a-606fbd4cb5cb', '庚顿十年', '/upload/70666d69-6b8a-4939-8525-7bffcac661fb.jpg', 'www.baidu.com', '2', '2018-12-20 09:25:06');
-INSERT INTO `website_lunbotu` VALUES ('e2253aa3-3973-46a2-942f-3baa8692b258', '庚顿时序数据库', '/upload/e6d4c4e7-46b4-468c-8c87-dd2d5a375128.jpg', 'www.baidu.com', '1', '2018-12-20 09:23:55');
-INSERT INTO `website_lunbotu` VALUES ('f9c49deb-ea2a-45fa-85a2-3c0661c13e0a', '端云一体化', '/upload/eec8a605-415c-42a0-974d-8063ff3f5fdd.jpg', 'www.baidu.com', '3', '2018-12-20 09:27:41');
+INSERT INTO `website_lunbotu` VALUES ('23f5cfa6-14c2-4533-b3f1-9df66cd2cae5', '助力物联网和大数据', '/upload/8bcbcb40-ddb3-40a0-910d-28c6f233b9bb.jpg', '/solution', '4', '2019-01-08 18:35:27');
+INSERT INTO `website_lunbotu` VALUES ('2e4a4370-8805-4fa8-896a-606fbd4cb5cb', '庚顿十年', '/upload/70666d69-6b8a-4939-8525-7bffcac661fb.jpg', '/solution', '2', '2019-01-08 18:35:18');
+INSERT INTO `website_lunbotu` VALUES ('e2253aa3-3973-46a2-942f-3baa8692b258', '庚顿时序数据库', '/upload/e6d4c4e7-46b4-468c-8c87-dd2d5a375128.jpg', '/solution', '1', '2019-01-08 18:35:13');
+INSERT INTO `website_lunbotu` VALUES ('f9c49deb-ea2a-45fa-85a2-3c0661c13e0a', '端云一体化', '/upload/eec8a605-415c-42a0-974d-8063ff3f5fdd.jpg', '/solution', '3', '2019-01-08 18:35:23');
 
 -- ----------------------------
 -- Table structure for website_pwd
@@ -307,7 +328,7 @@ INSERT INTO `website_lunbotu` VALUES ('f9c49deb-ea2a-45fa-85a2-3c0661c13e0a', '�
 DROP TABLE IF EXISTS `website_pwd`;
 CREATE TABLE `website_pwd` (
   `id` varchar(36) COLLATE utf8_bin NOT NULL,
-  `passWord` varchar(32) COLLATE utf8_bin NOT NULL,
+  `passWord` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '密码',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -317,6 +338,7 @@ CREATE TABLE `website_pwd` (
 INSERT INTO `website_pwd` VALUES ('3664e7fe-6d8d-4469-8557-f83f59a47c0e', '3dbe00a167653a1aaee01d93e77e730e');
 INSERT INTO `website_pwd` VALUES ('50e897d7-b04a-4d41-8b59-72b198a32fd1', 'b51f2123ac61ff3c8cc1faffd9d65480');
 INSERT INTO `website_pwd` VALUES ('a08d9329-8076-42c2-8ea0-bcc54cfe6543', '22d7fe8c185003c98f97e5d6ced420c7');
+INSERT INTO `website_pwd` VALUES ('b65ce94f-b3ed-43a1-a8aa-dabbc50227e0', 'dd4b21e9ef71e1291183a46b913ae6f2');
 INSERT INTO `website_pwd` VALUES ('f68a6676-4df5-4f8d-8487-f879e7e16067', 'dd4b21e9ef71e1291183a46b913ae6f2');
 
 -- ----------------------------
@@ -325,19 +347,18 @@ INSERT INTO `website_pwd` VALUES ('f68a6676-4df5-4f8d-8487-f879e7e16067', 'dd4b2
 DROP TABLE IF EXISTS `website_user`;
 CREATE TABLE `website_user` (
   `id` varchar(36) COLLATE utf8_bin NOT NULL,
-  `loginUserName` varchar(30) COLLATE utf8_bin NOT NULL,
+  `loginUserName` varchar(30) COLLATE utf8_bin NOT NULL COMMENT '登录用户名',
   `state` char(1) COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '0，正常 1，锁定',
-  `errorCount` int(1) NOT NULL DEFAULT '0',
-  `registerTime` datetime NOT NULL,
+  `errorCount` int(1) NOT NULL DEFAULT '0' COMMENT '登录错误次数',
+  `registerTime` datetime NOT NULL COMMENT '注册时间',
   `sex` char(1) COLLATE utf8_bin NOT NULL DEFAULT '1' COMMENT '1 男，0 女',
-  `name` varchar(60) COLLATE utf8_bin DEFAULT NULL,
+  `name` varchar(60) COLLATE utf8_bin DEFAULT NULL COMMENT '姓名',
+  `role` char(1) COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '’0‘ 游客 ‘1’ 系统管理员',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of website_user
 -- ----------------------------
-INSERT INTO `website_user` VALUES ('3664e7fe-6d8d-4469-8557-f83f59a47c0e', 'forlong', '0', '0', '2018-12-28 10:45:20', '1', null);
-INSERT INTO `website_user` VALUES ('50e897d7-b04a-4d41-8b59-72b198a32fd1', 'superadmin', '0', '1', '2019-01-04 13:11:37', '1', null);
-INSERT INTO `website_user` VALUES ('a08d9329-8076-42c2-8ea0-bcc54cfe6543', 'qwertyui', '0', '0', '2019-01-07 14:55:18', '1', null);
-INSERT INTO `website_user` VALUES ('f68a6676-4df5-4f8d-8487-f879e7e16067', 'test001', '0', '0', '2019-01-02 16:59:28', '1', null);
+INSERT INTO `website_user` VALUES ('50e897d7-b04a-4d41-8b59-72b198a32fd1', 'superadmin', '0', '0', '2019-01-04 13:11:37', '1', null, '1');
+INSERT INTO `website_user` VALUES ('b65ce94f-b3ed-43a1-a8aa-dabbc50227e0', 'forlong', '0', '0', '2019-01-14 11:15:35', '1', null, '0');

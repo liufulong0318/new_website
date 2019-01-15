@@ -180,4 +180,9 @@ public class HomeController {
         model.addAttribute("goldenshare", goldenshare);//庚顿分享top3
         return "home";
     }
+    @RequestMapping("myInfo")
+    public String myInfo(Model model) {
+        return "myInfo";
+    }
+
 }

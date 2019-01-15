@@ -39,7 +39,7 @@
                         <li class="divider" th:if="${session.role} == 1"></li>
                         <li><a href="javascript:void(0);" th:if="${session.role} != 1">我的订单</a></li>
                         <li class="divider" th:if="${session.role} != 1"></li>
-                        <li><a href="javascript:void(0);" th:if="${session.role} != 1">我的信息</a></li>
+                        <li><a href="/myInfo" th:if="${session.role} != 1" >我的信息</a></li>
                         <li class="divider" th:if="${session.role} != 1"></li>
                         <li><a href="javascript:void(0);" id="up_pwd">修改密码</a></li>
                         <li class="divider"></li>
