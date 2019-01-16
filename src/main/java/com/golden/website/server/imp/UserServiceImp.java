@@ -1,7 +1,11 @@
 package com.golden.website.server.imp;
 
 import com.golden.website.commons.ResultInfo;
+import com.golden.website.dao.WebsiteInvoiceMapper;
+import com.golden.website.dao.WebsitePwdMapper;
 import com.golden.website.dao.WebsiteUserMapper;
+import com.golden.website.dataobject.WebsiteInvoice;
+import com.golden.website.dataobject.WebsitePwd;
 import com.golden.website.dataobject.WebsiteUser;
 import com.golden.website.server.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -23,7 +28,8 @@ import java.util.regex.Pattern;
 public class UserServiceImp implements UserService {
     @Autowired
     WebsiteUserMapper websiteUserMapper;
-
+    @Autowired
+    WebsiteInvoiceMapper websiteInvoiceMapper;
     @Override
     public WebsiteUser getUserById(HttpServletRequest request) {
         return websiteUserMapper.selectByPrimaryKey(request.getParameter("id"));
@@ -270,5 +276,121 @@ public class UserServiceImp implements UserService {
     @Override
     public void logout(HttpServletRequest request) {
         request.getSession().invalidate();
+    }
+
+    @Override
+    public WebsiteUser getInfoByLoginusername(HttpServletRequest request) {
+        return websiteUserMapper.selectByLoginUserName(request.getSession().getAttribute("loginusername").toString());
+    }
+
+    @Override
+    public WebsiteInvoice getInvoiceByLoginusername(HttpServletRequest request) {
+        WebsiteUser wu = websiteUserMapper.selectByLoginUserName(request.getSession().getAttribute("loginusername").toString());
+        return websiteInvoiceMapper.selectByPrimaryKey(wu.getId());
+    }
+
+    @Override
+    public ResultInfo saveMyInfo(HttpServletRequest request) {
+        ResultInfo resultInfo = new ResultInfo();
+        int updateUser = 0;
+        if(request.getSession().getAttribute("loginusername") != null){
+            String loginusername = request.getSession().getAttribute("loginusername").toString();
+            if(loginusername != null){
+                WebsiteUser websiteUser = new WebsiteUser();
+                websiteUser.setLoginusername(loginusername);
+                String name = request.getParameter("name");
+                if(name != null){
+                    String pattern = "^[\\u4e00-\\u9fa5]+$";
+                    Pattern r = Pattern.compile(pattern);
+                    Matcher m = r.matcher(name);
+                    if (!m.matches()) {
+                        resultInfo.setCode("0");
+                        resultInfo.setMsg("保存失败，开户行含有非法字符");
+                        return resultInfo;
+                    }
+                }
+                websiteUser.setName(name);
+                websiteUser.setSex(request.getParameter("sex"));
+                updateUser = websiteUserMapper.updateNameOrSexByLoginusername(websiteUser);
+            }
+        }else{
+            resultInfo.setCode("0");
+            resultInfo.setMsg("登录失效，请重新登录");
+        }
+        WebsiteUser wu = websiteUserMapper.selectByLoginUserName(request.getSession().getAttribute("loginusername").toString());
+        String id = wu.getId();
+        WebsiteInvoice wi =  new WebsiteInvoice();
+        String bank = request.getParameter("bank");
+        if(bank != null){
+            String pattern = "^[\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(bank);
+            if (!m.matches()) {
+                resultInfo.setCode("0");
+                resultInfo.setMsg("保存失败，开户行含有非法字符");
+                return resultInfo;
+            }
+        }
+        wi.setBank(bank);
+
+        String bankacount = request.getParameter("bankacount");
+        if(bankacount != null){
+            String pattern = "^[0-9]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(bankacount);
+            if (!m.matches()) {
+                resultInfo.setCode("0");
+                resultInfo.setMsg("保存失败，开户行账号含有非法字符");
+                return resultInfo;
+            }
+        }
+        wi.setBankacount(bankacount);
+        wi.setId(id);
+        String phone = request.getParameter("phone");
+        if(phone != null){
+            String pattern = "^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(phone);
+            if (!m.matches()) {
+                resultInfo.setCode("0");
+                resultInfo.setMsg("保存失败，电话含有非法字符");
+                return resultInfo;
+            }
+        }
+        wi.setPhone(phone);
+        String tin = request.getParameter("tin");
+        if(phone != null){
+            String pattern = "^[0-9]{15,20}$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(tin);
+            if (!m.matches()) {
+                resultInfo.setCode("0");
+                resultInfo.setMsg("保存失败，纳税人识别号含有非法字符");
+                return resultInfo;
+            }
+        }
+        wi.setTin(tin);
+        String type = request.getParameter("type");
+        if(phone != null){
+            String pattern = "^[0-1]$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(type);
+            if (!m.matches()) {
+                resultInfo.setCode("0");
+                resultInfo.setMsg("保存失败，开票种类含有非法字符");
+                return resultInfo;
+            }
+        }
+        wi.setType(type);
+        wi.setCreatetime(new Date());
+        int updateWI = websiteInvoiceMapper.updateByPrimaryKey(wi);
+        if(updateUser >0 && updateWI > 0){
+            resultInfo.setCode("1");
+            resultInfo.setMsg("保存成功");
+        }else{
+            resultInfo.setCode("0");
+            resultInfo.setMsg("保存失败");
+        }
+        return resultInfo;
     }
 }

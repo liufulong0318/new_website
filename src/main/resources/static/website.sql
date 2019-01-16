@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50559
 File Encoding         : 65001
 
-Date: 2019-01-15 18:00:23
+Date: 2019-01-16 18:07:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -299,6 +299,7 @@ CREATE TABLE `website_invoice` (
 -- ----------------------------
 -- Records of website_invoice
 -- ----------------------------
+INSERT INTO `website_invoice` VALUES ('b65ce94f-b3ed-43a1-a8aa-dabbc50227e0', '1', '111111111111111', '15501501611', '北京银行天坛支行', '12345678', '2019-01-16 18:04:06');
 
 -- ----------------------------
 -- Table structure for website_lunbotu
@@ -338,7 +339,7 @@ CREATE TABLE `website_pwd` (
 INSERT INTO `website_pwd` VALUES ('3664e7fe-6d8d-4469-8557-f83f59a47c0e', '3dbe00a167653a1aaee01d93e77e730e');
 INSERT INTO `website_pwd` VALUES ('50e897d7-b04a-4d41-8b59-72b198a32fd1', 'b51f2123ac61ff3c8cc1faffd9d65480');
 INSERT INTO `website_pwd` VALUES ('a08d9329-8076-42c2-8ea0-bcc54cfe6543', '22d7fe8c185003c98f97e5d6ced420c7');
-INSERT INTO `website_pwd` VALUES ('b65ce94f-b3ed-43a1-a8aa-dabbc50227e0', 'dd4b21e9ef71e1291183a46b913ae6f2');
+INSERT INTO `website_pwd` VALUES ('b65ce94f-b3ed-43a1-a8aa-dabbc50227e0', '1bbd886460827015e5d605ed44252251');
 INSERT INTO `website_pwd` VALUES ('f68a6676-4df5-4f8d-8487-f879e7e16067', 'dd4b21e9ef71e1291183a46b913ae6f2');
 
 -- ----------------------------
@@ -361,4 +362,4 @@ CREATE TABLE `website_user` (
 -- Records of website_user
 -- ----------------------------
 INSERT INTO `website_user` VALUES ('50e897d7-b04a-4d41-8b59-72b198a32fd1', 'superadmin', '0', '0', '2019-01-04 13:11:37', '1', null, '1');
-INSERT INTO `website_user` VALUES ('b65ce94f-b3ed-43a1-a8aa-dabbc50227e0', 'forlong', '0', '0', '2019-01-14 11:15:35', '1', null, '0');
+INSERT INTO `website_user` VALUES ('b65ce94f-b3ed-43a1-a8aa-dabbc50227e0', 'forlong', '0', '0', '2019-01-14 11:15:35', '0', '测试', '0');

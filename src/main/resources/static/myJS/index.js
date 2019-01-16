@@ -97,6 +97,27 @@ $(document).ready(function () {
             $("#ok_btn").click();
         }
     })
+    $("#close_myinfo").on("click",function () {
+        window.location.href="/home";
+    })
+    $("#save").on("click",function () {
+        var form_control = $(".panel-body").find(".form-control");
+        var obj = new Object();
+        obj.name = $(form_control[1]).val();
+        obj.sex=$('input:radio[name="sex"]:checked').val();
+        obj.tin = $(form_control[5]).val();
+        obj.type=$("#type").val();
+        obj.phone = $(form_control[6]).val();
+        obj.bank = $(form_control[7]).val();
+        obj.bankacount = $(form_control[8]).val();
+        console.log(obj);
+        $.post("/saveMyInfo", obj, function (data, status) {
+            var obj2 = JSON.parse(data);
+            $('#myModal').modal("hide");
+            $("#myModal_MSG .modal-body").html(obj2.msg);
+            $("#ok_btn").click();
+        });
+    })
 });
 
 function hoverDiy(className) {

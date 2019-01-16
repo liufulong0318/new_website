@@ -77,4 +77,7 @@ public interface WebsiteUserMapper {
 
     @Update("update WEBSITE_PWD set passWord = #{password} where id = (select id from website_user where loginusername = #{loginusername})")
     int updatePwdByLoginusername(WebsiteUser record);
+
+    @Update("update WEBSITE_USER set name = #{name},sex = #{sex} where loginusername = #{loginusername}")
+    int updateNameOrSexByLoginusername(WebsiteUser record);
 }

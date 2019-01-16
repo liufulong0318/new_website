@@ -45,4 +45,8 @@ public class UserController {
         return userService.login(request).toString();
     }
 
+    @RequestMapping("saveMyInfo")
+    public String saveMyInfo(HttpServletRequest request) {
+        return userService.saveMyInfo(request).toString();
+    }
 }

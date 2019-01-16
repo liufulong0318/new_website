@@ -181,7 +181,11 @@ public class HomeController {
         return "home";
     }
     @RequestMapping("myInfo")
-    public String myInfo(Model model) {
+    public String myInfo(Model model,HttpServletRequest request) {
+        WebsiteUser websiteUser = userService.getInfoByLoginusername(request);
+        WebsiteInvoice websiteInvoice = userService.getInvoiceByLoginusername(request);
+        model.addAttribute("websiteUser",websiteUser);
+        model.addAttribute("websiteInvoice",websiteInvoice);
         return "myInfo";
     }
 

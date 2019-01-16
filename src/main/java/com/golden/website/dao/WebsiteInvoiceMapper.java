@@ -51,6 +51,6 @@ public interface WebsiteInvoiceMapper {
      *
      * @mbg.generated
      */
-    @Update("update website_invoice set type=#{type},tin=#{tin},phone=#{phone},bank=#{bank},bankacount=#{bankacount} where id = #{id}")
+    @Update("update website_invoice set type=#{type},tin=#{tin},phone=#{phone},bank=#{bank},bankacount=#{bankacount},createtime=#{createtime} where id = #{id}")
     int updateByPrimaryKey(WebsiteInvoice record);
 }

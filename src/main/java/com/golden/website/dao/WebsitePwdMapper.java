@@ -3,6 +3,7 @@ package com.golden.website.dao;
 import com.golden.website.dataobject.WebsitePwd;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -31,6 +32,7 @@ public interface WebsitePwdMapper {
      *
      * @mbg.generated
      */
+    @Select("select password form website_pwd where id = #{id}")
     WebsitePwd selectByPrimaryKey(Integer id);
 
     /**
