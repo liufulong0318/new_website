@@ -86,6 +86,17 @@ $(document).ready(function () {
             $("#ok_btn").click();
         });
     })
+    $("#myModal_login").bind("keyup",function (event) {
+        if(event.keyCode == 13){
+             $('#login').click();
+        }
+    })
+
+    $("#myModal_MSG").bind("keyup",function (event) {
+        if(event.keyCode == 13){
+            $("#ok_btn").click();
+        }
+    })
 });
 
 function hoverDiy(className) {

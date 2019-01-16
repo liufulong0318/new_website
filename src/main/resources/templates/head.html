@@ -74,7 +74,7 @@
                 <form class="cmxform" id="signupForm">
                     <div class="form-group">
                         <label for="username">用户名</label>
-                        <input id="username" name="username" class="form-control" type="text"
+                        <input id="username" name="username" class="form-control" type="text" autofocus
                                placeholder="数字、字母组合(长度6~30)" minlength="6" maxlength="30" required>
                     </div>
                     <div class="form-group">
@@ -156,7 +156,7 @@
                 <form class="cmxform" id="loginForm">
                     <div class="form-group">
                         <label for="loginusername">用户名</label>
-                        <input id="loginusername" name="loginusername" class="form-control" type="text"
+                        <input id="loginusername" name="loginusername" class="form-control" type="text" autofocus
                                placeholder="数字、字母组合(长度6~30)" minlength="6" maxlength="30" required>
                     </div>
                     <div class="form-group">
@@ -180,7 +180,7 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">
                     取消
                 </button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" id="login">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="login" tabIndex="-1">
                     登录
                 </button>
             </div>
@@ -207,7 +207,7 @@
                 <form class="cmxform" id="updatePwdForm">
                     <div class="form-group">
                         <label for="src_password">原密码</label>
-                        <input id="src_password" name="src_password" class="form-control" type="text"
+                        <input id="src_password" name="src_password" class="form-control" type="text" autofocus
                                placeholder="数字、字母组合(长度8)" maxlength="8" minlength="8" required>
                     </div>
                     <div class="form-group">
