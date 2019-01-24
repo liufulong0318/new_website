@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>产品管理</title>
+    <link th:href="@{../bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{../bootstrap/css/bootstrap-theme.css}" rel="stylesheet">
+    <link th:href="@{../myCSS/manage.css}" rel="stylesheet">
+</head>
+<body id="body">
+<table class="table table-striped">
+    <caption>
+        <button data-toggle="modal" data-target="#myModal_addProductInfo" class="btn btn-primary">添加</button>
+    </caption>
+    <thead>
+    <tr>
+        <th>产品编号</th>
+        <th>产品名称</th>
+        <th>产品简介</th>
+        <th>产品图片地址</th>
+        <th>创建人</th>
+        <th>创建时间</th>
+        <th>显示顺序</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="m : ${website_productbuyinfo}">
+        <td th:text="${m.id}"></td>
+        <td th:text="${m.title}"></td>
+        <td th:text="${m.content.substring(0,15)}+......"></td>
+        <td th:text="${m.imgpath}"></td>
+        <td th:text="${m.createuser}"></td>
+        <td th:text="${#dates.format(m.createtime,'yyyy-MM-dd HH:mm:ss')}"></td>
+        <td th:text="${m.order}"></td>
+        <td>
+            <button class="btn btn-primary editProductInfo" data-toggle="modal" data-target="#myModal_editProductInfo">
+                修改
+            </button>
+            <button class="btn btn-primary deleteProductInfo" data-placement="auto" data-container="body"
+                    data-toggle="popover">删除
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div th:replace="home/addProductInfo"></div>
+<div th:replace="home/editProductInfo"></div>
+<div th:replace="home/msg"></div>
+<script th:src="@{../jquery/jquery-3.3.1.min.js}" type="text/javascript"></script>
+<script th:src="@{../bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
+<script th:src="@{../jquery/jquery.validate.min.js}" type="text/javascript"></script>
+<script th:src="@{../jquery/localization/messages_zh.js}" type="text/javascript"></script>
+<script th:src="@{../myJS/manage.js}" type="text/javascript"></script>
+<script type="text/javascript" src="../wangEditor/wangEditor.min.js"></script>
+<script type="text/javascript" src="../wangEditor/xss.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor;
+    var parameter = new E('#parameter');
+    parameter.customConfig.uploadFileName = 'imgFile';
+    // 配置服务器端地址
+    parameter.customConfig.uploadImgServer = '/upload';
+    parameter.create();
+    var price = new E('#price');
+    price.customConfig.uploadFileName = 'imgFile';
+    // 配置服务器端地址
+    price.customConfig.uploadImgServer = '/upload';
+    price.create();
+    var details = new E('#details');
+    details.customConfig.uploadFileName = 'imgFile';
+    // 配置服务器端地址
+    details.customConfig.uploadImgServer = '/upload';
+    details.create();
+    var notice = new E('#notice');
+    notice.customConfig.uploadFileName = 'imgFile';
+    // 配置服务器端地址
+    notice.customConfig.uploadImgServer = '/upload';
+    notice.create();
+
+    var edit_parameter = new E('#edit_parameter');
+    edit_parameter.customConfig.uploadFileName = 'imgFile';
+    // 配置服务器端地址
+    edit_parameter.customConfig.uploadImgServer = '/upload';
+    edit_parameter.create();
+    var edit_price = new E('#edit_price');
+    edit_price.customConfig.uploadFileName = 'imgFile';
+    // 配置服务器端地址
+    edit_price.customConfig.uploadImgServer = '/upload';
+    edit_price.create();
+    var edit_details = new E('#edit_details');
+    edit_details.customConfig.uploadFileName = 'imgFile';
+    // 配置服务器端地址
+    edit_details.customConfig.uploadImgServer = '/upload';
+    edit_details.create();
+    var edit_notice = new E('#edit_notice');
+    edit_notice.customConfig.uploadFileName = 'imgFile';
+    // 配置服务器端地址
+    edit_notice.customConfig.uploadImgServer = '/upload';
+    edit_notice.create();
+</script>
+</body>
+</html>

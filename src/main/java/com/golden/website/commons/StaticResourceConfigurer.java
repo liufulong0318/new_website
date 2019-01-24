@@ -13,6 +13,9 @@ public class StaticResourceConfigurer implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         String filePath = System.getProperty("user.dir");
         filePath = filePath.substring(0, filePath.lastIndexOf("\\")).replace("\\", "/") + "/upload/";
-        registry.addResourceHandler("/upload/**").addResourceLocations("file:" + filePath);
+        registry.addResourceHandler("/upload/**")
+                .addResourceLocations("file:" + filePath);
+        registry.addResourceHandler("/swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
     }
 }

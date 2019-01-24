@@ -1,0 +1,90 @@
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal_editProductInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" style="width: 70%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    修改信息
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="addLunbotuForm">
+                    <input id="edit_id" style="display: none;">
+                    <div class="form-group">
+                        <label for="edit_title" class="col-sm-2 control-label">产品名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="edit_title"
+                                   placeholder="请输入产品名称" required maxlength="20">
+                        </div>
+                    </div>
+                    <!--<div class="form-group">-->
+                        <!--<label for="edit_hrefUrl" class="col-sm-2 control-label">链接地址</label>-->
+                        <!--<div class="col-sm-10">-->
+                            <!--<input type="text" class="form-control" id="edit_hrefUrl"-->
+                                   <!--placeholder="请输入点击图片需要跳转的地址" required maxlength="30">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="form-group">
+                        <label for="edit_content" class="col-sm-2 control-label">文本简介</label>
+                        <div class="col-sm-10">
+                            <textarea type="text" class="form-control" id="edit_content"
+                                      placeholder="请输入文本简介信息" required maxlength="4096" minlength="15"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_order" class="col-sm-2 control-label">显示顺序</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="edit_order"
+                                   placeholder="请输入图片显示顺序" required min="1" max="9" value="1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">展示图片</label>
+                        <label class="sr-only" for="edit_inputfile">文件输入</label>
+                        <input type="file" id="edit_inputfile" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_parameter" class="col-sm-2 control-label">产品参数</label>
+                        <div class="col-sm-10">
+                            <div id="edit_parameter">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_price" class="col-sm-2 control-label">产品价格</label>
+                        <div class="col-sm-10">
+                            <div id="edit_price">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_details" class="col-sm-2 control-label">产品详情</label>
+                        <div class="col-sm-10">
+                            <div id="edit_details">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_notice" class="col-sm-2 control-label">购买须知</label>
+                        <div class="col-sm-10">
+                            <div id="edit_notice">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    关闭
+                </button>
+                <button type="button" class="btn btn-primary" id="editProductInfo">
+                    保存
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>

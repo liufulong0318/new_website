@@ -30,6 +30,7 @@ public class UserServiceImp implements UserService {
     WebsiteUserMapper websiteUserMapper;
     @Autowired
     WebsiteInvoiceMapper websiteInvoiceMapper;
+
     @Override
     public WebsiteUser getUserById(HttpServletRequest request) {
         return websiteUserMapper.selectByPrimaryKey(request.getParameter("id"));
@@ -50,13 +51,13 @@ public class UserServiceImp implements UserService {
         websiteUser.setName(request.getParameter("name"));
         websiteUser.setSex(request.getParameter("sex"));
         websiteUser.setRole(request.getParameter("role"));
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String registertime = request.getParameter("registertime");
-        try {
-            websiteUser.setRegistertime(sdf.parse(registertime));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        String registertime = request.getParameter("registertime");
+//        try {
+//            websiteUser.setRegistertime(sdf.parse(registertime));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
         int count = websiteUserMapper.updateByPrimaryKey(websiteUser);
         if (count > 0) {
             resultInfo.setCode("1");
@@ -67,14 +68,15 @@ public class UserServiceImp implements UserService {
         }
         return resultInfo;
     }
+
     @Override
     public ResultInfo deleteUerById(HttpServletRequest request) {
         ResultInfo resultInfo = new ResultInfo();
         int num = websiteUserMapper.deleteByPrimaryKey(request.getParameter("id"));
-        if(num > 0){
+        if (num > 0) {
             resultInfo.setCode("1");
             resultInfo.setMsg("删除成功");
-        }else{
+        } else {
             resultInfo.setCode("0");
             resultInfo.setMsg("删除失败，请稍后重试");
         }
@@ -85,6 +87,11 @@ public class UserServiceImp implements UserService {
     public ResultInfo updatePwd(HttpServletRequest request) {
         ResultInfo resultInfo = new ResultInfo();
         HttpSession session = request.getSession();
+        if (session.getAttribute("loginusername") == null) {
+            resultInfo.setCode("0");
+            resultInfo.setMsg("登录失效，请登录后再操作");
+            return resultInfo;
+        }
         String loginusername = session.getAttribute("loginusername").toString();
         //检查用户名是否存在
         List<WebsiteUser> list = websiteUserMapper.checkLoginusername(loginusername);
@@ -142,7 +149,7 @@ public class UserServiceImp implements UserService {
                 return resultInfo;
             }
         }
-        if(!new_password.equals(new_password2)){
+        if (!new_password.equals(new_password2)) {
             resultInfo.setCode("0");
             resultInfo.setMsg("修改失败，两次密码不一致");
             return resultInfo;
@@ -162,14 +169,14 @@ public class UserServiceImp implements UserService {
             resultInfo.setMsg("登录失败，验证码错误");
             return resultInfo;
         }
-        WebsiteUser websiteUser =  new WebsiteUser();
+        WebsiteUser websiteUser = new WebsiteUser();
         websiteUser.setLoginusername(loginusername);
         websiteUser.setPassword(new_password);
         int num = websiteUserMapper.updatePwdByLoginusername(websiteUser);
-        if(num > 0){
+        if (num > 0) {
             resultInfo.setCode("1");
             resultInfo.setMsg("修改成功");
-        }else{
+        } else {
             resultInfo.setCode("0");
             resultInfo.setMsg("修改失败，请稍后重试");
         }
@@ -269,7 +276,7 @@ public class UserServiceImp implements UserService {
         HttpSession session = request.getSession();
         session.setAttribute("token", UUID.randomUUID().toString());
         session.setAttribute("loginusername", loginusername);
-        session.setAttribute("role",websiteUser.getRole());
+        session.setAttribute("role", websiteUser.getRole());
         return resultInfo;
     }
 
@@ -280,26 +287,34 @@ public class UserServiceImp implements UserService {
 
     @Override
     public WebsiteUser getInfoByLoginusername(HttpServletRequest request) {
-        return websiteUserMapper.selectByLoginUserName(request.getSession().getAttribute("loginusername").toString());
+        if (request.getSession().getAttribute("loginusername") != null) {
+            return websiteUserMapper.selectByLoginUserName(request.getSession().getAttribute("loginusername").toString());
+        } else {
+            return null;
+        }
     }
 
     @Override
     public WebsiteInvoice getInvoiceByLoginusername(HttpServletRequest request) {
-        WebsiteUser wu = websiteUserMapper.selectByLoginUserName(request.getSession().getAttribute("loginusername").toString());
-        return websiteInvoiceMapper.selectByPrimaryKey(wu.getId());
+        if (request.getSession().getAttribute("loginusername") != null) {
+            WebsiteUser wu = websiteUserMapper.selectByLoginUserName(request.getSession().getAttribute("loginusername").toString());
+            return websiteInvoiceMapper.selectByPrimaryKey(wu.getId());
+        } else {
+            return null;
+        }
     }
 
     @Override
     public ResultInfo saveMyInfo(HttpServletRequest request) {
         ResultInfo resultInfo = new ResultInfo();
         int updateUser = 0;
-        if(request.getSession().getAttribute("loginusername") != null){
+        if (request.getSession().getAttribute("loginusername") != null) {
             String loginusername = request.getSession().getAttribute("loginusername").toString();
-            if(loginusername != null){
+            if (loginusername != null) {
                 WebsiteUser websiteUser = new WebsiteUser();
                 websiteUser.setLoginusername(loginusername);
                 String name = request.getParameter("name");
-                if(name != null){
+                if (name != null) {
                     String pattern = "^[\\u4e00-\\u9fa5]+$";
                     Pattern r = Pattern.compile(pattern);
                     Matcher m = r.matcher(name);
@@ -313,15 +328,15 @@ public class UserServiceImp implements UserService {
                 websiteUser.setSex(request.getParameter("sex"));
                 updateUser = websiteUserMapper.updateNameOrSexByLoginusername(websiteUser);
             }
-        }else{
+        } else {
             resultInfo.setCode("0");
             resultInfo.setMsg("登录失效，请重新登录");
         }
         WebsiteUser wu = websiteUserMapper.selectByLoginUserName(request.getSession().getAttribute("loginusername").toString());
         String id = wu.getId();
-        WebsiteInvoice wi =  new WebsiteInvoice();
+        WebsiteInvoice wi = new WebsiteInvoice();
         String bank = request.getParameter("bank");
-        if(bank != null){
+        if (bank != null) {
             String pattern = "^[\\u4e00-\\u9fa5]+$";
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(bank);
@@ -334,7 +349,7 @@ public class UserServiceImp implements UserService {
         wi.setBank(bank);
 
         String bankacount = request.getParameter("bankacount");
-        if(bankacount != null){
+        if (bankacount != null) {
             String pattern = "^[0-9]+$";
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(bankacount);
@@ -347,7 +362,7 @@ public class UserServiceImp implements UserService {
         wi.setBankacount(bankacount);
         wi.setId(id);
         String phone = request.getParameter("phone");
-        if(phone != null){
+        if (phone != null) {
             String pattern = "^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$";
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(phone);
@@ -359,7 +374,7 @@ public class UserServiceImp implements UserService {
         }
         wi.setPhone(phone);
         String tin = request.getParameter("tin");
-        if(phone != null){
+        if (phone != null) {
             String pattern = "^[0-9]{15,20}$";
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(tin);
@@ -371,7 +386,7 @@ public class UserServiceImp implements UserService {
         }
         wi.setTin(tin);
         String type = request.getParameter("type");
-        if(phone != null){
+        if (phone != null) {
             String pattern = "^[0-1]$";
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(type);
@@ -384,13 +399,32 @@ public class UserServiceImp implements UserService {
         wi.setType(type);
         wi.setCreatetime(new Date());
         int updateWI = websiteInvoiceMapper.updateByPrimaryKey(wi);
-        if(updateUser >0 && updateWI > 0){
+        if (updateUser > 0 && updateWI > 0) {
             resultInfo.setCode("1");
             resultInfo.setMsg("保存成功");
-        }else{
+        } else {
             resultInfo.setCode("0");
             resultInfo.setMsg("保存失败");
         }
         return resultInfo;
+    }
+
+    @Override
+    public ResultInfo checkIsLogin(HttpServletRequest request) {
+        ResultInfo resultInfo = new ResultInfo();
+        if (request.getSession().getAttribute("loginusername") == null) {
+            resultInfo.setCode("0");
+            resultInfo.setMsg("您还未登录");
+            return resultInfo;
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public WebsiteUser getRoleByLoginusername(HttpServletRequest request) {
+        String loginusername = request.getSession().getAttribute("loginusername").toString();
+        WebsiteUser websiteUser = websiteUserMapper.getRoleByLoginusername(loginusername);
+        return websiteUser;
     }
 }

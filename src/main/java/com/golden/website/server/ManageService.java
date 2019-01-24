@@ -143,5 +143,18 @@ public interface ManageService {
     List<String> getGoldenDynamicTop3();
 
     List<String> getGoldenShareTop3();
+
+
     //-------------END--------------首页中的庚顿动态和庚顿分享--------------------------
+    String addProductInfo(HttpServletRequest request);//产品管理
+
+    WebsiteProductbuyinfo getProductBuyInfoById(HttpServletRequest request);
+
+    String editProductInfo(HttpServletRequest request);
+
+    List<WebsiteProductbuyinfo> selectProductInfoList();
+
+    WebsiteProductbuyinfo selectProductInfoById(String id);
+
+    String deleteProductInfo(HttpServletRequest request);
 }

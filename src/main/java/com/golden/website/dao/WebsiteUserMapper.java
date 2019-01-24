@@ -80,4 +80,7 @@ public interface WebsiteUserMapper {
 
     @Update("update WEBSITE_USER set name = #{name},sex = #{sex} where loginusername = #{loginusername}")
     int updateNameOrSexByLoginusername(WebsiteUser record);
+
+    @Select("select role from WEBSITE_USER  where loginusername = #{loginusername}")
+    WebsiteUser getRoleByLoginusername(String loginusername);
 }

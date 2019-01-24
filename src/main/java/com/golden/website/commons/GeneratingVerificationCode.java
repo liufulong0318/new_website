@@ -1,6 +1,5 @@
 package com.golden.website.commons;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import redis.clients.jedis.Jedis;
 import sun.misc.BASE64Encoder;
 

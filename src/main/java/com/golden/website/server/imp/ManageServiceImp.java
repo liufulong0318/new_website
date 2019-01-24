@@ -5,6 +5,7 @@ import com.golden.website.commons.Upload;
 import com.golden.website.dao.*;
 import com.golden.website.dataobject.*;
 import com.golden.website.server.ManageService;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,6 +39,8 @@ public class ManageServiceImp implements ManageService {
     WebsiteGoldenMapper websiteGoldenMapper;
     @Autowired
     WebsiteEnumMapper websiteEnumMapper;
+    @Autowired
+    WebsiteProductbuyinfoMapper websiteProductbuyinfoMapper;
 
     //-----------START--------------轮播图的增加、删除、修改、查询------------------
     @Override
@@ -1519,4 +1522,195 @@ public class ManageServiceImp implements ManageService {
         return list;
     }
     //-------------END--------------首页中的庚顿动态和庚顿分享使用的接口实现--------------------------
+    @Override
+    public String addProductInfo(HttpServletRequest request) {
+        ResultInfo resultInfo = new ResultInfo();
+        String title = request.getParameter("title").trim();
+        //对名称
+        if (title.length() <= 0) {
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加失败，产品名称长度不能为空");
+            return resultInfo.toString();
+        } else if (title.length() > 20) {
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加失败，产品名称长度不能大于20位");
+            return resultInfo.toString();
+        } else if (title.length() >= 0 && title.length() <= 20) {
+            String pattern = "^^(?!_)(?!.*?_$)[a-zA-Z0-9_.，。'、\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(title);
+            if (!m.matches()) {
+                resultInfo.setCode("0");
+                resultInfo.setMsg("添加失败，产品名称含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String content = request.getParameter("content");
+        if (content.length() < 15) {
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加失败，文本简介至少15个文字");
+            return resultInfo.toString();
+        } else if (content.length() > 4096) {
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加失败，文本简介超过4096个文字");
+            return resultInfo.toString();
+        } else if (content != null) {
+            String pattern = "^^[|\\uff0c|\\u3001|\\u3002|\\uff08|\\uff09|\\u201c|\\u201d|\\s|\\u0026|\\u002e|a-zA-Z0-9_/.，。'、\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(content);
+            if (!m.matches()) {
+                resultInfo.setCode("0");
+                resultInfo.setMsg("添加失败，文本简介含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String order = request.getParameter("order");
+        String url = null;
+        try {
+            url = Upload.upload(request);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        WebsiteProductbuyinfo websiteProductbuyinfo = new WebsiteProductbuyinfo();
+        websiteProductbuyinfo.setId(UUID.randomUUID().toString());
+        websiteProductbuyinfo.setImgpath(url);
+        websiteProductbuyinfo.setTitle(title);
+        websiteProductbuyinfo.setParameter(StringEscapeUtils.unescapeHtml4(request.getParameter("parameter")));//进行xss过滤
+        websiteProductbuyinfo.setPrice(StringEscapeUtils.unescapeHtml4(request.getParameter("price")));//进行xss过滤
+        websiteProductbuyinfo.setDetails(StringEscapeUtils.unescapeHtml4(request.getParameter("details")));//进行xss过滤
+        websiteProductbuyinfo.setNotice(StringEscapeUtils.unescapeHtml4(request.getParameter("notice")));//进行xss过滤
+        websiteProductbuyinfo.setContent(content);
+        websiteProductbuyinfo.setOrder(Integer.parseInt(order));
+        websiteProductbuyinfo.setCreatetime(new Date());
+        websiteProductbuyinfo.setCreateuser(request.getSession().getAttribute("loginusername").toString());
+        Integer count = websiteProductbuyinfoMapper.insert(websiteProductbuyinfo);
+        if (count > 0) {
+            resultInfo.setCode("1");
+            resultInfo.setMsg("添加信息成功");
+        } else {
+            resultInfo.setCode("0");
+            resultInfo.setMsg("添加信息失败，请稍后重试");
+        }
+        return resultInfo.toString();
+    }
+
+    @Override
+    public WebsiteProductbuyinfo getProductBuyInfoById(HttpServletRequest request) {
+        return websiteProductbuyinfoMapper.selectByPrimaryKey(request.getParameter("id"));
+    }
+
+    @Override
+    public String editProductInfo(HttpServletRequest request) {
+        ResultInfo resultInfo = new ResultInfo();
+        String title = request.getParameter("title").trim();
+        //对名称
+        if (title.length() <= 0) {
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，产品名称长度不能为空");
+            return resultInfo.toString();
+        } else if (title.length() > 20) {
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，产品名称长度不能大于20位");
+            return resultInfo.toString();
+        } else if (title.length() >= 0 && title.length() <= 20) {
+            String pattern = "^^(?!_)(?!.*?_$)[a-zA-Z0-9_.，。'、\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(title);
+            if (!m.matches()) {
+                resultInfo.setCode("0");
+                resultInfo.setMsg("修改失败，产品名称含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String content = request.getParameter("content");
+        if (content.length() < 15) {
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，文本简介至少15个文字");
+            return resultInfo.toString();
+        } else if (content.length() > 4096) {
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改失败，文本简介超过4096个文字");
+            return resultInfo.toString();
+        } else if (content != null) {
+            String pattern = "^^[|\\uff0c|\\u3001|\\u3002|\\uff08|\\uff09|\\u201c|\\u201d|\\s|\\u0026|\\u002e|a-zA-Z0-9_/.，。'、\\u4e00-\\u9fa5]+$";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(content);
+            if (!m.matches()) {
+                resultInfo.setCode("0");
+                resultInfo.setMsg("修改失败，文本简介含有非法字符");
+                return resultInfo.toString();
+            }
+        }
+        String order = request.getParameter("order");
+        MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
+        MultipartFile multipartFile = req.getFile("imgFile");
+
+
+
+        WebsiteProductbuyinfo websiteProductbuyinfo = new WebsiteProductbuyinfo();
+
+        websiteProductbuyinfo.setId(request.getParameter("id"));
+        String url = null;
+        if (multipartFile != null) {
+            try {
+                url = Upload.upload(request);
+            } catch (IOException e) {
+                System.out.println("未修改图片");
+            }
+        }
+        websiteProductbuyinfo.setImgpath(url);
+        websiteProductbuyinfo.setTitle(title);
+        websiteProductbuyinfo.setContent(content);
+        websiteProductbuyinfo.setParameter(StringEscapeUtils.unescapeHtml4(request.getParameter("parameter")));//进行xss过滤
+        websiteProductbuyinfo.setPrice(StringEscapeUtils.unescapeHtml4(request.getParameter("price")));//进行xss过滤
+        websiteProductbuyinfo.setDetails(StringEscapeUtils.unescapeHtml4(request.getParameter("details")));//进行xss过滤
+        websiteProductbuyinfo.setNotice(StringEscapeUtils.unescapeHtml4(request.getParameter("notice")));//进行xss过滤
+        websiteProductbuyinfo.setOrder(Integer.parseInt(order));
+        websiteProductbuyinfo.setCreatetime(new Date());
+        if(request.getSession().getAttribute("loginusername") == null){
+            resultInfo.setCode("0");
+            resultInfo.setMsg("登录失效，请重新登录");
+            return resultInfo.toString();
+        }
+        websiteProductbuyinfo.setCreateuser(request.getSession().getAttribute("loginusername").toString());
+        Integer count=0;
+        if (url != null) {
+            count = websiteProductbuyinfoMapper.updateByPrimaryKey(websiteProductbuyinfo);
+        } else {
+            count = websiteProductbuyinfoMapper.updateByPrimaryKeyNotUrl(websiteProductbuyinfo);
+        }
+
+        if (count > 0) {
+            resultInfo.setCode("1");
+            resultInfo.setMsg("修改信息成功");
+        } else {
+            resultInfo.setCode("0");
+            resultInfo.setMsg("修改信息失败，请稍后重试");
+        }
+        return resultInfo.toString();
+    }
+
+    @Override
+    public List<WebsiteProductbuyinfo> selectProductInfoList() {
+        return websiteProductbuyinfoMapper.selectAll();
+    }
+
+    @Override
+    public WebsiteProductbuyinfo selectProductInfoById(String id) {
+        return websiteProductbuyinfoMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public String deleteProductInfo(HttpServletRequest request) {
+        ResultInfo resultInfo = new ResultInfo();
+        int count = websiteProductbuyinfoMapper.deleteByPrimaryKey(request.getParameter("id"));
+        if(count>0){
+            resultInfo.setCode("1");
+            resultInfo.setMsg("删除成功");
+        }else{
+            resultInfo.setCode("0");
+            resultInfo.setMsg("删除失败");
+        }
+        return resultInfo.toString();
+    }
 }

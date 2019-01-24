@@ -118,6 +118,25 @@ $(document).ready(function () {
             $("#ok_btn").click();
         });
     })
+    $("#buy").on("click",function () {
+        $.ajax({
+            async : false,
+            cache : false,
+            type:"post",
+            timeout : 3000, //超时时间设置，单位毫秒
+            url:"/checkIsLogin",
+            success:function(msg){
+                // var obj2 = JSON.parse(msg);
+                if(msg.code == 0){
+                    $('#myModal').modal("hide");
+                    $("#myModal_MSG .modal-body").html(msg.msg);
+                    $("#ok_btn").click();
+                }else{
+                    window.location.href="/buyPage";
+                }
+            }
+        })
+    })
 });
 
 function hoverDiy(className) {
@@ -139,7 +158,9 @@ function generatingVerificationCode_login() {
     });
 };
 
-
+function gotoBuyPage(id) {
+    window.location.href="../buyPage?id="+id;
+}
 function generatingVerificationCode_UpdatePWD() {
     $.get("/GeneratingVerificationCode", function (data, status) {
         var arr = data.split("|");

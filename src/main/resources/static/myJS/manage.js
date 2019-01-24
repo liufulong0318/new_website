@@ -758,7 +758,109 @@ $(document).ready(function () {
         });
     })
     //-------------------------用户管理使用的函数----------------END---------------------
+//---------------------------------产品购买--产品管理-----------START----------------------------------------------
 
+    //添加
+    $("#addProductInfo").on('click', function () {
+        var formdata = new FormData();
+        formdata.append("title", $("#title").val());
+        formdata.append("content", $("#content").val());
+        formdata.append("order", $("#order").val())
+        var param = filterXSS(parameter.txt.html());  // 此处进行 xss 攻击过滤
+        formdata.append("parameter", param);
+        var pr = filterXSS(price.txt.html());  // 此处进行 xss 攻击过滤
+        formdata.append("price",pr);
+        var de = filterXSS(details.txt.html());  // 此处进行 xss 攻击过滤
+        formdata.append("details", de);
+        var no = filterXSS(notice.txt.html());  // 此处进行 xss 攻击过滤
+        formdata.append("notice", no);
+        var image = document.getElementById("inputfile");
+        formdata.append("imgFile", image.files[0]);
+        $.ajax({
+            url: "addProductInfo",
+            type: "POST",
+            data: formdata,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                var obj2 = JSON.parse(data);
+                $('#myModal_addHomeProduct').modal("hide");
+                $("#myModal_tips .modal-body").html(obj2.msg);
+                $("#tips").click();
+            }
+        });
+    })
+
+    //修改
+    $(".editProductInfo").on('click', function () {
+        var td = $(this).parent().parent().children();
+        var id = td[0].innerHTML;
+        var obj = new Object();
+        obj.id = id;
+        $.post("/getProductBuyInfoById", obj, function (data, status) {
+            var obj2 = eval(data);
+            $("#edit_id").val(obj2.id);
+            $("#edit_title").val(obj2.title);
+            $("#edit_content").val(obj2.content);
+            $("#edit_order").val(obj2.order);
+            edit_parameter.txt.html(obj2.parameter);
+            edit_price.txt.html(obj2.price);
+            edit_details.txt.html(obj2.details);
+            edit_notice.txt.html(obj2.notice);
+        });
+    })
+    $('.deleteProductInfo').popover(
+        {
+            trigger: 'hover', //触发方式
+            title: "提示",//设置 弹出框 的标题
+            html: true, // 为true的话，data-content里就能放html代码了
+            content: "确定要删除该信息?"//这里可以直接写字符串，也可以 是一个函数，该函数返回一个字符串；
+        }
+    );
+    //修改提交
+    $("#editProductInfo").on('click', function () {
+        var formdata = new FormData();
+        formdata.append("id", $("#edit_id").val());
+        formdata.append("title", $("#edit_title").val());
+        formdata.append("content", $("#edit_content").val());
+        formdata.append("order", $("#edit_order").val());
+        var param = filterXSS(edit_parameter.txt.html());  // 此处进行 xss 攻击过滤
+        formdata.append("parameter", param);
+        var pr = filterXSS(edit_price.txt.html());  // 此处进行 xss 攻击过滤
+        formdata.append("price",pr);
+        var de = filterXSS(edit_details.txt.html());  // 此处进行 xss 攻击过滤
+        formdata.append("details", de);
+        var no = filterXSS(edit_notice.txt.html());  // 此处进行 xss 攻击过滤
+        formdata.append("notice", no);
+        var image = document.getElementById("edit_inputfile");
+        formdata.append("imgFile", image.files[0]);
+        $.ajax({
+            url: "editProductInfo",
+            type: "POST",
+            data: formdata,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                var obj2 = JSON.parse(data);
+                $('#myModal_editHomeProduct').modal("hide");
+                $("#myModal_tips .modal-body").html(obj2.msg);
+                $("#tips").click();
+            }
+        });
+    })
+    //删除
+    $(".deleteProductInfo").on('click', function () {
+        var td = $(this).parent().parent().children();
+        var id = td[0].innerHTML;
+        var obj = new Object();
+        obj.id = id;
+        $.post("/deleteProductInfo", obj, function (data, status) {
+            var obj2 = JSON.parse(data);
+            $("#myModal_tips .modal-body").html(obj2.msg);
+            $("#tips").click();
+        });
+    })
+//---------------------------------产品购买--产品管理------------END---------------------------------------------
     $("#addLunbotuForm").validate();
 
 })

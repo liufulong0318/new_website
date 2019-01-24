@@ -188,7 +188,7 @@
                 <div class="list-group" style="text-align: left;">
                     <a href="/about?id=f0453a5f-467d-4087-9b1a-2dea83530294" class="list-group-item"
                        th:each="dynamic : ${goldendynamic}">
-                        <span class="list-group-item-heading" th:utext="@{'-  '+${dynamic}+'<span class=\'badge\' style=\'color: red;background-color: white;font-size: 14px;\'>新</span>'}"></span>
+                        <span class="list-group-item-heading" th:utext="'-  '+${dynamic}+'<span class=\'badge\' style=\'color: red;background-color: white;font-size: 14px;\'>新</span>'"></span>
                     </a>
                     <a href="/about?id=f0453a5f-467d-4087-9b1a-2dea83530294" class="list-group-item" style="text-align: center;">
                         <span class="list-group-item-heading" >
@@ -205,8 +205,7 @@
                     <a href="/about?id=97ba3bfd-4ea1-456f-980e-e89aa32ec28a" class="list-group-item"
                        th:each="share : ${goldenshare}">
                         <span class="list-group-item-heading"
-                            th:utext="@{'-   '+${share}+'<span class=\'badge\' style=\'color: red;background-color: white;font-size: 14px;\'>新</span>'}">
-
+                            th:utext="'-   '+${share}+'<span class=\'badge\' style=\'color: red;background-color: white;font-size: 14px;\'>新</span>'">
                         </span>
                     </a>
                     <a href="/about?id=97ba3bfd-4ea1-456f-980e-e89aa32ec28a" class="list-group-item" style="text-align: center;">

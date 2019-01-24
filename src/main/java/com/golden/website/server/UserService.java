@@ -27,4 +27,9 @@ public interface UserService {
     WebsiteInvoice getInvoiceByLoginusername(HttpServletRequest request);
 
     ResultInfo saveMyInfo(HttpServletRequest request);
+
+    ResultInfo checkIsLogin(HttpServletRequest request);
+
+    WebsiteUser getRoleByLoginusername(HttpServletRequest request);
+
 }

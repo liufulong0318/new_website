@@ -21,6 +21,8 @@ public class InterceptorConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/myCSS/**")//取消静态资源的拦截
                 .excludePathPatterns("/wangEditor/**")//取消静态资源的拦截
                 .excludePathPatterns("/home")//取消静态资源的拦截
+                .excludePathPatterns("/swagger-ui.html")//取消静态资源的拦截
+                .excludePathPatterns("/webjars/**")//取消静态资源的拦截
                 .excludePathPatterns("/myJS/**");//取消静态资源的拦截
     }
 }

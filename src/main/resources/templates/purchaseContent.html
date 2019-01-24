@@ -1,30 +1,13 @@
 <div class="purchaseContent">
-    <div class="page-header">
-        <h2>庚星时序数据库管理系统V3.0
-            <!--<small>子标题</small>-->
-        </h2>
+    <!-- 左对齐 -->
+    <div class="media" th:each="list : ${list}">
+        <div class="media-left">
+            <img th:src="${list.imgpath}" class="media-object" style="width:60px">
+        </div>
+        <div class="media-body" >
+            <h4 class="media-heading" style="cursor: pointer;" onclick="gotoBuyPage(this.id);" th:id="${list.id}" th:text="${list.title}"></h4>
+            <p th:text="${list.content}"></p>
+        </div>
     </div>
-    <div class="product_logo">
-        <div class="container">
-            <img src="../images/golden_star.jpg" class="img-responsive">
-        </div>
-        <div class="jumbotron">
-            庚星时序数据库是依托于工业实时数据库面向物联网领域推出的一款基于Windows平台时序数据库，具备采集、控制和管理传感器数据查询、存储海量时序/历史数据的功能，能实现物联网领域终端用户和设备的连接，管理物联网领域用户和设备的智能交互。开放的、可扩展的结构可满足用户构建各种企业级应用的需求。庚星时序数据库提供丰富的二次开发接口，可方便用户构建各类应用系统。
-        </div>
-        <div class="product_line"></div>
-        <div class="product_btn">
-            <ul>
-                <li>
-                    <button type="button" class="btn btn-primary" data-toggle="button">免费试用</button>
-                </li>
-                <li>
-                    <button type="button" class="btn btn-primary" data-toggle="button">正式购买</button>
-                </li>
-            </ul>
-
-
-        </div>
-        <div style="clear: both;"></div>
-    </div>
-
+    <hr>
 </div>
