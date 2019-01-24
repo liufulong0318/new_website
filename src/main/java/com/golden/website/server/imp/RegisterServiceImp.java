@@ -1,8 +1,10 @@
 package com.golden.website.server.imp;
 
 import com.golden.website.commons.ResultInfo;
+import com.golden.website.dao.WebsiteInvoiceMapper;
 import com.golden.website.dao.WebsitePwdMapper;
 import com.golden.website.dao.WebsiteUserMapper;
+import com.golden.website.dataobject.WebsiteInvoice;
 import com.golden.website.dataobject.WebsitePwd;
 import com.golden.website.dataobject.WebsiteUser;
 import com.golden.website.server.RegisterService;
@@ -22,6 +24,8 @@ public class RegisterServiceImp implements RegisterService {
     WebsiteUserMapper websiteUserMapper;
     @Autowired
     WebsitePwdMapper websitePwdMapper;
+    @Autowired
+    WebsiteInvoiceMapper websiteInvoiceMapper;
 
     @Override
     public String register(HttpServletRequest request) {
@@ -103,6 +107,11 @@ public class RegisterServiceImp implements RegisterService {
             resultInfo.setMsg("注册失败，系统内部错误，请稍后重试");
             return resultInfo.toString();
         }
+        //添加一条我的信息，以便后面修改
+        WebsiteInvoice websiteInvoice = new WebsiteInvoice();
+        websiteInvoice.setId(id);
+        websiteInvoice.setCreatetime(websiteUser.getRegistertime());
+        websiteInvoiceMapper.insert(websiteInvoice);
         return resultInfo.toString();
     }
 }

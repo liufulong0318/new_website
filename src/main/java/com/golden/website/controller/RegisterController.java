@@ -29,7 +29,7 @@ public class RegisterController {
             @ApiImplicitParam(paramType="query", name = "loginUserName", value = "登录用户名", required = true, dataType = "String"),
             @ApiImplicitParam(paramType="query", name = "password", value = "登录密码", required = true, dataType = "String"),
             @ApiImplicitParam(paramType="query", name = "code", value = "验证码", required = true, dataType = "String")})
-    @RequestMapping(value = "register",method = RequestMethod.GET)
+    @RequestMapping(value = "register",method = RequestMethod.POST)
     public String register(HttpServletRequest request) {
         return registerService.register(request);
     }
