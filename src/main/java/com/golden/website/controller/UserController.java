@@ -62,7 +62,19 @@ public class UserController {
     @ApiImplicitParam(paramType="query", name = "id", value = "用户id", required = true, dataType = "String")
     @RequestMapping(value = "deleteUserById",method = RequestMethod.GET)
     public String deleteUerById(HttpServletRequest request) {
-        return userService.deleteUerById(request).toString();
+        ResultInfo resultInfo = userService.checkIsLogin(request);
+        if(resultInfo == null){
+            if(userService.getRoleByLoginusername(request).getRole().equals("1")){//管理员登录具有权限操作
+                return userService.deleteUerById(request).toString();
+            }else{
+                resultInfo = new ResultInfo();
+                resultInfo.setCode("0");
+                resultInfo.setMsg("对不起，您没有权限");
+                return resultInfo.toString();
+            }
+        }else{
+            return resultInfo.toString();
+        }
     }
 
     @ApiOperation(value="根据登录用户名修改用户密码", notes="根据登录用户名修改用户密码")
@@ -74,7 +86,12 @@ public class UserController {
             @ApiImplicitParam(paramType="query", name = "code", value = "验证码", required = true, dataType = "String")})
     @RequestMapping(value = "updatePwd",method = RequestMethod.POST)
     public String updatePwd(HttpServletRequest request) {
-        return userService.updatePwd(request).toString();
+        ResultInfo resultInfo = userService.checkIsLogin(request);
+        if(resultInfo == null){
+            return userService.updatePwd(request).toString();
+        }else{
+            return resultInfo.toString();
+        }
     }
 
     @ApiOperation(value="登录", notes="登录")
@@ -99,7 +116,12 @@ public class UserController {
             })
     @RequestMapping(value = "saveMyInfo",method = RequestMethod.POST)
     public String saveMyInfo(HttpServletRequest request) {
-        return userService.saveMyInfo(request).toString();
+        ResultInfo resultInfo = userService.checkIsLogin(request);
+        if(resultInfo == null){
+            return userService.saveMyInfo(request).toString();
+        }else{
+            return resultInfo.toString();
+        }
     }
 
     @ApiOperation(value="检查是否登录", notes="检查是否登录")
