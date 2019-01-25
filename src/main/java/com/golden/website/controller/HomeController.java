@@ -26,44 +26,25 @@ public class HomeController {
     @ApiOperation(value="获取首页模块展示信息", notes="获取首页模块展示信息")
     @RequestMapping(value = {"home",""},method = RequestMethod.GET)
     public String home(Model model) {
-        List<WebsiteLunbotu> list = manageService.getAllOrderASC();
-        List<WebsiteDowhat> listDowhat = manageService.getAllOrderASC_Dowhat();
-        WebsiteHomeproduct WebsiteHomeproduct_top1 = manageService.getHomeProductTop_1();
-        WebsiteHomeproduct WebsiteHomeproduct_top2 = manageService.getHomeProductTop_2();
-        List<WebsiteIndustrycase> listIndustrycase = manageService.getAllOrderASC_IndustryCase();
-        List<WebsiteCooperativeuser> listCooperativeuser_1_12 = manageService.getAllOrderASC_CooperativeUser_1_12();
-        List<WebsiteCooperativeuser> listCooperativeuser_13_24 = manageService.getAllOrderASC_CooperativeUser_13_24();
-        List<WebsiteCooperativeuser> listCooperativeuser_25_36 = manageService.getAllOrderASC_CooperativeUser_25_36();
-        WebsiteAboutus websiteAboutus = manageService.getWebsiteAboutusTopOne();
-        List<String> goldendynamic = manageService.getGoldenDynamicTop3();
-        List<String> goldenshare = manageService.getGoldenShareTop3();
-        model.addAttribute("lunbotu", list);//轮播图
-        model.addAttribute("dowhat", listDowhat);//我们是做什么的
-        model.addAttribute("top1", WebsiteHomeproduct_top1);//我们的产品一
-        model.addAttribute("top2", WebsiteHomeproduct_top2);//我们的产品二
-        model.addAttribute("IC", listIndustrycase);//行业案例
-        model.addAttribute("listCU_1_12", listCooperativeuser_1_12);//合作用户轮播第一张
-        model.addAttribute("listCU_13_24", listCooperativeuser_13_24);//合作用户轮播第二张
-        model.addAttribute("listCU_25_36", listCooperativeuser_25_36);//合作用户第三张
-        model.addAttribute("websiteAboutus", websiteAboutus);//关于我们
-        model.addAttribute("goldendynamic", goldendynamic);//庚顿动态top3
-        model.addAttribute("goldenshare", goldenshare);//庚顿分享top3
+        findHomeData(model);
         return "home";
     }
 
     @ApiOperation(value="后台管理控制台", notes="后台管理控制台")
     @RequestMapping(value = "manage",method = RequestMethod.GET)
-    public String manage(HttpServletRequest request) {
+    public String manage(Model model,HttpServletRequest request) {
         HttpSession session = request.getSession();
         if(session.getAttribute("loginusername") != null){
             String role = session.getAttribute("role").toString();
             if(role.equals("1")){
                 return "manage";
             }else{
-                return "error";
+                findHomeData(model);
+                return "home";
             }
         }else{
-            return "error";
+            findHomeData(model);
+            return "home";
         }
     }
     @ApiOperation(value="获取软件产品模块展示信息", notes="获取软件产品模块展示信息")
@@ -129,6 +110,34 @@ public class HomeController {
     @RequestMapping(value = "logout",method = RequestMethod.POST)
     public String logout(Model model,HttpServletRequest request) {
         userService.logout(request);
+        findHomeData(model);
+        return "home";
+    }
+
+    @ApiOperation(value="获取我的信息模块展示信息", notes="获取我的信息模块展示信息")
+    @RequestMapping(value = "myInfo",method = RequestMethod.GET)
+    public String myInfo(Model model,HttpServletRequest request) {
+        WebsiteUser websiteUser = userService.getInfoByLoginusername(request);
+        WebsiteInvoice websiteInvoice = userService.getInvoiceByLoginusername(request);
+        model.addAttribute("websiteUser",websiteUser);
+        model.addAttribute("websiteInvoice",websiteInvoice);
+        if(request.getSession().getAttribute("loginusername") != null){
+            return "myInfo";
+        }else {
+            findHomeData(model);
+            return "home";
+        }
+    }
+    @ApiOperation(value="获取购买页面模块展示信息", notes="获取购买页面模块展示信息")
+    @RequestMapping(value = "buyPage",method = RequestMethod.GET)
+    public String buyPage(Model model,String id) {
+        System.out.println(id);
+        WebsiteProductbuyinfo wpbi = manageService.selectProductInfoById(id);
+        model.addAttribute("wpbi",wpbi);
+        return "buyPage";
+    }
+
+    public void findHomeData(Model model){
         List<WebsiteLunbotu> list = manageService.getAllOrderASC();
         List<WebsiteDowhat> listDowhat = manageService.getAllOrderASC_Dowhat();
         WebsiteHomeproduct WebsiteHomeproduct_top1 = manageService.getHomeProductTop_1();
@@ -151,50 +160,5 @@ public class HomeController {
         model.addAttribute("websiteAboutus", websiteAboutus);//关于我们
         model.addAttribute("goldendynamic", goldendynamic);//庚顿动态top3
         model.addAttribute("goldenshare", goldenshare);//庚顿分享top3
-        return "home";
-    }
-
-    @ApiOperation(value="获取我的信息模块展示信息", notes="获取我的信息模块展示信息")
-    @RequestMapping(value = "myInfo",method = RequestMethod.GET)
-    public String myInfo(Model model,HttpServletRequest request) {
-        WebsiteUser websiteUser = userService.getInfoByLoginusername(request);
-        WebsiteInvoice websiteInvoice = userService.getInvoiceByLoginusername(request);
-        model.addAttribute("websiteUser",websiteUser);
-        model.addAttribute("websiteInvoice",websiteInvoice);
-        if(request.getSession().getAttribute("loginusername") != null){
-            return "myInfo";
-        }else {
-            List<WebsiteLunbotu> list = manageService.getAllOrderASC();
-            List<WebsiteDowhat> listDowhat = manageService.getAllOrderASC_Dowhat();
-            WebsiteHomeproduct WebsiteHomeproduct_top1 = manageService.getHomeProductTop_1();
-            WebsiteHomeproduct WebsiteHomeproduct_top2 = manageService.getHomeProductTop_2();
-            List<WebsiteIndustrycase> listIndustrycase = manageService.getAllOrderASC_IndustryCase();
-            List<WebsiteCooperativeuser> listCooperativeuser_1_12 = manageService.getAllOrderASC_CooperativeUser_1_12();
-            List<WebsiteCooperativeuser> listCooperativeuser_13_24 = manageService.getAllOrderASC_CooperativeUser_13_24();
-            List<WebsiteCooperativeuser> listCooperativeuser_25_36 = manageService.getAllOrderASC_CooperativeUser_25_36();
-            WebsiteAboutus websiteAboutus = manageService.getWebsiteAboutusTopOne();
-            List<String> goldendynamic = manageService.getGoldenDynamicTop3();
-            List<String> goldenshare = manageService.getGoldenShareTop3();
-            model.addAttribute("lunbotu", list);//轮播图
-            model.addAttribute("dowhat", listDowhat);//我们是做什么的
-            model.addAttribute("top1", WebsiteHomeproduct_top1);//我们的产品一
-            model.addAttribute("top2", WebsiteHomeproduct_top2);//我们的产品二
-            model.addAttribute("IC", listIndustrycase);//行业案例
-            model.addAttribute("listCU_1_12", listCooperativeuser_1_12);//合作用户轮播第一张
-            model.addAttribute("listCU_13_24", listCooperativeuser_13_24);//合作用户轮播第二张
-            model.addAttribute("listCU_25_36", listCooperativeuser_25_36);//合作用户第三张
-            model.addAttribute("websiteAboutus", websiteAboutus);//关于我们
-            model.addAttribute("goldendynamic", goldendynamic);//庚顿动态top3
-            model.addAttribute("goldenshare", goldenshare);//庚顿分享top3
-            return "home";
-        }
-    }
-    @ApiOperation(value="获取购买页面模块展示信息", notes="获取购买页面模块展示信息")
-    @RequestMapping(value = "buyPage",method = RequestMethod.GET)
-    public String buyPage(Model model,String id) {
-        System.out.println(id);
-        WebsiteProductbuyinfo wpbi = manageService.selectProductInfoById(id);
-        model.addAttribute("wpbi",wpbi);
-        return "buyPage";
     }
 }

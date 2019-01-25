@@ -159,7 +159,7 @@ public class UserServiceImp implements UserService {
         Jedis jedis = new Jedis("localhost");
         Boolean exists = jedis.exists(code);
         if (exists) {
-            if (!((code.hashCode() + "").equals(jedis.get(code)))) {
+            if (!((code.toLowerCase().hashCode() + "").equals(jedis.get(code.toLowerCase())))) {
                 resultInfo.setCode("0");
                 resultInfo.setMsg("登录失败，验证码错误");
                 return resultInfo;
@@ -235,9 +235,9 @@ public class UserServiceImp implements UserService {
         String code = request.getParameter("code");
         //验证码校验
         Jedis jedis = new Jedis("localhost");
-        Boolean exists = jedis.exists(code);
+        Boolean exists = jedis.exists(code.toLowerCase());
         if (exists) {
-            if (!((code.hashCode() + "").equals(jedis.get(code)))) {
+            if (!((code.toLowerCase().hashCode() + "").equals(jedis.get(code.toLowerCase())))) {
                 resultInfo.setCode("0");
                 resultInfo.setMsg("登录失败，验证码错误");
                 return resultInfo;

@@ -71,9 +71,9 @@ public class RegisterServiceImp implements RegisterService {
         String code = request.getParameter("code");
         //验证码校验
         Jedis jedis = new Jedis("localhost");
-        Boolean exists = jedis.exists(code);
+        Boolean exists = jedis.exists(code.toLowerCase());
         if (exists) {
-            if (!((code.hashCode() + "").equals(jedis.get(code)))) {
+            if (!((code.toLowerCase().hashCode() + "").equals(jedis.get(code.toLowerCase())))) {
                 resultInfo.setCode("0");
                 resultInfo.setMsg("注册失败，验证码错误");
                 return resultInfo.toString();

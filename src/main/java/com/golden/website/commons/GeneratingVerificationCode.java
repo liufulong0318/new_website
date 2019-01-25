@@ -29,10 +29,14 @@ public class GeneratingVerificationCode {
         }
         String content = sb.toString();
         Jedis jedis = new Jedis("127.0.0.1");
-        jedis.set(content, content.hashCode() + "");
-        jedis.expire(content, 120);
-        File file = new File("D://timg.jpg");
-        Font font = new Font("Serif", Font.BOLD, 16);
+        jedis.set(content.toLowerCase(), content.toLowerCase().hashCode() + "");
+        jedis.expire(content.toLowerCase(), 120);
+        //获取项目根路径
+        String filePath = System.getProperty("user.dir");
+        //获取系统盘符
+        String sys = filePath.split(":")[0];
+        File file = new File(sys+"://timg.jpg");
+        Font font = new Font("Serif", Font.BOLD, 20);
 
         BufferedImage bufferedImage = new BufferedImage(
                 width,
