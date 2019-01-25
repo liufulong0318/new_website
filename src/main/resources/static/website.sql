@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50559
 File Encoding         : 65001
 
-Date: 2019-01-24 18:43:15
+Date: 2019-01-25 09:53:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,6 +31,28 @@ CREATE TABLE `demo` (
 -- ----------------------------
 -- Records of demo
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for logs
+-- ----------------------------
+DROP TABLE IF EXISTS `logs`;
+CREATE TABLE `logs` (
+  `id` varchar(36) COLLATE utf8_bin NOT NULL,
+  `url` varchar(60) COLLATE utf8_bin DEFAULT NULL,
+  `method` varchar(60) COLLATE utf8_bin DEFAULT NULL,
+  `ip` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  `class_method` varchar(60) COLLATE utf8_bin DEFAULT NULL,
+  `args` varchar(1024) COLLATE utf8_bin DEFAULT NULL,
+  `response` varchar(4096) COLLATE utf8_bin DEFAULT NULL,
+  `reqtime` datetime DEFAULT NULL,
+  `timecost` decimal(10,0) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of logs
+-- ----------------------------
+INSERT INTO `logs` VALUES ('76460199-b360-452b-a722-d76009e8012e', 'http://localhost/home', 'GET', '0:0:0:0:0:0:0:1', 'com.golden.website.controller.HomeController.home', '[Ljava.lang.Object;@2a533918', 'home', '2019-01-25 09:49:00', '379');
 
 -- ----------------------------
 -- Table structure for website_aboutus
