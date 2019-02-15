@@ -798,7 +798,8 @@ $(document).ready(function () {
         var obj = new Object();
         obj.id = id;
         $.post("/getProductBuyInfoById", obj, function (data, status) {
-            var obj2 = eval(data);
+            console.log(data);
+            var obj2 = JSON.parse(data);
             $("#edit_id").val(obj2.id);
             $("#edit_title").val(obj2.title);
             $("#edit_content").val(obj2.content);

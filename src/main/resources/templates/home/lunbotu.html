@@ -9,9 +9,9 @@
     <link th:href="@{../myCSS/manage.css}" rel="stylesheet">
 </head>
 <body>
-<table class="table table-striped">
-    <caption>
-        <button data-toggle="modal" data-target="#myModal_add" class="btn btn-primary">添加</button>
+<table class="table table-striped" style="height: calc(100% - 71px);">
+    <caption style="border-bottom: 1px solid #2e6da4;padding-left: 30px;">
+        <button data-toggle="modal" data-target="#myModal_add" class="btn btn-primary" >添加</button>
     </caption>
     <thead>
     <tr>
@@ -38,6 +38,18 @@
     </tr>
     </tbody>
 </table>
+<div style="width: 100%;text-align: -webkit-center;position: fixed;bottom: 0px;">
+    <ul class="pagination pagination-lg" style="margin:10px auto;">
+        <li><a href="#">&laquo;</a></li>
+        <li><a href="/lunbotu?page=0">1</a></li>
+        <li><a href="/lunbotu?page=1">2</a></li>
+        <!--<li><a href="#">3</a></li>-->
+        <!--<li><a href="#">4</a></li>-->
+        <!--<li><a href="#">5</a></li>-->
+        <li><a href="#">&raquo;</a></li>
+    </ul>
+</div>
+
 <div th:replace="home/addLunbotu"></div>
 <div th:replace="home/editLunbotu"></div>
 <div th:replace="home/msg"></div>

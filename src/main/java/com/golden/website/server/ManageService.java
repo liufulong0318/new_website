@@ -10,8 +10,9 @@ public interface ManageService {
     //------------START--------------轮播图的增加、删除、修改、查询接口--------------------------
     String addLunbotu(HttpServletRequest request);
 
-    List<WebsiteLunbotu> getAllOrderASC();
+    List<WebsiteLunbotu> getAllOrderASCPaging(HttpServletRequest request);
 
+    List<WebsiteLunbotu> getAllOrderASC();
     String deleteLunbotuById(HttpServletRequest request);
 
     String getLunbotuById(HttpServletRequest request);

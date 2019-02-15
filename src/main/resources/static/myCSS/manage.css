@@ -5,3 +5,12 @@
 .table-striped tbody tr td {
     text-align: center;
 }
+#price table,#price table th{
+    text-align: center;
+}
+#price table tr th{
+    border: 1px solid #ddd;
+}
+#price table tr td{
+    border: 1px solid #ddd;
+}

@@ -103,10 +103,15 @@ public class ManageServiceImp implements ManageService {
     }
 
     @Override
+    public List<WebsiteLunbotu> getAllOrderASCPaging(HttpServletRequest request) {
+        Paging paging = new Paging();
+        paging.setNumber(Integer.parseInt(request.getParameter("page")));
+        return websiteLunbotuMapper.selectAllPaging(paging);
+    }
+    @Override
     public List<WebsiteLunbotu> getAllOrderASC() {
         return websiteLunbotuMapper.selectAll();
     }
-
     @Override
     public String deleteLunbotuById(HttpServletRequest request) {
         int num = websiteLunbotuMapper.deleteByPrimaryKey(request.getParameter("id"));

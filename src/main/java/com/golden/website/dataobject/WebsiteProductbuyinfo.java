@@ -1,5 +1,8 @@
 package com.golden.website.dataobject;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -292,12 +295,17 @@ public class WebsiteProductbuyinfo implements Serializable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(" {");
+        sb.append("{");
         sb.append("\"id\":\"").append(id);
         sb.append("\", \"title\":\"").append(title);
         sb.append("\", \"content\":\"").append(content);
         sb.append("\", \"order\":\"").append(order);
         sb.append("\", \"imgpath\":\"").append(imgpath);
+        sb.append("\", \"parameter\":\"").append(parameter.replaceAll("\"","'"));
+        //sb.append("\", \"price\":\"").append(price.replaceAll("\"","'").replaceAll(" ","").replaceAll("\n","").replaceAll(" ",""));
+        sb.append("\", \"price\":\"").append(StringEscapeUtils.escapeHtml4(price));
+        sb.append("\", \"details\":\"").append( details.replaceAll("\"","'"));
+        sb.append("\", \"notice\":\"").append(notice.replaceAll("\"","'"));
         sb.append("\", \"createtime\":\"").append(createtime);
         sb.append("\", \"createuser\":\"").append(createuser);
         sb.append("\"}");

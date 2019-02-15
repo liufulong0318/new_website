@@ -41,7 +41,7 @@ public class ManageRouterController {
         ResultInfo resultInfo = userService.checkIsLogin(request);
         if(resultInfo == null){
             if(userService.getRoleByLoginusername(request).getRole().equals("1")){//管理员登录具有权限操作
-                List<WebsiteLunbotu> list = manageService.getAllOrderASC();
+                List<WebsiteLunbotu> list = manageService.getAllOrderASCPaging(request);
                 model.addAttribute("list", list);
                 return "home/lunbotu";
             }else{
