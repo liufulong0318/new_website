@@ -18,19 +18,19 @@
         <!--</select>-->
 
         <label>规格(标签点)</label>
-        <select class="form-control" style="width: auto;display: inline;margin-right: 20px;">
-            <option value="0">1000</option>
-            <option value="1">2000</option>
-            <option value="2">3000</option>
-            <option value="3">5000</option>
-            <option value="4">6000</option>
-            <option value="5">8000</option>
-            <option value="6">10000</option>
-            <option value="7">20000</option>
-            <option value="8">30000</option>
-            <option value="9">50000</option>
+        <select class="form-control" style="width: auto;display: inline;margin-right: 20px;" th:utext="${op}" id="price_op" onchange="change_price()">
+            <!--<option value="0">1000</option>-->
+            <!--<option value="1">2000</option>-->
+            <!--<option value="2">3000</option>-->
+            <!--<option value="3">5000</option>-->
+            <!--<option value="4">6000</option>-->
+            <!--<option value="5">8000</option>-->
+            <!--<option value="6">10000</option>-->
+            <!--<option value="7">20000</option>-->
+            <!--<option value="8">30000</option>-->
+            <!--<option value="9">50000</option>-->
         </select>
-        <label>价格</label>
+        <label>价格(元)</label>
         <input class="form-control" id="disabledInput" type="text"  style="width: auto;display: inline;margin-right: 20px;" disabled>
         <!-- 提供额外的视觉效果，标识一组按钮中的原始动作 -->
         <button type="button" class="btn btn-danger">
@@ -47,13 +47,13 @@
         <li><a href="#notice" data-toggle="tab">购买须知</a></li>
     </ul>
     <div id="myTabContent" class="tab-content" style="border-left: 1px solid #ddd;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;">
-        <div class="tab-pane fade in active" id="parameter" th:utext="${wpbi.parameter}">
+        <div class="tab-pane fade in active" id="parameter" th:utext="${wpbi.parameter}" style="padding: 30px;">
         </div>
-        <div class="tab-pane fade" id="price" th:utext="${wpbi.price}">
+        <div class="tab-pane fade" id="price" th:utext="${wpbi.price}" style="padding: 30px;">
         </div>
-        <div class="tab-pane fade" id="details" th:utext="${wpbi.details}">
+        <div class="tab-pane fade" id="details" th:utext="${wpbi.details}" style="padding: 30px;">
         </div>
-        <div class="tab-pane fade" id="notice" th:utext="${wpbi.notice}">
+        <div class="tab-pane fade" id="notice" th:utext="${wpbi.notice}" style="padding: 30px;">
         </div>
     </div>
 </div>

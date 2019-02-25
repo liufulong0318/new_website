@@ -1,5 +1,6 @@
 package com.golden.website.dataobject;
 
+import com.golden.website.commons.Html2Text;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -302,9 +303,8 @@ public class WebsiteProductbuyinfo implements Serializable {
         sb.append("\", \"order\":\"").append(order);
         sb.append("\", \"imgpath\":\"").append(imgpath);
         sb.append("\", \"parameter\":\"").append(parameter.replaceAll("\"","'"));
-        //sb.append("\", \"price\":\"").append(price.replaceAll("\"","'").replaceAll(" ","").replaceAll("\n","").replaceAll(" ",""));
-        sb.append("\", \"price\":\"").append(StringEscapeUtils.escapeHtml4(price));
-        sb.append("\", \"details\":\"").append( details.replaceAll("\"","'"));
+        sb.append("\", \"price\":\"").append(price.replace("\"","'").replaceAll("[\\t\\n\\r]", ""));
+        sb.append("\", \"details\":\"").append(details.replaceAll("\"","'"));
         sb.append("\", \"notice\":\"").append(notice.replaceAll("\"","'"));
         sb.append("\", \"createtime\":\"").append(createtime);
         sb.append("\", \"createuser\":\"").append(createuser);

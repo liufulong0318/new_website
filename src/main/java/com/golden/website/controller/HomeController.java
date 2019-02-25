@@ -5,6 +5,10 @@ import com.golden.website.server.ManageService;
 import com.golden.website.server.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 @Api(value = "HomeController", description = "获取首页展示信息接口")
 @Controller
 @RequestMapping("/")
@@ -131,9 +135,27 @@ public class HomeController {
     @ApiOperation(value="获取购买页面模块展示信息", notes="获取购买页面模块展示信息")
     @RequestMapping(value = "buyPage",method = RequestMethod.GET)
     public String buyPage(Model model,String id) {
-        System.out.println(id);
         WebsiteProductbuyinfo wpbi = manageService.selectProductInfoById(id);
+        StringBuffer sb = new StringBuffer();
+        List<String> list = new ArrayList();
+        Document doc = Jsoup.parse(wpbi.getPrice());
+        Elements rows = doc.select("table").get(0).select("tbody tr");
+        if (rows.size() == 1) {
+            System.out.println("没有结果");
+        }else {
+            for(int i=1;i<rows.size();i++)
+            {
+
+                Element row = rows.get(i);
+                System.out.println("规格:" + row.select("td").get(0).text());
+                System.out.println("首次购买价(元):" + row.select("td").get(2).text());
+                sb.append("<option value=\"").append(i).append("\">").append(row.select("td").get(0).text()).append("</option>");
+                list.add(row.select("td").get(2).text());
+            }
+        }
         model.addAttribute("wpbi",wpbi);
+        model.addAttribute("op",sb.toString());
+        model.addAttribute("map",list);
         return "buyPage";
     }
 

@@ -805,7 +805,7 @@ $(document).ready(function () {
             $("#edit_content").val(obj2.content);
             $("#edit_order").val(obj2.order);
             edit_parameter.txt.html(obj2.parameter);
-            edit_price.txt.html(obj2.price);
+            edit_price.txt.html(decToHex(obj2.price.replace(/\|/g,"\\")));
             edit_details.txt.html(obj2.details);
             edit_notice.txt.html(obj2.notice);
         });
@@ -864,4 +864,9 @@ $(document).ready(function () {
 //---------------------------------产品购买--产品管理------------END---------------------------------------------
     $("#addLunbotuForm").validate();
 
-})
+
+});
+function decToHex(str) {
+
+    return unescape(str);
+}
