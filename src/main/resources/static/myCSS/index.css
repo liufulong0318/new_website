@@ -370,6 +370,19 @@ p img {
 #myModal_UpdatePwd .form-group label {
     min-width: 100px;
 }
+
+#myModal_order {
+    text-align: center;
+}
+
+#myModal_order .form-group {
+    margin: 0px 0px 15px 0px;
+}
+
+#myModal_order .form-group label {
+    min-width: 100px;
+}
+
 .menu {
     width: 250px;
     height: calc(100% - 54px);

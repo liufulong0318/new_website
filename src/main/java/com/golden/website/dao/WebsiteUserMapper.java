@@ -4,6 +4,7 @@ import com.golden.website.dataobject.WebsiteUser;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface WebsiteUserMapper {
@@ -83,4 +84,7 @@ public interface WebsiteUserMapper {
 
     @Select("select role from WEBSITE_USER  where loginusername = #{loginusername}")
     WebsiteUser getRoleByLoginusername(String loginusername);
+
+    @Select("SELECT a.ID,a.NAME,b.PHONE FROM website_user a LEFT JOIN website_invoice b  on a.id = b.id where a.loginUserName = #{loginusername}")
+    Map getUserInfoByLoginName(String loginusername);
 }

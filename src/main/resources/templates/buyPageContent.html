@@ -11,33 +11,12 @@
     </div>
     <hr>
     <div class="media" style="text-align: right;">
-        <!--<label>操作系统</label>-->
-        <!--<select class="form-control" style="width: auto;display: inline;margin-right: 20px;">-->
-            <!--<option value="0">Windows</option>-->
-            <!--<option value="1">Linux</option>-->
-        <!--</select>-->
-
         <label>规格(标签点)</label>
         <select class="form-control" style="width: auto;display: inline;margin-right: 20px;" th:utext="${op}" id="price_op" onchange="change_price()">
-            <!--<option value="0">1000</option>-->
-            <!--<option value="1">2000</option>-->
-            <!--<option value="2">3000</option>-->
-            <!--<option value="3">5000</option>-->
-            <!--<option value="4">6000</option>-->
-            <!--<option value="5">8000</option>-->
-            <!--<option value="6">10000</option>-->
-            <!--<option value="7">20000</option>-->
-            <!--<option value="8">30000</option>-->
-            <!--<option value="9">50000</option>-->
         </select>
         <label>价格(元)</label>
         <input class="form-control" id="disabledInput" type="text"  style="width: auto;display: inline;margin-right: 20px;" disabled>
-        <!-- 提供额外的视觉效果，标识一组按钮中的原始动作 -->
-        <button type="button" class="btn btn-danger">
-            <span class="glyphicon glyphicon-shopping-cart"></span> 加入购物车
-        </button>
-        <!-- 提供额外的视觉效果，标识一组按钮中的原始动作 -->
-        <button type="button" class="btn btn-warning">立即购买</button>
+        <button type="button" class="btn btn-warning" onclick="doBuy()">立即购买</button>
     </div>
     <hr>
     <ul id="myTab" class="nav nav-tabs">

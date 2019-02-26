@@ -129,4 +129,10 @@ public class UserController {
     public ResultInfo checkIsLogin(HttpServletRequest request) {
         return userService.checkIsLogin(request);
     }
+
+    @ApiOperation(value="获取用户信息", notes="根据当前登录名获取用户信息")
+    @RequestMapping(value = "getUserInfoByLoginName",method = RequestMethod.POST)
+    public String getUserInfoByLoginName(HttpServletRequest request) {
+        return userService.getUserInfoByLoginName(request);
+    }
 }

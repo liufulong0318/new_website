@@ -32,4 +32,5 @@ public interface UserService {
 
     WebsiteUser getRoleByLoginusername(HttpServletRequest request);
 
+    String getUserInfoByLoginName(HttpServletRequest request);
 }

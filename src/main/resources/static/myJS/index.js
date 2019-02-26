@@ -110,7 +110,6 @@ $(document).ready(function () {
         obj.phone = $(form_control[6]).val();
         obj.bank = $(form_control[7]).val();
         obj.bankacount = $(form_control[8]).val();
-        console.log(obj);
         $.post("/saveMyInfo", obj, function (data, status) {
             var obj2 = JSON.parse(data);
             $('#myModal').modal("hide");
@@ -137,6 +136,26 @@ $(document).ready(function () {
             }
         })
     })
+    //立即购买
+    $("#submit_order").on("click",function () {
+        var form_control = $("#orderForm").find(".form-control");
+        var obj = new Object();
+        obj.product_name = $(form_control[0]).val();
+        obj.product_tag=$(form_control[1]).val();
+        obj.product_total = $(form_control[2]).val();
+        obj.product_purchaser=$(form_control[3]).val();
+        obj.product_phone = $(form_control[4]).val();
+        obj.verificationCode_order = $(form_control[5]).val();
+        obj.userId = $(form_control[6]).val();
+        obj.code = $("#verificationCode_order").val();
+        $.post("/addOrderInfo", obj, function (data, status) {
+            var obj2 = JSON.parse(data);
+            $('#myModal').modal("hide");
+            $("#myModal_MSG .modal-body").html(obj2.msg);
+            $("#ok_btn").click();
+        });
+    })
+
 });
 
 function hoverDiy(className) {
@@ -179,4 +198,40 @@ function GetUrlRelativePath() {
         relUrl = relUrl.split("?")[0];
     }
     return relUrl;
+}
+
+//立即购买
+function doBuy() {
+    //验证是否登录
+    //已登录：弹出订单信息确认（产品名称、产品规格、购买价格、购买人姓名、购买人联系方式、购买人收货方式、收获地址、是否开票、支付方式）
+    //未登录：弹出登录窗，登录后弹出订单信息
+    $.post("/checkIsLogin", function (data, status) {
+        if(data == ""){
+           $("#product_name").val($(".media-heading").text()) ;
+            $("#product_tag").val($("#price_op option:selected").text());
+            $("#product_total").val($("#disabledInput").val());
+            generatingVerificationCode_order();
+            getUserInfoByLoginName();
+            $("#order_trigger").click();
+        }else if(data.code == "0"){
+            generatingVerificationCode_login();//生成验证码
+            $("#login_trigger").click();//弹出登录窗口
+        }
+    });
+}
+
+function getUserInfoByLoginName() {
+    $.post("/getUserInfoByLoginName", function (data, status) {
+        var obj = eval('(' + data + ')');
+        $("#product_purchaser").val(obj.name);
+        $("#product_phone").val(obj.phone);
+        $("#userId").val(obj.id);
+    })
+}
+
+function generatingVerificationCode_order(){
+    $.get("/GeneratingVerificationCode", function (data, status) {
+        var arr = data.split("|");
+        $("#generatingCode_order").attr("src", arr[0]);
+    });
 }

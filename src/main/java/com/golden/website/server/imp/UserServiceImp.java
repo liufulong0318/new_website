@@ -17,10 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -426,5 +423,29 @@ public class UserServiceImp implements UserService {
         String loginusername = request.getSession().getAttribute("loginusername").toString();
         WebsiteUser websiteUser = websiteUserMapper.getRoleByLoginusername(loginusername);
         return websiteUser;
+    }
+
+    @Override
+    public String getUserInfoByLoginName(HttpServletRequest request) {
+        String loginusername = request.getSession().getAttribute("loginusername").toString();
+        Map map = websiteUserMapper.getUserInfoByLoginName(loginusername);
+        if(map.isEmpty()){
+            return null;
+        }else{
+            StringBuffer sb = new StringBuffer();
+            sb.append("{\"id\":\"");
+            sb.append(map.get("ID"));
+            sb.append("\"");
+            sb.append(",");
+            sb.append("\"name\":\"");
+            sb.append(map.get("NAME"));
+            sb.append("\"");
+            sb.append(",");
+            sb.append("\"phone\":\"");
+            sb.append(map.get("PHONE"));
+            sb.append("\"");
+            sb.append("}");
+            return sb.toString();
+        }
     }
 }

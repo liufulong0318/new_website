@@ -138,7 +138,7 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
-
+<input type="button" style="display: none;" data-toggle="modal" data-target="#myModal_login" id="login_trigger">
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal_login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_login"
      aria-hidden="true">
@@ -238,6 +238,67 @@
                 </button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal" id="updatePwd">
                     修改
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<input type="button" style="display: none;" data-toggle="modal" data-target="#myModal_order" id="order_trigger">
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal_order" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_order"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel_order">
+                    订单信息
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="cmxform" id="orderForm">
+                    <div class="form-group">
+                        <label for="product_name">产品名称</label>
+                        <input id="product_name" name="product_name" class="form-control" type="text" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="product_tag">产品规格</label>
+                        <input id="product_tag" name="product_tag" class="form-control" type="text" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="product_total">产品价格</label>
+                        <input id="product_total" name="product_total" class="form-control" type="text" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="product_purchaser">姓名</label>
+                        <input id="product_purchaser" name="product_purchaser" class="form-control" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="product_phone">联系电话</label>
+                        <input id="product_phone" name="product_phone" class="form-control" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="verificationCode_login">验证码</label>
+                        <input type="text" class="form-control" placeholder="请输入验证码(不区分大小写)" id="verificationCode_order"
+                               maxlength="4" minlength="4" required>
+                    </div>
+                    <input id="userId" name="userId" class="form-control" type="hidden" >
+                    <div class="form-group">
+                        <img src="" id="generatingCode_order" onclick="generatingVerificationCode_order()"
+                             style="margin-left: 100px; border: 1px solid;width: 20%;height: 40px;">
+                        <a onclick="generatingVerificationCode_order()" style="cursor: pointer;text-decoration: none;">看不清楚</a>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    取消
+                </button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="submit_order" tabIndex="-1">
+                    提交订单
                 </button>
             </div>
         </div><!-- /.modal-content -->
