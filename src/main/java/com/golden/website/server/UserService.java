@@ -2,6 +2,7 @@ package com.golden.website.server;
 
 import com.golden.website.commons.ResultInfo;
 import com.golden.website.dataobject.WebsiteInvoice;
+import com.golden.website.dataobject.WebsiteOrder;
 import com.golden.website.dataobject.WebsiteUser;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,4 +34,6 @@ public interface UserService {
     WebsiteUser getRoleByLoginusername(HttpServletRequest request);
 
     String getUserInfoByLoginName(HttpServletRequest request);
+
+    List<WebsiteOrder> getOrderByUserId(String id);
 }

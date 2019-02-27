@@ -2,6 +2,7 @@ package com.golden.website.dao;
 
 import com.golden.website.dataobject.WebsiteOrder;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -20,8 +21,8 @@ public interface WebsiteOrderMapper {
      *
      * @mbg.generated
      */
-    @Insert("INSERT INTO WEBSITE_ORDER (ID,product_name,product_tag,product_total,product_purchaser,product_phone,order_time)" +
-            " VALUES (#{id},#{productName},#{productTag},#{productTotal},#{productPurchaser},#{productPhone},#{orderTime})")
+    @Insert("INSERT INTO WEBSITE_ORDER (ID,orderNum,productName,productTag,productTotal,productPurchaser,productPhone,receivingName,receivingMethod,receivingAddress,receivingPhone,orderTime)" +
+            " VALUES (#{id},#{orderNum},#{productName},#{productTag},#{productTotal},#{productPurchaser},#{productPhone},#{receivingName},#{receivingMethod},#{receivingAddress},#{receivingPhone},#{orderTime})")
     int insert(WebsiteOrder record);
 
     /**
@@ -47,4 +48,7 @@ public interface WebsiteOrderMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(WebsiteOrder record);
+
+    @Select("SELECT id,orderNum,productName,productTag,productTotal,productPurchaser,orderTime,receivingName,receivingPhone,receivingAddress from website_order WHERE ID = #{id}")
+    List<WebsiteOrder> getOrderByUserId(String id);
 }

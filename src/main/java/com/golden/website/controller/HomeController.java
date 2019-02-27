@@ -1,5 +1,6 @@
 package com.golden.website.controller;
 
+import com.golden.website.commons.ResultInfo;
 import com.golden.website.dataobject.*;
 import com.golden.website.server.ManageService;
 import com.golden.website.server.UserService;
@@ -159,6 +160,10 @@ public class HomeController {
         return "buyPage";
     }
 
+    /**
+     * 公共获取首页数据
+     * @param model
+     */
     public void findHomeData(Model model){
         List<WebsiteLunbotu> list = manageService.getAllOrderASC();
         List<WebsiteDowhat> listDowhat = manageService.getAllOrderASC_Dowhat();
@@ -182,5 +187,23 @@ public class HomeController {
         model.addAttribute("websiteAboutus", websiteAboutus);//关于我们
         model.addAttribute("goldendynamic", goldendynamic);//庚顿动态top3
         model.addAttribute("goldenshare", goldenshare);//庚顿分享top3
+    }
+    @ApiOperation(value="获取我的订单模块展示信息", notes="获取我的订单模块展示信息")
+    @RequestMapping(value = "myOrder",method = RequestMethod.GET)
+    public String myOrder(Model model,HttpServletRequest request) {
+        ResultInfo resultInfo = userService.checkIsLogin(request);
+        if(resultInfo != null){//未登录，返回首页
+            findHomeData(model);
+            return "home";
+        }
+        if(request.getSession().getAttribute("loginusername") != null){
+            WebsiteUser websiteUser = userService.getInfoByLoginusername(request);
+            List<WebsiteOrder> orderList = userService.getOrderByUserId(websiteUser.getId());
+            model.addAttribute("orderList",orderList);
+            return "myOrder";
+        }else {
+            findHomeData(model);
+            return "home";
+        }
     }
 }

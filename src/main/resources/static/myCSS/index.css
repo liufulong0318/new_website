@@ -702,6 +702,13 @@ p img {
         line-height: 35px;
         font-size: 12px;
     }
+    .row{
+        margin: 0px;
+    }
+    .row .col-md-3{
+        width: 80%;
+        margin: 30px 10%;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -863,6 +870,13 @@ p img {
         line-height: 35px;
         font-size: 12px;
     }
+    .row{
+        margin: 0px;
+    }
+    .row .col-md-3{
+        width: 80%;
+        margin: 30px 10%;
+    }
 }
 
 @media (min-width: 1366px) {
@@ -1008,6 +1022,13 @@ p img {
         height: 35px;
         line-height: 35px;
         font-size: 12px;
+    }
+    .row{
+        margin: 0px;
+    }
+    .row .col-md-3{
+        width: 80%;
+        margin: 30px 10%;
     }
 }
 
@@ -1163,5 +1184,19 @@ p img {
         height: 35px;
         line-height: 35px;
         font-size: 16px;
+    }
+    .row{
+        margin: 0px;
+    }
+    .row .col-md-3{
+        width: 80%;
+        margin: 30px 10%;
+    }
+    .row .option_button{
+        text-align: right;
+        margin-top: 10px;
+    }
+    .row .table{
+        margin-bottom: 0px;
     }
 }

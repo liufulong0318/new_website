@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-sm-6 col-md-3">
+        <div class="thumbnail" th:each="list:${orderList}">
+            <div class="caption">
+                <table class="table table-striped">
+                    <caption>商品信息</caption>
+                    <tbody>
+                    <tr>
+                        <td th:text="'产品名称：'+${list.productName}"><!--产品名称：庚星时序数据库管理系统V3.0--></td>
+                        <td th:text="'产品规格：'+${list.productTag}+'标签点'"><!--产品规格：1000标签点--></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="table table-striped">
+                    <caption>收货人信息</caption>
+                    <tr>
+                        <td th:text="'收货人姓名：'+${list.receivingName}"><!--收货人姓名：刘付龙--></td>
+                        <td th:text="'手机号：'+${list.receivingPhone}"><!--手机号：15501051611--></td>
+                        <td th:text="'收货地址：'+${list.receivingAddress}"><!--收货地址：北京市海淀区中关村软件园2号楼B座--></td>
+                    </tr>
+                </table>
+                <table class="table table-striped">
+                    <caption>订单信息</caption>
+                    <tr>
+                        <td th:text="'下单人：'+${list.productPurchaser}"><!--下单人：刘付龙--></td>
+                        <td th:text="'下单时间：'+${#dates.format(list.orderTime,'yyyy-MM-dd HH:mm:ss')}"><!--下单时间：2019-02-27 11:20:00--></td>
+                        <td th:text="'订单总额：'+${list.productTotal}+'元'"><!--订单总额：5000元--></td>
+                    </tr>
+                </table>
+                <p class="option_button">
+                    <a href="#" class="btn btn-primary" role="button">
+                        去支付
+                    </a>
+                    <a href="#" class="btn btn-default" role="button" id="${list.orderNum}">
+                        删除订单
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

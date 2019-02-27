@@ -10,6 +10,7 @@ import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.UUID;
 
 @Service
 public class OrderServiceImp implements OrderService{
@@ -21,11 +22,16 @@ public class OrderServiceImp implements OrderService{
         ResultInfo resultInfo = new ResultInfo();
         WebsiteOrder wo =  new WebsiteOrder();
         wo.setId(request.getParameter("userId"));
+        wo.setOrderNum(UUID.randomUUID().toString());
         wo.setProductName(request.getParameter("product_name"));
         wo.setProductTag(Integer.parseInt(request.getParameter("product_tag")));
         wo.setProductTotal(Integer.parseInt(request.getParameter("product_total")));
         wo.setProductPurchaser(request.getParameter("product_purchaser"));
         wo.setProductPhone(request.getParameter("product_phone"));
+        wo.setReceivingName(request.getParameter("receiving_name"));
+        wo.setReceivingMethod(request.getParameter("receiving_method"));
+        wo.setReceivingAddress(request.getParameter("receiving_address"));
+        wo.setReceivingPhone(request.getParameter("receiving_phone"));
         wo.setOrderTime(new Date());
         String code = request.getParameter("code");
         //验证码校验

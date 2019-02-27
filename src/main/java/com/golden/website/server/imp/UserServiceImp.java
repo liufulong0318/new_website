@@ -2,21 +2,18 @@ package com.golden.website.server.imp;
 
 import com.golden.website.commons.ResultInfo;
 import com.golden.website.dao.WebsiteInvoiceMapper;
-import com.golden.website.dao.WebsitePwdMapper;
+import com.golden.website.dao.WebsiteOrderMapper;
 import com.golden.website.dao.WebsiteUserMapper;
 import com.golden.website.dataobject.WebsiteInvoice;
-import com.golden.website.dataobject.WebsitePwd;
+import com.golden.website.dataobject.WebsiteOrder;
 import com.golden.website.dataobject.WebsiteUser;
 import com.golden.website.server.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,6 +24,8 @@ public class UserServiceImp implements UserService {
     WebsiteUserMapper websiteUserMapper;
     @Autowired
     WebsiteInvoiceMapper websiteInvoiceMapper;
+    @Autowired
+    WebsiteOrderMapper websiteOrderMapper;
 
     @Override
     public WebsiteUser getUserById(HttpServletRequest request) {
@@ -447,5 +446,11 @@ public class UserServiceImp implements UserService {
             sb.append("}");
             return sb.toString();
         }
+    }
+
+    @Override
+    public List<WebsiteOrder> getOrderByUserId(String id) {
+        List<WebsiteOrder> list = websiteOrderMapper.getOrderByUserId(id);
+        return list;
     }
 }

@@ -145,8 +145,12 @@ $(document).ready(function () {
         obj.product_total = $(form_control[2]).val();
         obj.product_purchaser=$(form_control[3]).val();
         obj.product_phone = $(form_control[4]).val();
-        obj.verificationCode_order = $(form_control[5]).val();
-        obj.userId = $(form_control[6]).val();
+        obj.receiving_name = $(form_control[5]).val();
+        obj.receiving_method= $(form_control[6]).val();
+        obj.receiving_address= $(form_control[7]).val();
+        obj.receiving_phone= $(form_control[8]).val();
+        obj.verificationCode_order = $(form_control[9]).val();
+        obj.userId = $(form_control[10]).val();
         obj.code = $("#verificationCode_order").val();
         $.post("/addOrderInfo", obj, function (data, status) {
             var obj2 = JSON.parse(data);
@@ -234,4 +238,16 @@ function generatingVerificationCode_order(){
         var arr = data.split("|");
         $("#generatingCode_order").attr("src", arr[0]);
     });
+}
+//修改收件方式
+function changeReceivingMethod(id) {
+    var v = $("#"+id +" option:selected").val();
+    $("#receiving_address").val("");//清空输入框
+    if(v == 0){
+        $("#address_for").text("邮箱地址");
+        $("#receiving_address").attr("placeholder","请输入邮箱地址");
+    }else{
+        $("#address_for").text("收件地址");
+        $("#receiving_address").attr("placeholder","请输入收件地址");
+    }
 }

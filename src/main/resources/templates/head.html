@@ -37,7 +37,7 @@
                     <ul class="dropdown-menu">
                         <li th:if="${session.role} == 1"><a href="/manage">后台管理</a></li>
                         <li class="divider" th:if="${session.role} == 1"></li>
-                        <li><a href="javascript:void(0);" th:if="${session.role} != 1">我的订单</a></li>
+                        <li><a href="/myOrder" th:if="${session.role} != 1">我的订单</a></li>
                         <li class="divider" th:if="${session.role} != 1"></li>
                         <li><a href="/myInfo" th:if="${session.role} != 1" >我的信息</a></li>
                         <li class="divider" th:if="${session.role} != 1"></li>
@@ -272,13 +272,34 @@
                         <label for="product_total">产品价格</label>
                         <input id="product_total" name="product_total" class="form-control" type="text" disabled>
                     </div>
+                    <!--<div class="form-group">-->
+                    <!--<label for="product_purchaser">姓名</label>-->
+                        <input id="product_purchaser" name="product_purchaser" class="form-control" type="hidden">
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label for="product_phone">联系电话</label>-->
+                        <input id="product_phone" name="product_phone" class="form-control" type="hidden">
+                    <!--</div>-->
                     <div class="form-group">
-                        <label for="product_purchaser">姓名</label>
-                        <input id="product_purchaser" name="product_purchaser" class="form-control" type="text">
+                        <label for="receiving_name">收件人姓名</label>
+                        <input id="receiving_name" name="receiving_name" class="form-control" type="text" placeholder="请输入收件人姓名"
+                               maxlength="5" minlength="5" required>
                     </div>
                     <div class="form-group">
-                        <label for="product_phone">联系电话</label>
-                        <input id="product_phone" name="product_phone" class="form-control" type="text">
+                        <label for="receiving_method">收件方式</label>
+                        <select id="receiving_method" name="receiving_method" class="form-control" style="display: inline;width: 40%;" onchange="changeReceivingMethod(this.id)">
+                            <option value="0">邮箱</option>
+                            <option value="1">U盘邮寄</option>
+                            <option value="2">光盘邮寄</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="receiving_address" id="address_for">邮箱地址</label>
+                        <input id="receiving_address" name="receiving_address" class="form-control" type="text" placeholder="请输入邮箱地址" maxlength="50" minlength="50" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="receiving_phone" >收件人电话</label>
+                        <input id="receiving_phone" name="receiving_phone" class="form-control" type="text" placeholder="请输入收件人电话" maxlength="11" minlength="7" required>
                     </div>
                     <div class="form-group">
                         <label for="verificationCode_login">验证码</label>
