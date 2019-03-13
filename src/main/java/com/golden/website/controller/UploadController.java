@@ -1,34 +1,50 @@
 package com.golden.website.controller;
 
 import com.golden.website.commons.ResultInfo;
+import com.golden.website.dataobject.WebsiteUploadDetail;
+import com.golden.website.enums.UserPrivilege;
+import com.golden.website.server.ManageService;
+import com.golden.website.server.UploadService;
 import com.golden.website.server.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+
 @Api(value = "UploadController", description = "公共上传接口")
 @RestController
 @RequestMapping("/")
+@MultipartConfig
 public class UploadController {
     @Autowired
     UserService userService;
+    @Autowired
+    UploadService uploadService;
 
-    @ApiOperation(value="文件上传", notes="文件上传")
-    @ApiImplicitParam(paramType="query", name = "imgFile", value = "上传文件", required = true, dataType = "MultipartFile")
-    @RequestMapping(value = "upload",method = RequestMethod.POST)
+
+    @ApiOperation(value = "文件上传", notes = "文件上传")
+    @ApiImplicitParam(paramType = "query", name = "imgFile", value = "上传文件", required = true, dataType = "MultipartFile")
+    @RequestMapping(value = "upload", method = RequestMethod.POST)
     public String upload(HttpServletRequest request) throws IOException {
         ResultInfo resultInfo = userService.checkIsLogin(request);
-        if(resultInfo == null){
-            if(userService.getRoleByLoginusername(request).getRole().equals("1")){//管理员登录具有权限操作
+        if (resultInfo == null) {
+            if (userService.getRoleByLoginusername(request).getRole().equals("1")) {//管理员登录具有权限操作
                 MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
                 MultipartFile multipartFile = req.getFile("imgFile");
 
@@ -75,15 +91,50 @@ public class UploadController {
                 info.append("\"data\":[\"/upload/" + filename + "\"]");
                 info.append("}");
                 return info.toString();
-            }else{
+            } else {
                 resultInfo = new ResultInfo();
                 resultInfo.setCode("0");
                 resultInfo.setMsg("对不起，您没有权限");
                 return resultInfo.toString();
             }
-        }else{
+        } else {
             return resultInfo.toString();
         }
 
     }
+
+    //@MultipartConfig(maxFileSize = -1,location = "default",maxRequestSize = -1);
+    @RequestMapping(value = "fileUp", method = RequestMethod.POST)
+    public String fileUp(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        ResultInfo resultInfo = userService.checkIsLogin(request);//验证是否登录
+        //这里做一下判断,如果ResultInfo 对象不为空说明未登录.
+        if (resultInfo != null) {
+            return resultInfo.toString();
+        }
+        resultInfo = new ResultInfo();
+        String role = userService.getRoleByLoginusername(request).getRole();
+        //有权限
+        if (null != role) {
+            int privilege = Integer.parseInt(role);
+            //对此操作的权限进行过滤,只有超级用户才能上传文件.
+            if (privilege == UserPrivilege.superUser.getPrivilege()) {
+                String filePath = System.getProperty("user.dir");
+                filePath = filePath.substring(0, filePath.lastIndexOf("\\")).replace("\\", "/");
+                uploadService.fileUp(request, filePath);
+                resultInfo.setCode("200");
+                resultInfo.setMsg("上传成功!");
+            }
+            //没有权限
+        } else {
+
+            resultInfo.setCode("0");
+            resultInfo.setMsg("对不起，您没有权限");
+
+        }
+        return resultInfo.toString();
+    }
+
+
 }
+
+

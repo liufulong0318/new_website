@@ -26,12 +26,12 @@
         </div>
         <div class="navbar-header" id="myinfo">
             <img src="../images/phone.png">
-            <span>400-628-5226</span>&nbsp;&nbsp;
-            <span>400-628-5226</span>
+            <span style="color: white">400-628-5226</span>&nbsp;&nbsp;
+            <span style="color: white">400-628-5226</span>
             <ul class="nav navbar-nav navbar-right" th:if="${session.token} != null">
-                <li class="dropdown">
+                <li class="dropdown" >
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"
-                       th:utext="@{'欢迎您，'+${session.loginusername}}">
+                       th:utext="@{'欢迎您，'+${session.loginusername}}" style="color: white;background-image:none;">
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
@@ -49,10 +49,12 @@
                 <!--<li data-toggle="modal" data-target="#myModal" onclick="generatingVerificationCode()"><a href="javascript:void(0)" th:utext="@{'欢迎您，'+${loginuusername}}"><span class="glyphicon glyphicon-user"></span> </a></li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right" th:if="${session.token} == null">
-                <li data-toggle="modal" data-target="#myModal" onclick="generatingVerificationCode()"><a
-                        href="javascript:void(0)"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-                <li data-toggle="modal" data-target="#myModal_login" onclick="generatingVerificationCode_login()"><a
-                        href="javascript:void(0)"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                <li data-toggle="modal" data-target="#myModal" onclick="generatingVerificationCode()">
+                    <a href="javascript:void(0)" style="color: white;"><span class="glyphicon glyphicon-user"></span> 注册</a>
+                </li>
+                <li data-toggle="modal" data-target="#myModal_login" onclick="generatingVerificationCode_login()">
+                    <a href="javascript:void(0)" style="color: white;"><span class="glyphicon glyphicon-log-in"></span> 登录</a>
+                </li>
             </ul>
         </div>
         <!--<input style="display: none;" id="token" th:value="${token}" >-->
@@ -128,7 +130,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="undo">
                     关闭
                 </button>
                 <button type="button" class="btn btn-primary" id="OK">

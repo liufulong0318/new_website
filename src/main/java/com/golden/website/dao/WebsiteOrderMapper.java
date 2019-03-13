@@ -1,8 +1,10 @@
 package com.golden.website.dao;
 
 import com.golden.website.dataobject.WebsiteOrder;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -39,6 +41,7 @@ public interface WebsiteOrderMapper {
      *
      * @mbg.generated
      */
+    @Select("select * from website_order order by orderTime desc")
     List<WebsiteOrder> selectAll();
 
     /**
@@ -49,6 +52,24 @@ public interface WebsiteOrderMapper {
      */
     int updateByPrimaryKey(WebsiteOrder record);
 
-    @Select("SELECT id,orderNum,productName,productTag,productTotal,productPurchaser,orderTime,receivingName,receivingPhone,receivingAddress from website_order WHERE ID = #{id}")
+    @Select("SELECT id,orderNum,productName,productTag,productTotal,productPurchaser,orderTime,receivingName,receivingPhone,receivingAddress,paymentStatus from website_order WHERE ID = #{id} order by orderTime desc")
     List<WebsiteOrder> getOrderByUserId(String id);
+
+    @Delete("DELETE FROM website_order WHERE orderNum = #{orderNum}")
+    int deleteOrderByOrderNum(String orderNum);
+
+    @Select("SELECT * FROM website_order WHERE orderNum = #{orderNum}")
+    WebsiteOrder getOrderByOrderNum(String orderNum);
+
+    @Update("update website_order set sender = #{sender},expressCompanyName=#{expressCompanyName},expressNum=#{expressNum},expressOutTime=#{expressOutTime},optionName = #{optionName},optiionTime=#{optiionTime},receivingStatus=#{receivingStatus},remarks=#{remarks} where orderNum = #{orderNum}")
+    int updateOrderByOrderNum(WebsiteOrder wo);
+
+    @Select("Select productName,productTotal,productTag from website_order where orderNum = #{orderNum}")
+    WebsiteOrder getProductOrderInfoByOrderNum4Alipay(String orderNum);
+
+    @Update("update website_order set paymentStatus = '1',paymentMethod='0',alipayNo = #{alipayNo},paymentTime = #{paymentTime} where orderNum = #{orderNum}")
+    int updateOrderPaymentStatusByOrderNum4Alipay(WebsiteOrder wo);
+
+    @Select("SELECT id,orderNum,productName,productTag,productTotal,productPurchaser,orderTime,receivingName,receivingPhone,receivingAddress,paymentStatus from website_order WHERE ID = (select id from website_order where orderNum = #{orderNum}) order by orderTime desc")
+    List<WebsiteOrder> getOrderListByOrderNum(String orderNum);
 }

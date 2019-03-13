@@ -5,6 +5,7 @@ import com.golden.website.commons.Upload;
 import com.golden.website.dao.*;
 import com.golden.website.dataobject.*;
 import com.golden.website.server.ManageService;
+import io.swagger.models.auth.In;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,8 @@ public class ManageServiceImp implements ManageService {
     WebsiteEnumMapper websiteEnumMapper;
     @Autowired
     WebsiteProductbuyinfoMapper websiteProductbuyinfoMapper;
+    @Autowired
+    WebsiteUploadDetailMapper websiteUploadDetailMapper;
 
     //-----------START--------------轮播图的增加、删除、修改、查询------------------
     @Override
@@ -105,7 +108,7 @@ public class ManageServiceImp implements ManageService {
     @Override
     public List<WebsiteLunbotu> getAllOrderASCPaging(HttpServletRequest request) {
         Paging paging = new Paging();
-        paging.setNumber(Integer.parseInt(request.getParameter("page")));
+        paging.setNumber(Integer.parseInt(request.getParameter("page") == null ? "0":request.getParameter("page")));
         return websiteLunbotuMapper.selectAllPaging(paging);
     }
     @Override
@@ -1709,6 +1712,31 @@ public class ManageServiceImp implements ManageService {
     public String deleteProductInfo(HttpServletRequest request) {
         ResultInfo resultInfo = new ResultInfo();
         int count = websiteProductbuyinfoMapper.deleteByPrimaryKey(request.getParameter("id"));
+        if(count>0){
+            resultInfo.setCode("1");
+            resultInfo.setMsg("删除成功");
+        }else{
+            resultInfo.setCode("0");
+            resultInfo.setMsg("删除失败");
+        }
+        return resultInfo.toString();
+    }
+
+    /**
+     * 获取所有上传文件的信息,用于文件管理页面的展示
+     * @return
+     */
+    @Override
+    public List<WebsiteUploadDetail> getFileUploadAllDetail() {
+
+        return  websiteUploadDetailMapper.selectAll();
+    }
+
+    @Override
+    public String deleteFile(HttpServletRequest request) {
+        ResultInfo resultInfo = new ResultInfo();
+        Integer fileId = Integer.parseInt(request.getParameter("id").toString());
+        int count = websiteUploadDetailMapper.deleteByPrimaryKey(fileId);
         if(count>0){
             resultInfo.setCode("1");
             resultInfo.setMsg("删除成功");

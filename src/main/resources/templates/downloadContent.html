@@ -1,13 +1,13 @@
 <div class="downloadContent">
-    <ul class="list-group">
-        <li class="list-group-item">
-            <span class="badge"><a>下载</a></span>
-            庚顿公司宣传册
+    <ul class="list-group"  th:each="m : ${list}">
+        <li class="list-group-item" >
+           <span class="badge"><a th:href="${m.filepath}" th:download="${m.filename}">下载</a></span>
+           <div th:text="${m.filename}"></div>
         </li>
-        <li class="list-group-item">
-            <span class="badge"><a>下载</a></span>
-            庚顿实时数据库管理系统V3.0技术白皮书
-        </li>
+        <!--<li class="list-group-item">-->
+            <!--<span class="badge"><a>下载</a></span>-->
+            <!--庚顿实时数据库管理系统V3.0技术白皮书-->
+        <!--</li>-->
 
     </ul>
 </div>

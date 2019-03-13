@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" id="myOrderCont">
     <div class="col-sm-6 col-md-3">
         <div class="thumbnail" th:each="list:${orderList}">
             <div class="caption">
@@ -27,11 +27,14 @@
                         <td th:text="'订单总额：'+${list.productTotal}+'元'"><!--订单总额：5000元--></td>
                     </tr>
                 </table>
-                <p class="option_button">
-                    <a href="#" class="btn btn-primary" role="button">
+                <p class="option_button" th:switch="${list.paymentStatus}">
+                    <a th:case="0" th:href="@{/alipay_GOLDEN(orderNume=${list.orderNum})}" class="btn btn-primary" role="button" target="_blank">
                         去支付
                     </a>
-                    <a href="#" class="btn btn-default" role="button" id="${list.orderNum}">
+                    <a th:case="1" class="btn btn-primary" role="button" >
+                        支付完成
+                    </a>
+                    <a href="javascript:void(0)" class="btn btn-default" role="button" th:id="${list.orderNum}" onclick="deleteOrderByOrderNum(this.id)">
                         删除订单
                     </a>
                 </p>

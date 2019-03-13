@@ -23,4 +23,23 @@ public class OrderController {
         ResultInfo resultInfo = orderService.addOrderInfo(request);
         return resultInfo.toString();
     }
+
+    @ApiOperation(value="根据订单编号删除订单信息", notes="根据订单编号删除订单信息")
+    @RequestMapping(value = "deleteOrderByOrderNum",method = RequestMethod.POST)
+    public String deleteOrderByOrderNum(HttpServletRequest request) {
+        ResultInfo resultInfo = orderService.deleteOrderByOrderNum(request);
+        return resultInfo.toString();
+    }
+
+    @ApiOperation(value="根据订单编号获取订单信息", notes="根据订单编号获取订单信息")
+    @RequestMapping(value = "getOrderByOrderNum",method = RequestMethod.POST)
+    public String getOrderByOrderNum(HttpServletRequest request) {
+        return orderService.getOrderByOrderNum(request);
+    }
+
+    @ApiOperation(value="根据订单编号修改订单信息", notes="根据订单编号修改订单信息")
+    @RequestMapping(value = "updateOrderInfoByOrderNum",method = RequestMethod.POST)
+    public String updateOrderInfoByOrderNum(HttpServletRequest request) {
+        return orderService.updateOrderInfoByOrderNum(request);
+    }
 }

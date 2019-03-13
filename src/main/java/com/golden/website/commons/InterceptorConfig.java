@@ -16,6 +16,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(new Interceptor()).addPathPatterns("/**")//拦截所有请求
                 .excludePathPatterns("/upload/**")//取消静态资源的拦截
                 .excludePathPatterns("/bootstrap/**")//取消静态资源的拦截
+                .excludePathPatterns("/bootstrap-datetimepicker/**")//取消静态资源的拦截
                 .excludePathPatterns("/images/**")//取消静态资源的拦截
                 .excludePathPatterns("/jquery/**")//取消静态资源的拦截
                 .excludePathPatterns("/myCSS/**")//取消静态资源的拦截

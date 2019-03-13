@@ -6,8 +6,17 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
+    #password: 123456 #192.168.1.158测试机
+    #password: GOLDEN666%@ #aws mysql 数据库密码
+  servlet:
+    multipart:
+      max-file-size: -1MB
+      max-request-size: -1MB
 server:
   port: 80
 mybatis:
   mapper-locations: classpath:resources/mapping/*Mapper.xml
   type-aliases-package: com.golden.website.dataobject
+logging:
+   level:
+     com.golden.website.dao.*: debug    #这是你的mapper包路径。

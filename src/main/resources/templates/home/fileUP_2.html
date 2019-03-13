@@ -1,0 +1,38 @@
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal_addFileUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" style="width: 70%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    添加信息
+                </h4>
+            </div>
+            <div class="modal-body">
+                    <div class="box">
+                        <h1>庚顿公司--云文件管理系统</h1>
+                        <input type="file" id="files" onchange="fileUp()" multiple="multiple" style="display: none"/>
+                        <a href="javascript:void(0);" onclick="fileChoice()">上传文件</a>
+                        <div class="filelist" id="flist">
+                            <ul>
+                                <li style="width: 30%">文件名</li>
+                                <li style="width: 68%">上传进度</li>
+                            </ul>
+                            <!--<ul>
+                                <li style="width: 30%">星际传奇.mp4</li>
+                                <li style="width: 68%"><progress max="100" th:value="20"></progress></li>
+                            </ul>-->
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="close_myModal_addFileUp">
+                    关闭
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>

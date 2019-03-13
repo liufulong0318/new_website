@@ -1,6 +1,7 @@
 package com.golden.website.controller;
 
 import com.golden.website.commons.ResultInfo;
+import com.golden.website.dao.WebsiteOrderMapper;
 import com.golden.website.dao.WebsiteProductbuyinfoMapper;
 import com.golden.website.dao.WebsiteUserMapper;
 import com.golden.website.dataobject.*;
@@ -20,6 +21,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2018/12/19.
  */
+@SuppressWarnings("ALL")
 @Api(value = "ManageRouterController", description = "模块管理后台路由控制")
 @Controller
 @RequestMapping("/")
@@ -32,7 +34,10 @@ public class ManageRouterController {
     @Autowired
     WebsiteProductbuyinfoMapper websiteProductbuyinfoMapper;
     @Autowired
+    WebsiteOrderMapper websiteOrderMapper;
+    @Autowired
     UserService userService;
+
 
     //----------START--------轮播图---------------------------
     @ApiOperation(value="获取轮播图管理页面所有展示数据", notes="获取轮播图管理页面所有展示数据")
@@ -215,6 +220,8 @@ public class ManageRouterController {
         ResultInfo resultInfo = userService.checkIsLogin(request);
         if(resultInfo == null){
             if(userService.getRoleByLoginusername(request).getRole().equals("1")){//管理员登录具有权限操作
+               List<WebsiteUploadDetail> list = manageService.getFileUploadAllDetail();
+                model.addAttribute("list", list);
                 return "home/filemanage";
             }else{
                 return "error";
@@ -243,4 +250,23 @@ public class ManageRouterController {
         }
     }
     //----------END--------产品管理---------------------------
+
+    //----------START--------订单管理---------------------------
+    @ApiOperation(value="获取订单管理页面所有订单数据", notes="获取订单管理页面所有订单数据")
+    @RequestMapping(value = "/orderManage",method = RequestMethod.GET)
+    public String orderManage(Model model,HttpServletRequest request){
+        ResultInfo resultInfo = userService.checkIsLogin(request);
+        if(resultInfo == null){
+            if(userService.getRoleByLoginusername(request).getRole().equals("1")){//管理员登录具有权限操作
+                List<WebsiteOrder> list = websiteOrderMapper.selectAll();
+                model.addAttribute("website_order",list);
+                return "home/orderManage";
+            }else{
+                return "error";
+            }
+        }else{
+            return "error";
+        }
+    }
+    //----------END--------订单管理---------------------------
 }

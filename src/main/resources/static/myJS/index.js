@@ -153,10 +153,14 @@ $(document).ready(function () {
         obj.userId = $(form_control[10]).val();
         obj.code = $("#verificationCode_order").val();
         $.post("/addOrderInfo", obj, function (data, status) {
-            var obj2 = JSON.parse(data);
-            $('#myModal').modal("hide");
-            $("#myModal_MSG .modal-body").html(obj2.msg);
-            $("#ok_btn").click();
+            if(status == "success"){
+                window.location.href="/myOrder";
+            }else{
+                var obj2 = JSON.parse(data);
+                $('#myModal').modal("hide");
+                $("#myModal_MSG .modal-body").html(obj2.msg);
+                $("#ok_btn").click();
+            }
         });
     })
 
@@ -250,4 +254,20 @@ function changeReceivingMethod(id) {
         $("#address_for").text("收件地址");
         $("#receiving_address").attr("placeholder","请输入收件地址");
     }
+}
+
+//删除订单
+function deleteOrderByOrderNum(id){
+    $('#myModal').modal("hide");
+    $("#myModal_MSG .modal-body").html("确定删除该订单吗？");
+    $("#ok_btn").click();
+    $("#OK").off('click').on("click",function () {
+        $("#OK").off('click');
+        $.post("/deleteOrderByOrderNum",{"orderNum":id}, function (data, status) {
+            var obj = eval('(' + data + ')');
+            $('#myModal').modal("hide");
+            $("#myModal_MSG .modal-body").html(obj.msg);
+            $("#ok_btn").click();
+        })
+    })
 }

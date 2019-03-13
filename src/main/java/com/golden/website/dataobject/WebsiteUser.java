@@ -255,7 +255,7 @@ public class WebsiteUser implements Serializable {
         this.password = password;
     }
 
-    public String getRole() {
+    public String  getRole() {
         return role;
     }
 

@@ -798,7 +798,6 @@ $(document).ready(function () {
         var obj = new Object();
         obj.id = id;
         $.post("/getProductBuyInfoById", obj, function (data, status) {
-            console.log(data);
             var obj2 = JSON.parse(data);
             $("#edit_id").val(obj2.id);
             $("#edit_title").val(obj2.title);
@@ -862,10 +861,88 @@ $(document).ready(function () {
         });
     })
 //---------------------------------产品购买--产品管理------------END---------------------------------------------
+//---------------------------------后台管理--订单管理------------START---------------------------------------------
+//根据订单编号查询订单相关信息
+//     function editOrderByOrderNum(id){
+//         $.post("/getOrderByOrderNum",{"orderNum":id}, function (data, status) {
+//             var obj = eval('(' + data + ')');
+//             $('#myModal').modal("hide");
+//             $("#myModal_MSG .modal-body").html(obj.msg);
+//             $("#ok_btn").click();
+//         })
+//     }
+
+    //修改提交
+    $("#editProductInfo").on('click', function () {
+        var formdata = new FormData();
+        formdata.append("id", $("#edit_id").val());
+        formdata.append("title", $("#edit_title").val());
+        formdata.append("content", $("#edit_content").val());
+        formdata.append("order", $("#edit_order").val());
+        var param = filterXSS(edit_parameter.txt.html());  // 此处进行 xss 攻击过滤
+        formdata.append("parameter", param);
+        var pr = filterXSS(edit_price.txt.html());  // 此处进行 xss 攻击过滤
+        formdata.append("price",pr);
+        var de = filterXSS(edit_details.txt.html());  // 此处进行 xss 攻击过滤
+        formdata.append("details", de);
+        var no = filterXSS(edit_notice.txt.html());  // 此处进行 xss 攻击过滤
+        formdata.append("notice", no);
+        var image = document.getElementById("edit_inputfile");
+        formdata.append("imgFile", image.files[0]);
+        $.ajax({
+            url: "editProductInfo",
+            type: "POST",
+            data: formdata,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                var obj2 = JSON.parse(data);
+                $('#myModal_editHomeProduct').modal("hide");
+                $("#myModal_tips .modal-body").html(obj2.msg);
+                $("#tips").click();
+            }
+        });
+    })
+//---------------------------------后台管理--订单管理------------END---------------------------------------------
+    //--------------------------------------后台管理--文件管理-------------------START-----------------------------
+    //删除
+    $(".deleteFile").on('click', function () {
+        var td = $(this).parent().parent().children();
+        var id = td[0].innerHTML;
+        console.log(id);
+        var obj = new Object();
+        obj.id = id;
+        $.post("/deleteFile", obj, function (data, status) {
+            var obj2 = JSON.parse(data);
+            $("#myModal_tips .modal-body").html(obj2.msg);
+            $("#tips").click();
+        });
+    })
+    //关闭时刷新当前页面
+    $("#close_myModal_addFileUp").on("click",function () {
+        window.location.reload();
+    })
+    //--------------------------------------后台管理--文件管理---------------------END----------------------------
     $("#addLunbotuForm").validate();
 
 
 });
 function decToHex(str) {
     return unescape(str);
+}
+//修改订单
+function editOrderByOrderNum(id) {
+    $("#edit_orderNum").val(id);
+    // $.post("/getOrderByOrderNum", obj, function (data, status) {
+    //     var obj2 = JSON.parse(data);
+    //     console.log(obj2);
+        // $("#edit_id").val(obj2.id);
+        // $("#edit_title").val(obj2.title);
+        // $("#edit_content").val(obj2.content);
+        // $("#edit_order").val(obj2.order);
+        // edit_parameter.txt.html(obj2.parameter);
+        // edit_price.txt.html(decToHex(obj2.price.replace(/\|/g,"\\")));
+        // edit_details.txt.html(obj2.details);
+        // edit_notice.txt.html(obj2.notice);
+    // });
 }

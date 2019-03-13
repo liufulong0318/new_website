@@ -2,36 +2,35 @@
     <div class="myProduct">
         <div class="list-group">
             <a href="javascript:void(0)" class="list-group-item active">
-                <h4 class="list-group-item-heading">
+                <div class="list-group-item-heading">
                     数据库软件
-                </h4>
+                </div>
             </a>
             <a class="list-group-item" th:each="l_1 : ${list[0]}" th:id="${l_1.id}">
-                <h4 class="list-group-item-heading" th:text="${l_1.title}">
-                </h4>
+                <div class="list-group-item-heading" th:text="${l_1.title}">
+                </div>
             </a>
         </div>
         <div class="list-group">
             <a href="javascript:void(0)" class="list-group-item active">
-                <h4 class="list-group-item-heading">
+                <div class="list-group-item-heading">
                     可视化软件
-                </h4>
+                </div>
             </a>
             <a class="list-group-item" th:each="l_1 : ${list[1]}" th:id="${l_1.id}">
-                <h4 class="list-group-item-heading" th:text="${l_1.title}">
-                </h4>
+                <div class="list-group-item-heading" th:text="${l_1.title}">
+                </div>
             </a>
         </div>
         <div class="list-group">
             <a href="#" class="list-group-item active">
-                <h4 class="list-group-item-heading">
+                <div class="list-group-item-heading">
                     数据融合软件
-                </h4>
+                </div>
             </a>
             <a class="list-group-item" th:each="l_1 : ${list[2]}" th:id="${l_1.id}">
-                <h4 class="list-group-item-heading" th:text="${l_1.title}">
-
-                </h4>
+                <div class="list-group-item-heading" th:text="${l_1.title}">
+                </div>
             </a>
         </div>
 

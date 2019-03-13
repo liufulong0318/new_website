@@ -158,4 +158,10 @@ public interface ManageService {
     WebsiteProductbuyinfo selectProductInfoById(String id);
 
     String deleteProductInfo(HttpServletRequest request);
+
+  //-----------------START------------资料管理的文件管理-------------------------------------
+    List<WebsiteUploadDetail> getFileUploadAllDetail();
+    String deleteFile(HttpServletRequest request);
+    //-----------------START------------资料管理的文件管理-------------------------------------
+
 }

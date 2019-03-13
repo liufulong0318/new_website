@@ -785,4 +785,24 @@ public class ManageController {
         }
     }
     //----------------END------------------产品管理-------------------------------------------------
+
+    //---------------START-----------------文件管理---------------------------------------
+
+    @RequestMapping(value = "/deleteFile",method = RequestMethod.POST)
+    public String deleteFile(HttpServletRequest request){
+        ResultInfo resultInfo = userService.checkIsLogin(request);
+        if(resultInfo == null){
+            if(userService.getRoleByLoginusername(request).getRole().equals("1")){//管理员登录具有权限操作
+                return manageService.deleteFile(request);
+            }else{
+                resultInfo = new ResultInfo();
+                resultInfo.setCode("0");
+                resultInfo.setMsg("对不起，您没有权限");
+                return resultInfo.toString();
+            }
+        }else{
+            return resultInfo.toString();
+        }
+    }
+    //------------END----------------------文件管理------------------------------------------
 }

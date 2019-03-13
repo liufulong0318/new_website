@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>订单管理</title>
+    <link th:href="@{../bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{../bootstrap/css/bootstrap-theme.css}" rel="stylesheet">
+    <link th:href="@{../myCSS/index.css}" rel="stylesheet">
+</head>
+<body id="body">
+<div class="row" id="myOrderCont_M">
+    <div class="col-sm-6 col-md-3">
+        <div class="thumbnail" th:each="list:${website_order}">
+            <div class="caption">
+                <table class="table table-striped">
+                    <caption>订单信息</caption>
+                    <tr>
+                        <td th:text="'订单编号：'+${list.orderNum}"></td>
+                        <td th:text="'产品名称：'+${list.productName}"></td>
+                        <td th:text="'产品规格：'+${list.productTag}+'标签点'"></td>
+                        <td th:text="'订单总额：'+${list.productTotal}+'元'"></td>
+                    </tr>
+                    <tr th:switch="${list.receivingMethod}">
+                        <td th:text="'收货人姓名：'+${list.receivingName}"></td>
+                        <td th:text="'手机号：'+${list.receivingPhone}"></td>
+                        <td th:case="'0'">收货方式：邮件</td>
+                        <td th:case="'1'">收货方式：U盘邮寄</td>
+                        <td th:case="'2'">收货方式：光盘邮寄</td>
+                        <td th:text="'收货地址：'+${list.receivingAddress}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="'下单人：'+${list.productPurchaser}"></td>
+                        <td th:text="'下单人联系方式：'+${list.productPhone}"></td>
+                        <td th:text="'下单时间：'+${#dates.format(list.orderTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td></td>
+                    </tr>
+                    <tr th:switch="${list.paymentMethod}">
+                        <td th:text="'订单支付状态：'+${list.paymentStatus=='0'?'未支付':'已支付'}"></td>
+                        <td th:case="'*'">订单支付方式：</td>
+                        <td th:case="0">订单支付方式：支付宝</td>
+                        <td th:case="1">订单支付方式：微信</td>
+                        <td th:case="2">订单支付方式：银联个人</td>
+                        <td th:case="3">订单支付方式：银联企业</td>
+                        <td th:text="'支付完成时间：'+${list.paymentTime == null ? '': #dates.format(list.paymentTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <!--<td th:text="'订单支付完成时间：'+${#dates.format(list.paymentTime,'yyyy-MM-dd HH:mm:ss')}"></td>-->
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td th:text="'订单操作人：'+${list.optionName == null ? '': list.optionName}"></td>
+                        <td th:text="'订单操作时间：'+${list.optiionTime == null ? '': #dates.format(list.optiionTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td th:text="'发货人：'+${list.sender== null ? '':list.sender }"></td>
+                        <td th:text="'快递名称：'+${list.expressCompanyName== null ? '':list.expressCompanyName}"></td>
+                        <td th:text="'快递单号：'+${list.expressNum== null ? '':list.expressNum}"></td>
+                        <td th:text="'快递寄出时间：'+${list.expressOutTime== null ? '':#dates.format(list.expressOutTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="'备注：'+${list.remarks== null ? '':list.remarks}" colspan= "4"></td>
+                    </tr>
+                </table>
+                <p class="option_button">
+                    <a  class="btn btn-default" data-toggle="modal" data-target="#myModal_editOrder" role="button" th:id="${list.orderNum}" onclick="editOrderByOrderNum(this.id)">
+                        编辑订单
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="home/editOrder"></div>
+<script th:src="@{../jquery/jquery-3.3.1.min.js}" type="text/javascript"></script>
+<script th:src="@{../bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
+<script th:src="@{../bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js}" type="text/javascript"></script>
+<script th:src="@{../bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js}" type="text/javascript"></script>
+<script th:src="@{../myJS/index.js}" type="text/javascript"></script>
+<script th:src="@{../myJS/manage.js}" type="text/javascript"></script>
+<script type="text/javascript">
+    var screenHeight = document.documentElement.clientHeight;
+    var screenWidth = document.documentElement.clientWidth;
+    var body = document.getElementById('body');
+    body.style.width = screenWidth + "px";
+    body.style.height = screenHeight + "px";
+    $('#edit_expressOutTime').datetimepicker({
+        language:  'zh-CN',
+        format: 'yyyy-mm-dd hh:ii:ss',
+        todayBtn: true
+    });
+</script>
+</body>
+</html>
